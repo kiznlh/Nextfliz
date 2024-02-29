@@ -1,0 +1,1 @@
+This folder is for ViewModels (connect model with view)
