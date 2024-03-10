@@ -1,0 +1,45 @@
+1. User (Tài khoản)
+username: Tên tài khoản, PK
+password: Mật khẩu (có thể được mã hóa)
+ngay_sinh: Ngày sinh
+gioi_tinh: Giới tính
+ 
+2. Movie (Phim)
+movie_id: Primary Key
+ten_phim: Tên phim
+the_loai_id: Foreign Key đến bảng Genre
+thoi_luong: Thời lượng phim
+nam_phat_hanh: Năm phát hành
+diem_danh_gia: Điểm đánh giá (IMDb rating)
+dao_dien_id: Foreign Key đến bảng Director
+hinh_anh: Đường dẫn đến hình ảnh (poster)
+phan_loai_id: Foreign Key đến bảng Certification
+
+3. Genre (Thể loại)
+
+genre_id: Primary Key
+ten_the_loai: Tên thể loại
+4. Certification (Phân loại độ tuổi)
+certification_id: Primary Key
+phan_loai: Phân loại
+5. Actor (Diễn viên)
+
+actor_id: Primary Key
+ten_dien_vien: Tên diễn viên
+hinh_anh: Đường dẫn đến hình ảnh (avatar)
+tieu_su: Tiểu sử ngắn
+
+6. Director (Đạo diễn)
+director_id: Primary Key
+ten_dao_dien: Tên đạo diễn
+hinh_anh: Đường dẫn đến hình ảnh
+tieu_su: Tiểu sử ngắn
+
+7. Ticket (Vé)
+ticket_id: Primary Key
+user_id: Foreign Key đến bảng User
+movie_id: Foreign Key đến bảng Movie
+ngay_dat_ve: Ngày đặt vé
+suat_chieu: Thời gian suất chiếu
+gia_ve: Giá vé
+ghe_ngoi: Ghế ngồi (có thể lưu thông tin ghế ngồi)
