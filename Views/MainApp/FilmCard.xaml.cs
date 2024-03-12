@@ -58,7 +58,7 @@ namespace Nextfliz.Views.MainApp
             {
                 videoElement.Pause();
                 videoElement.Position = TimeSpan.Zero;
-                grid.Background = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/Resources/film_bg.jpg")));
+                grid.Background = new ImageBrush(new BitmapImage(new Uri("../../../Resources/Images/film_bg.jpg", UriKind.RelativeOrAbsolute)));
             }
         }
     }

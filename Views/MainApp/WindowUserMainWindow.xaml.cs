@@ -19,18 +19,22 @@ namespace Nextfliz.Views.MainApp
     /// </summary>
     public partial class WindowUserMainWindow : Window
     {
+        PageSearch pageSearch;
+        TestPageForNewControl testPage; 
         public WindowUserMainWindow()
         {
             InitializeComponent();
+            pageSearch = new PageSearch();
+            testPage = new TestPageForNewControl();
         }
 
         private void Search_Click(object sender, RoutedEventArgs e)
         {
-
+            contentFrame.Navigate(pageSearch);
         }
         private void Home_Click(object sender, RoutedEventArgs e)
         {
-
+            contentFrame.Navigate(testPage);
         }
         private void User_Click(object sender, RoutedEventArgs e)
         {
