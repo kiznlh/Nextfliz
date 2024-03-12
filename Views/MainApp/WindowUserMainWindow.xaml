@@ -1,0 +1,38 @@
+﻿<Window x:Class="Nextfliz.Views.MainApp.WindowUserMainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="WindowUserMainWindow" Height="800" Width="1200"
+        Background="#31363F">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <!-- Define the column for the side navigation bar -->
+            <ColumnDefinition Width="Auto"/>
+
+            <!-- Define the column for the content area -->
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Side Navigation Bar -->
+        <Grid Grid.Column="0" Background="#222831" Width="50" MinWidth="50">
+            <Grid.RowDefinitions>
+                <!-- Define rows to space buttons evenly -->
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Button Grid.Row="0" Click="Search_Click" Background="#76ABAE">
+                <Image Source="/Resources/Icons/search_icon.png"/>
+            </Button>
+            <Button Grid.Row="1" Click="Home_Click" Background="#76ABAE">
+                <Image Source="/Resources/Icons/home_icon.png"/>
+            </Button>
+            <Button Grid.Row="2" Click="User_Click" Background="#76ABAE">
+                <Image Source="/Resources/Icons/user_icon.png"/>
+            </Button>
+        </Grid>
+
+        <!-- Content Area -->
+        <Frame x:Name="contentFrame" Grid.Column="1"/>
+    </Grid>
+</Window>
