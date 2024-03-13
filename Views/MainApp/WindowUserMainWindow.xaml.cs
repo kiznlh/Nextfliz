@@ -31,14 +31,16 @@ namespace Nextfliz.Views.MainApp
         private void Search_Click(object sender, RoutedEventArgs e)
         {
             contentFrame.Navigate(pageSearch);
+            screentitle.Text = "Search";
         }
         private void Home_Click(object sender, RoutedEventArgs e)
         {
             contentFrame.Navigate(testPage);
+            screentitle.Text = "Home";
         }
         private void User_Click(object sender, RoutedEventArgs e)
         {
-
+            screentitle.Text = "User";
         }
     }
 }
