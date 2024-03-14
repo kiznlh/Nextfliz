@@ -24,13 +24,14 @@
                         <RowDefinition Height="50"/>
                         <RowDefinition Height="50"/>
                         <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
                     </Grid.RowDefinitions>
 
                     <Button Grid.Row="0" Style="{StaticResource AdminNavButton}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                             <Icon:PackIconMaterial Kind="ViewDashboardOutline"/>
                             <TextBlock Margin="5,0,0,0">
-                            Dashboard
+            Dashboard
                             </TextBlock>
                         </StackPanel>
                     </Button>
@@ -38,7 +39,7 @@
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                             <Icon:PackIconMaterial Kind="VideoMinusOutline"/>
                             <TextBlock Margin="5,0,0,0">
-                            Quản lí phim
+            Quản lí phim
                             </TextBlock>
                         </StackPanel>
                     </Button>
@@ -46,7 +47,15 @@
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                             <Icon:PackIconMaterial Kind="TicketOutline"/>
                             <TextBlock Margin="5,0,0,0">
-                            Quản lí voucher
+            Quản lí voucher
+                            </TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button Grid.Row="3" Style="{StaticResource AdminNavButton}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Icon:PackIconMaterial Kind="AccountOutline"/>
+                            <TextBlock Margin="5,0,0,0">
+                Quản lí nhân vật
                             </TextBlock>
                         </StackPanel>
                     </Button>
@@ -124,7 +133,7 @@
                                 <DataGrid
                                     x:Name="TopFilmDataGrid"
                                     Style="{StaticResource FilmListStyle}"
-                                    ColumnHeaderStyle="{DynamicResource TopFilmHeader}"
+                                    ColumnHeaderStyle="{DynamicResource FilmListHeader}"
                                     RowStyle="{DynamicResource FilmListRow}"
                                     CellStyle="{DynamicResource TopFilmCell}">
                                     <DataGrid.Columns>

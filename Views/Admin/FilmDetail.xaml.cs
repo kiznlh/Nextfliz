@@ -22,6 +22,7 @@ namespace Nextfliz.Views
         public FilmDetail()
         {
             InitializeComponent();
+            DataContext = new FilmDetailVM();
         }
     }
 }

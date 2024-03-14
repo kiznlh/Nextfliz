@@ -24,9 +24,9 @@ namespace Nextfliz
         public SeriesCollection SeriesCollection { get; set; }
         public string[] Labels { get; set; }
         public Func<double, string> YFormatter { get; set; }
-
+        public ObservableCollection<TopFilm> list { get; set; }
         public AdminVM() {
-            ObservableCollection<TopFilm> list = new ObservableCollection<TopFilm>();
+            list = new ObservableCollection<TopFilm>();
             list.Add(new TopFilm()
             {
                 no = "1",

@@ -24,10 +24,6 @@ namespace Nextfliz.Views
     /// </summary>
     public partial class Admin : Window
     {
-        public SeriesCollection SeriesCollection { get; set; }
-        public string[] Labels { get; set; }
-        public Func<double, string> YFormatter { get; set; }
-
         public Admin()
         {
             InitializeComponent();

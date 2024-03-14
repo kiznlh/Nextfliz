@@ -27,6 +27,7 @@
                         <RowDefinition Height="50"/>
                         <RowDefinition Height="50"/>
                         <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
                     </Grid.RowDefinitions>
 
                     <Button Grid.Row="0" Style="{StaticResource AdminNavButtonSelected}">
@@ -50,6 +51,14 @@
                             <Icon:PackIconMaterial Kind="TicketOutline"/>
                             <TextBlock Margin="5,0,0,0">
                                 Quản lí voucher
+                            </TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button Grid.Row="3" Style="{StaticResource AdminNavButton}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Icon:PackIconMaterial Kind="AccountOutline"/>
+                            <TextBlock Margin="5,0,0,0">
+                                Quản lí nhân vật
                             </TextBlock>
                         </StackPanel>
                     </Button>
@@ -275,6 +284,7 @@
                             >
                             <Label FontSize="15" Foreground="#6c6a6e">Top bán vé</Label>
                             <DataGrid
+                                ItemsSource="{Binding list}"
                                 x:Name="TopFilmDataGrid"
                                 Style="{StaticResource TopFilmStyle}"
                                 ColumnHeaderStyle="{DynamicResource TopFilmHeader}"

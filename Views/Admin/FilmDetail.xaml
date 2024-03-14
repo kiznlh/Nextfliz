@@ -7,7 +7,7 @@
         xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         xmlns:local="clr-namespace:Nextfliz.Views"
         mc:Ignorable="d"
-        Title="FilmDetail" Height="1000" Width="1000">
+        Title="FilmDetail" Height="5000" Width="1500">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="18*"/>
@@ -22,6 +22,7 @@
 
                 <Grid>
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
                         <RowDefinition Height="50"/>
                         <RowDefinition Height="50"/>
                         <RowDefinition Height="50"/>
@@ -48,6 +49,14 @@
                             <Icon:PackIconMaterial Kind="TicketOutline"/>
                             <TextBlock Margin="5,0,0,0">
                             Quản lí voucher
+                            </TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button Grid.Row="3" Style="{StaticResource AdminNavButton}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Icon:PackIconMaterial Kind="AccountOutline"/>
+                            <TextBlock Margin="5,0,0,0">
+                                Quản lí nhân vật
                             </TextBlock>
                         </StackPanel>
                     </Button>
@@ -123,7 +132,7 @@
                                         </WrapPanel>
                                     </StackPanel>
                                 </ScrollViewer>
-                                <Button Width="100" VerticalAlignment="Bottom" Style="{StaticResource EditFilmButton}">
+                                <Button Width="100" HorizontalAlignment="Right" VerticalAlignment="Bottom" Style="{StaticResource EditFilmButton}">
                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                         <Icon:PackIconMaterial Kind="PencilOutline" Margin="0,0,5,0"/>
                                         <TextBlock>Chỉnh sửa</TextBlock>
@@ -204,30 +213,81 @@
                         </Border>
                     </Grid>
 
-                    <Border Background="white" Margin="0,0,0,20" CornerRadius="5">
-                        <StackPanel Orientation="Vertical" Margin="10">
-                            <Grid Margin="0,0,0,10">
-                                <Label FontSize="15" Content="Doanh thu &amp; lợi nhuận"/>
-                                <WrapPanel HorizontalAlignment="Right" Margin="0,0,15,0">
-                                    <Label FontSize="14" Foreground="#6c6a6e">Hiển thị theo:</Label>
-                                    <ComboBox x:Name="SalesCombobox" Width="100" Height="30" Style="{StaticResource CustomComboBoxStyle}">
-                                        <ComboBoxItem Content="Ngày"/>
-                                        <ComboBoxItem Content="Tuần"/>
-                                        <ComboBoxItem Content="Tháng"/>
-                                        <ComboBoxItem Content="Năm"/>
-                                    </ComboBox>
-                                </WrapPanel>
-                            </Grid>
-                            <lvc:CartesianChart Height="200" Series="{Binding SeriesCollection}" LegendLocation="Bottom" >
-                                <lvc:CartesianChart.AxisY>
-                                    <lvc:Axis LabelFormatter="{Binding YFormatter}"></lvc:Axis>
-                                </lvc:CartesianChart.AxisY>
-                                <lvc:CartesianChart.AxisX>
-                                    <lvc:Axis Labels="{Binding Labels}"></lvc:Axis>
-                                </lvc:CartesianChart.AxisX>
-                            </lvc:CartesianChart>
-                        </StackPanel>
-                    </Border>
+                    <Grid Margin="0,0,0,20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40*"/>
+                            <ColumnDefinition Width="60*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <Border Background="white" Margin="0,0,10,0" CornerRadius="5">
+                            <StackPanel Orientation="Vertical" Margin="10">
+                                <Grid Margin="0,0,0,10">
+                                    <Label FontSize="15" Content="Suất chiếu"/>
+                                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                        
+                                        <Button VerticalAlignment="Center" Style="{StaticResource EditFilmButton}">
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                <Icon:PackIconMaterial Kind="Plus"/>
+                                            </StackPanel>
+                                        </Button>
+                                        <Button VerticalAlignment="Center" Style="{StaticResource DeleteFilmButton}">
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                <Icon:PackIconMaterial Kind="DeleteOutline"/>
+                                            </StackPanel>
+                                        </Button>
+                                    </WrapPanel>
+                                </Grid>
+                                
+                                <ListView
+                                    ItemsSource="{Binding list}"
+                                    ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                    BorderThickness="0"
+                                    Height="200">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border BorderThickness="1" BorderBrush="#dcddde" CornerRadius="5" Padding="10,5,10,5">
+                                                <StackPanel Orientation="Vertical">
+                                                    <TextBlock FontWeight="SemiBold" TextAlignment="Center" Text="{Binding Date}"/>
+                                                    <TextBlock FontWeight="SemiBold" TextAlignment="Center" Text="{Binding Time}"/>
+                                                </StackPanel>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                    <ListView.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel HorizontalAlignment="Center"/>
+                                        </ItemsPanelTemplate>
+                                    </ListView.ItemsPanel>
+                                </ListView>
+                            </StackPanel>
+                        </Border>
+                        <Border Grid.Column="1" Background="white" CornerRadius="5">
+                            <StackPanel Orientation="Vertical" Margin="10">
+                                <Grid Margin="0,0,0,10">
+                                    <Label FontSize="15" Content="Doanh thu &amp; lợi nhuận"/>
+                                    <WrapPanel HorizontalAlignment="Right" Margin="0,0,15,0">
+                                        <Label FontSize="14" Foreground="#6c6a6e">Hiển thị theo:</Label>
+                                        <ComboBox x:Name="SalesCombobox" Width="100" Height="30" Style="{StaticResource CustomComboBoxStyle}">
+                                            <ComboBoxItem Content="Ngày"/>
+                                            <ComboBoxItem Content="Tuần"/>
+                                            <ComboBoxItem Content="Tháng"/>
+                                            <ComboBoxItem Content="Năm"/>
+                                        </ComboBox>
+                                    </WrapPanel>
+                                </Grid>
+                                <lvc:CartesianChart Height="200" Series="{Binding SeriesCollection}" LegendLocation="Bottom" >
+                                    <lvc:CartesianChart.AxisY>
+                                        <lvc:Axis LabelFormatter="{Binding YFormatter}"></lvc:Axis>
+                                    </lvc:CartesianChart.AxisY>
+                                    <lvc:CartesianChart.AxisX>
+                                        <lvc:Axis Labels="{Binding Labels}"></lvc:Axis>
+                                    </lvc:CartesianChart.AxisX>
+                                </lvc:CartesianChart>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+
+
 
                 </StackPanel>
             </ScrollViewer>
