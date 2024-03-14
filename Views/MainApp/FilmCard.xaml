@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="Nextfliz.Views.MainApp.FilmCardControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d">
+    <Grid x:Name="grid" Margin="50,50,50,50" MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave">
+        <Grid.Background>
+            <ImageBrush ImageSource="/Resources/Images/film_bg.jpg"/>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"></ColumnDefinition>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Column="0" HorizontalAlignment="Left" Margin="106,228,0,0" TextWrapping="Wrap" Text="Tên Phim" VerticalAlignment="Top" Foreground="Red" Height="16" Width="auto"/>
+        <Border Grid.Column="0" Grid.Row="0" BorderThickness="1" BorderBrush="White" Margin="109,252,388,58">
+            <TextBlock Text="16+" Foreground="White" Height="22" VerticalAlignment="Top" />
+        </Border>
+        <TextBlock HorizontalAlignment="Left" Margin="150,253,0,0" TextWrapping="Wrap" Text="3 Episode" VerticalAlignment="Top" Height="23" Width="auto" Foreground="Red"/>
+        
+    </Grid>
+</UserControl>

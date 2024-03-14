@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="Nextfliz.Views.MainApp.SliderControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Nextfliz.Views.MainApp"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <ScrollViewer x:Name="scrollViewer" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Disabled">
+            <WrapPanel x:Name="wrapPanel"/>
+        </ScrollViewer>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Button Content="◄" Click="SlideLeft_Click" Margin="5"/>
+            <Button Content="►" Click="SlideRight_Click" Margin="5"/>
+        </StackPanel>
+    </Grid>
+</UserControl>
