@@ -7,7 +7,7 @@
         xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         xmlns:local="clr-namespace:Nextfliz.Views"
         mc:Ignorable="d"
-        Title="FilmDetail" Height="450" Width="800">
+        Title="FilmDetail" Height="1000" Width="1000">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="18*"/>
@@ -94,14 +94,42 @@
                                 </Rectangle.Fill>
                             </Rectangle>
 
-                            <ScrollViewer DockPanel.Dock="Right" Margin="5" VerticalScrollBarVisibility="Auto">
-                                <StackPanel Orientation="Vertical" Margin="5,0,10,0">
-                                    <TextBlock TextWrapping="Wrap" FontSize="25" FontWeight="Bold" Margin="0,0,0,5">Spiderman: Far from home</TextBlock>
-                                    <TextBlock TextWrapping="Wrap" FontSize="13">Thời lượng: 2 giờ 10 phút</TextBlock>
-                                    <TextBlock TextWrapping="Wrap" FontSize="13">Năm phát hành: 2019</TextBlock>
-                                    <TextBlock TextWrapping="Wrap" FontSize="13">Thể loại: Hành động</TextBlock>
-                                </StackPanel>
-                            </ScrollViewer>
+                            <Grid DockPanel.Dock="Right">
+                                <ScrollViewer  
+                                    Margin="5" 
+                                    VerticalScrollBarVisibility="Auto"
+                                    VerticalAlignment="Top">
+                                    <StackPanel Orientation="Vertical" Margin="5,0,10,0">
+                                        <TextBlock TextWrapping="Wrap" FontSize="25" FontWeight="Bold" Margin="0,0,0,5">Spiderman: Far from home</TextBlock>
+                                        <WrapPanel Orientation="Horizontal">
+                                            <Icon:PackIconMaterial Kind="StarOutline" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                                            <TextBlock TextWrapping="Wrap" FontSize="15">Đánh giá: 8.5/10</TextBlock>
+                                        </WrapPanel>
+                                        <WrapPanel Orientation="Horizontal">
+                                            <Icon:PackIconMaterial Kind="ClockOutline" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                                            <TextBlock TextWrapping="Wrap" FontSize="15">Thời lượng: 2 giờ 10 phút</TextBlock>
+                                        </WrapPanel>
+                                        <WrapPanel Orientation="Horizontal">
+                                            <Icon:PackIconMaterial Kind="CalendarOutline" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                                            <TextBlock TextWrapping="Wrap" FontSize="15">Năm phát hành: 2019</TextBlock>
+                                        </WrapPanel>
+                                        <WrapPanel Orientation="Horizontal">
+                                            <Icon:PackIconMaterial Kind="CubeOutline" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                                            <TextBlock TextWrapping="Wrap" FontSize="15">Thể loại: Hành động</TextBlock>
+                                        </WrapPanel>
+                                        <WrapPanel Orientation="Horizontal">
+                                            <Icon:PackIconMaterial Kind="Human" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                                            <TextBlock TextWrapping="Wrap" FontSize="15">Giới hạn độ tuổi: R</TextBlock>
+                                        </WrapPanel>
+                                    </StackPanel>
+                                </ScrollViewer>
+                                <Button Width="100" VerticalAlignment="Bottom" Style="{StaticResource EditFilmButton}">
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <Icon:PackIconMaterial Kind="PencilOutline" Margin="0,0,5,0"/>
+                                        <TextBlock>Chỉnh sửa</TextBlock>
+                                    </StackPanel>
+                                </Button>
+                            </Grid>
                         </DockPanel>
                     </Border>
 
@@ -122,7 +150,7 @@
                                     </Button>
                                 </Grid>
                                 <DockPanel LastChildFill="True">
-                                    <WrapPanel DockPanel.Dock="Left" Orientation="Vertical" Width="150" Margin="5,0,5,0">
+                                    <WrapPanel DockPanel.Dock="Left" Orientation="Vertical" Width="150" Margin="5,10,5,0">
                                         <Rectangle RadiusX="5" RadiusY="5" Width="150" Height="180">
                                             <Rectangle.Fill>
                                                 <ImageBrush ImageSource="https://media.themoviedb.org/t/p/w500/fkXChMX6CUXY1yOxBehAzvaTCl7.jpg"/>
