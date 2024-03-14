@@ -28,7 +28,7 @@ namespace Nextfliz.Views
             {
                 no = "1",
                 name = "Chàng trai năm ấy",
-                director = "Vũ",
+                director = "Nguyễn Văn A",
                 date = "31-01-2023",
                 sell = "1000.001"
             });
@@ -36,7 +36,7 @@ namespace Nextfliz.Views
             {
                 no = "2",
                 name = "Chàng trai năm ấy",
-                director = "Vũ",
+                director = "Nguyễn Văn A",
                 date = "31-01-2023",
                 sell = "1000.001"
             });
@@ -44,7 +44,7 @@ namespace Nextfliz.Views
             {
                 no = "3",
                 name = "Chàng trai năm ấy",
-                director = "Vũ",
+                director = "Nguyễn Văn A",
                 date = "31-01-2023",
                 sell = "1000.001"
             });
@@ -52,7 +52,7 @@ namespace Nextfliz.Views
             {
                 no = "4",
                 name = "Chàng trai năm ấy",
-                director = "Vũ",
+                director = "Nguyễn Văn A",
                 date = "31-01-2023",
                 sell = "1000.001"
             });
@@ -60,12 +60,82 @@ namespace Nextfliz.Views
             {
                 no = "4",
                 name = "Chàng trai năm ấy",
-                director = "Vũ",
+                director = "Nguyễn Văn A",
                 date = "31-01-2023",
                 sell = "1000.001"
             });
+            list.Add(new TopFilm()
+            {
+                no = "1",
+                name = "Chàng trai năm ấy",
+                director = "Nguyễn Văn A",
+                date = "31-01-2023",
+                sell = "1000.001"
+            });
+            list.Add(new TopFilm()
+            {
+                no = "2",
+                name = "Chàng trai năm ấy",
+                director = "Nguyễn Văn A",
+                date = "31-01-2023",
+                sell = "1000.001"
+            });
+            list.Add(new TopFilm()
+            {
+                no = "3",
+                name = "Chàng trai năm ấy",
+                director = "Nguyễn Văn A",
+                date = "31-01-2023",
+                sell = "1000.001"
+            });
+            list.Add(new TopFilm()
+            {
+                no = "4",
+                name = "Chàng trai năm ấy",
+                director = "Nguyễn Văn A",
+                date = "31-01-2023",
+                sell = "1000.001"
+            });
+            list.Add(new TopFilm()
+            {
+                no = "4",
+                name = "Chàng trai năm ấy",
+                director = "Nguyễn Văn A",
+                date = "31-01-2023",
+                sell = "1000.001"
+            });
+            list.Add(new TopFilm()
+            {
+                no = "1",
+                name = "Chàng trai năm ấy",
+                director = "Nguyễn Văn A",
+                date = "31-01-2023",
+                sell = "1000.001"
+            });
+            list.Add(new TopFilm()
+            {
+                no = "2",
+                name = "Chàng trai năm ấy",
+                director = "Nguyễn Văn A",
+                date = "31-01-2023",
+                sell = "1000.001"
+            });
+            list.Add(new TopFilm()
+            {
+                no = "3",
+                name = "Chàng trai năm ấy",
+                director = "Nguyễn Văn A",
+                date = "31-01-2023",
+                sell = "1000.001"
+            });
+            
 
             TopFilmDataGrid.ItemsSource = list;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

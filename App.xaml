@@ -4,12 +4,66 @@
              xmlns:local="clr-namespace:Nextfliz"
              StartupUri="Views/Admin.xaml">
     <Application.Resources>
+        
+        <!-- Admin styles -->
+
+        <Style x:Key="AdminNavButtonSelected" TargetType="Button">
+            <Setter Property="Background" Value="#b9b7c9"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontSize" Value="14"/>2
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="Opacity" Value="0.65"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="0"
+                                Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="AdminNavButton" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="0"
+                        Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Opacity" Value="0.35"/>
+                                <Setter Property="Foreground" Value="Black"/>
+                                <Setter TargetName="border" Property="Background" Value="#b9b7c9"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
         <Style x:Key="AddFilmButton" TargetType="Button">
             <Setter Property="Background" Value="#148231"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
@@ -26,6 +80,89 @@
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Background" Value="#158f35"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="EditFilmButton" TargetType="Button">
+            <Setter Property="Background" Value="#148231"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"  
+                            Padding="8"
+                            CornerRadius="3"
+                            Margin="0,0,5,0">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#158f35"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="SearchFilmButton" TargetType="Button">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"  
+                        Padding="8"
+                        CornerRadius="3"
+                        Margin="0,0,5,0">
+                            <ContentPresenter HorizontalAlignment="Center"
+                              VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="LightGray"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="DeleteFilmButton" TargetType="Button">
+            <Setter Property="Background" Value="#c91f16"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"  
+                            Padding="8"
+                            CornerRadius="3">
+                            <ContentPresenter HorizontalAlignment="Center"
+                              VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#d62920"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
@@ -70,7 +207,6 @@
             <Setter Property="GridLinesVisibility" Value="None"/>
             <Setter Property="HorizontalScrollBarVisibility" Value="Disabled"/>
             <Setter Property="SelectionUnit" Value="FullRow"/>
-            <Setter Property="Padding" Value="5"/>
             <Setter Property="IsReadOnly" Value="True"/>
         </Style>
 
@@ -79,7 +215,6 @@
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="BorderBrush" Value="#d9d5e0"/>
             <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Height" Value="40"/>
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="Template">
                 <Setter.Value>
@@ -87,7 +222,9 @@
                         <Border Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="0,1,0,0"
-                            SnapsToDevicePixels="True">
+                            SnapsToDevicePixels="True"
+                            Padding="0,10,0,10"
+                            Margin="15,0,15,0">
                             <SelectiveScrollingGrid>
                                 <SelectiveScrollingGrid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
@@ -116,12 +253,6 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-            <Style.Triggers>
-                <Trigger Property="IsSelected" Value="True">
-                    <Setter Property="Background" Value="LightBlue"/>
-                    <Setter Property="Foreground" Value="Black"/>
-                </Trigger>
-            </Style.Triggers>
         </Style>
 
         <Style x:Key="CustomComboBoxStyle" TargetType="ComboBox">
@@ -154,7 +285,7 @@
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="FontWeight" Value="SemiBold"/>
             <Setter Property="FontSize" Value="15"/>
-            <Setter Property="Height" Value="30"/>
+            <Setter Property="Padding" Value="10"/>
             <Setter Property="Foreground" Value="#111c91"/>
             <Setter Property="BorderThickness" Value="0,0,0,1"/>
         </Style>
@@ -165,7 +296,6 @@
             <Setter Property="BorderBrush" Value="#d9d5e0"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="FontSize" Value="14"/>
-            <Setter Property="Height" Value="40"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type DataGridRow}">
@@ -174,7 +304,8 @@
                         BorderThickness="1"
                         SnapsToDevicePixels="True"
                         CornerRadius="5"
-                        Margin="0,0,0,2">
+                        Margin="0,0,0,5"
+                        Padding="0,15,0,15">
                             <SelectiveScrollingGrid>
                                 <SelectiveScrollingGrid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
@@ -203,12 +334,6 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-            <Style.Triggers>
-                <Trigger Property="IsSelected" Value="True">
-                    <Setter Property="Background" Value="LightBlue"/>
-                    <Setter Property="Foreground" Value="Black"/>
-                </Trigger>
-            </Style.Triggers>
         </Style>
 
         <Style x:Key="TopFilmCell" TargetType="DataGridCell">
@@ -217,7 +342,12 @@
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="BorderBrush" Value="Transparent"/>
             <Setter Property="BorderThickness" Value="1"/>
-            
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Foreground" Value="Black"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
     </Application.Resources>
 </Application>

@@ -97,6 +97,10 @@ namespace Nextfliz.Views
             SalesCombobox.SelectedIndex = 0;
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 
     public class TopFilm
