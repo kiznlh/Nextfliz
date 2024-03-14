@@ -20,53 +20,67 @@ CREATE TABLE [User] (
 );
 
 CREATE TABLE Genre (
-    genre_id INT PRIMARY KEY,
+    genre_id CHAR(5) PRIMARY KEY,
     ten_the_loai NVARCHAR(100)
 );
 
 CREATE TABLE Certification (
-    certification_id INT PRIMARY KEY,
+    certification_id CHAR(5) PRIMARY KEY,
     phan_loai NVARCHAR(50)
 );
 
 CREATE TABLE Actor (
-    actor_id INT PRIMARY KEY,
+    actor_id CHAR(5) PRIMARY KEY,
     ten_dien_vien NVARCHAR(100),
     hinh_anh NVARCHAR(255),
     tieu_su NVARCHAR(MAX)
 );
 
 CREATE TABLE Director (
-    director_id INT PRIMARY KEY,
+    director_id CHAR(5) PRIMARY KEY,
     ten_dao_dien NVARCHAR(100),
     hinh_anh NVARCHAR(255),
     tieu_su NVARCHAR(MAX)
 );
 
 CREATE TABLE Movie (
-    movie_id INT PRIMARY KEY,
+    movie_id CHAR(5) PRIMARY KEY,
     ten_phim NVARCHAR(255),
-    the_loai_id INT FOREIGN KEY REFERENCES Genre(genre_id),
+    genre_id CHAR(5) FOREIGN KEY REFERENCES Genre(genre_id),
     thoi_luong INT,
     nam_phat_hanh INT,
     diem_danh_gia FLOAT,
-    dao_dien_id INT FOREIGN KEY REFERENCES Director(director_id),
+    director_id CHAR(5) FOREIGN KEY REFERENCES Director(director_id),
     hinh_anh NVARCHAR(255),
-    phan_loai_id INT FOREIGN KEY REFERENCES Certification(certification_id)
+    certification_id CHAR(5) FOREIGN KEY REFERENCES Certification(certification_id)
 );
 
 CREATE TABLE SuatChieu (
-    suat_chieu_id INT PRIMARY KEY,
-    movie_id INT FOREIGN KEY REFERENCES Movie(movie_id),
+    suat_chieu_id CHAR(5) PRIMARY KEY,
+    movie_id CHAR(5) FOREIGN KEY REFERENCES Movie(movie_id),
     ngay_gio_chieu DATETIME
 );
 
 CREATE TABLE Ticket (
-    ticket_id INT PRIMARY KEY,
-    user_id NVARCHAR(50) FOREIGN KEY REFERENCES [User](username),
-    movie_id INT FOREIGN KEY REFERENCES Movie(movie_id),
+    ticket_id NVARCHAR(20) PRIMARY KEY,
+    username NVARCHAR(50) FOREIGN KEY REFERENCES [User](username),
+    movie_id CHAR(5) FOREIGN KEY REFERENCES Movie(movie_id),
     ngay_dat_ve DATETIME,
-    suat_chieu_id INT FOREIGN KEY REFERENCES SuatChieu(suat_chieu_id),
+    suat_chieu_id CHAR(5) FOREIGN KEY REFERENCES SuatChieu(suat_chieu_id),
     gia_ve DECIMAL(10, 2),
     ghe_ngoi NVARCHAR(50)
+);
+
+CREATE TABLE Voucher (
+    voucher_id CHAR(5) PRIMARY KEY,
+    movie_id CHAR(5) FOREIGN KEY REFERENCES Movie(movie_id),
+    ti_le_giam FLOAT
+);
+
+CREATE TABLE FilmCast (
+    movie_id CHAR(5),
+    actor_id CHAR(5),
+    PRIMARY KEY (movie_id, actor_id),
+    FOREIGN KEY (movie_id) REFERENCES Movie(movie_id),
+    FOREIGN KEY (actor_id) REFERENCES Actor(actor_id)
 );
