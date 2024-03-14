@@ -6,9 +6,6 @@ using System.Windows.Threading;
 
 namespace Nextfliz.Views.MainApp
 {
-    /// <summary>
-    /// Interaction logic for SliderControl.xaml
-    /// </summary>
     public partial class SliderControl : UserControl
     {
         private double scrollOffset = 0;
@@ -23,19 +20,14 @@ namespace Nextfliz.Views.MainApp
 
             for (int i = 0; i < 10; i++)
             {
-                TextBlock textBlock = new TextBlock();
-                textBlock.Width = 200;
-                textBlock.TextAlignment = TextAlignment.Center;
-                textBlock.FontSize = 24;
-                textBlock.Foreground = Brushes.White;
-                textBlock.Text = (i + 1).ToString(); // Index starts from 1
-                AddItem(textBlock);
+                FilmCardControl filmCard = new FilmCardControl();
+                AddItem(filmCard);
             }
         }
 
         public void AddItem(UIElement item)
         {
-            wrapPanel.Children.Add(item);
+            uniformGrid.Children.Add(item); // Changed to add items to the UniformGrid
         }
 
         private void SlideLeft_Click(object sender, RoutedEventArgs e)
@@ -49,7 +41,7 @@ namespace Nextfliz.Views.MainApp
 
         private void SlideRight_Click(object sender, RoutedEventArgs e)
         {
-            if (currentIndex < wrapPanel.Children.Count - 1)
+            if (currentIndex < uniformGrid.Children.Count - 1)
             {
                 currentIndex++;
                 AnimateSlide();

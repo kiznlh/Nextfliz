@@ -3,11 +3,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:Nextfliz.Views.MainApp"
              mc:Ignorable="d">
+    <UserControl.Resources>
+        <local:CenterConverter x:Key="CenterConverter"/>
+    </UserControl.Resources>
     <Grid x:Name="grid" Margin="50,50,50,50" MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave">
         <Grid.Background>
             <ImageBrush ImageSource="/Resources/Images/film_bg.jpg"/>
         </Grid.Background>
+        <Grid.RenderTransform>
+            <ScaleTransform x:Name="scaleTransform" CenterX="{Binding ActualWidth, ElementName=grid, Converter={StaticResource CenterConverter}}" CenterY="{Binding ActualHeight, ElementName=grid, Converter={StaticResource CenterConverter}}" ScaleX="1" ScaleY="1"/>
+        </Grid.RenderTransform>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3*"></ColumnDefinition>
             <ColumnDefinition/>
@@ -20,6 +27,5 @@
             <TextBlock Text="16+" Foreground="White" Height="22" VerticalAlignment="Top" />
         </Border>
         <TextBlock HorizontalAlignment="Left" Margin="150,253,0,0" TextWrapping="Wrap" Text="3 Episode" VerticalAlignment="Top" Height="23" Width="auto" Foreground="Red"/>
-        
     </Grid>
 </UserControl>

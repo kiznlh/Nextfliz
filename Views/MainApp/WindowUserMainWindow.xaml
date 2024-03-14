@@ -39,7 +39,9 @@
             </Grid>
 
             <!-- Content Area -->
-            <Frame x:Name="contentFrame" Grid.Column="1"/>
+            
+            <Frame x:Name="contentFrame" NavigationUIVisibility="Hidden" Grid.Column="1"/>
+            
         </Grid>
     </DockPanel>
 </Window>
