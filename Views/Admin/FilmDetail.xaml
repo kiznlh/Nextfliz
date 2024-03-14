@@ -1,0 +1,296 @@
+﻿<Window x:Class="Nextfliz.Views.FilmDetail"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+        xmlns:local="clr-namespace:Nextfliz.Views"
+        mc:Ignorable="d"
+        Title="FilmDetail" Height="5000" Width="1500">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="18*"/>
+            <ColumnDefinition Width="82*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0" Background="#13131c">
+            <StackPanel VerticalAlignment="Top" Orientation="Vertical">
+                <Border BorderThickness="0,0,0,1" BorderBrush="#b9b7c9" Margin="0,0,0,2" Padding="0,10,0,10">
+                    <TextBlock TextAlignment="Center" Margin="0,10,0,10" FontSize="27" FontWeight="ExtraBold" Foreground="Red">NextFliz</TextBlock>
+                </Border>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                    </Grid.RowDefinitions>
+
+                    <Button Grid.Row="0" Style="{StaticResource AdminNavButton}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Icon:PackIconMaterial Kind="ViewDashboardOutline"/>
+                            <TextBlock Margin="5,0,0,0">
+                            Dashboard
+                            </TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button Grid.Row="1" Style="{StaticResource AdminNavButtonSelected}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Icon:PackIconMaterial Kind="VideoMinusOutline"/>
+                            <TextBlock Margin="5,0,0,0">
+                            Quản lí phim
+                            </TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button Grid.Row="2" Style="{StaticResource AdminNavButton}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Icon:PackIconMaterial Kind="TicketOutline"/>
+                            <TextBlock Margin="5,0,0,0">
+                            Quản lí voucher
+                            </TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button Grid.Row="3" Style="{StaticResource AdminNavButton}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Icon:PackIconMaterial Kind="AccountOutline"/>
+                            <TextBlock Margin="5,0,0,0">
+                                Quản lí nhân vật
+                            </TextBlock>
+                        </StackPanel>
+                    </Button>
+                </Grid>
+            </StackPanel>
+        </Grid>
+
+        <DockPanel
+        Grid.Column="1"
+        Background="#f5f2f7"
+        LastChildFill="True">
+
+            <Border
+            DockPanel.Dock="Top"
+            BorderThickness="0,0,0,1"
+            BorderBrush="#f2f2f2">
+                <Grid
+                Background="White"
+                VerticalAlignment="Center">
+
+                    <Ellipse HorizontalAlignment="Right" Width="30" Height="30" Margin="0,10,15,10">
+                        <Ellipse.Fill>
+                            <ImageBrush  ImageSource="https://cdn-icons-png.flaticon.com/512/9131/9131529.png"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                </Grid>
+                <Border.Effect>
+                    <DropShadowEffect Color="Gray" Direction="100" ShadowDepth="1" Opacity="0.5"/>
+                </Border.Effect>
+            </Border>
+
+            <ScrollViewer
+            DockPanel.Dock="Bottom"
+            VerticalScrollBarVisibility="Auto">
+
+                <StackPanel
+                Margin="20,0,20,0">
+
+                    <Border Grid.Column="1" Background="white" Margin="0,20,0,20" CornerRadius="5">
+                        <DockPanel LastChildFill="True" Margin="10">
+                            <Rectangle DockPanel.Dock="Left" RadiusX="5" RadiusY="5" Width="250" Height="300">
+                                <Rectangle.Fill>
+                                    <ImageBrush ImageSource="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcThq0GNDOwqP8p58fBFIBQoaxqg2MwHHSQ0aVebJ0z5PkgQ-_Hg"/>
+                                </Rectangle.Fill>
+                            </Rectangle>
+
+                            <Grid DockPanel.Dock="Right">
+                                <ScrollViewer  
+                                    Margin="5" 
+                                    VerticalScrollBarVisibility="Auto"
+                                    VerticalAlignment="Top">
+                                    <StackPanel Orientation="Vertical" Margin="5,0,10,0">
+                                        <TextBlock TextWrapping="Wrap" FontSize="25" FontWeight="Bold" Margin="0,0,0,5">Spiderman: Far from home</TextBlock>
+                                        <WrapPanel Orientation="Horizontal">
+                                            <Icon:PackIconMaterial Kind="StarOutline" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                                            <TextBlock TextWrapping="Wrap" FontSize="15">Đánh giá: 8.5/10</TextBlock>
+                                        </WrapPanel>
+                                        <WrapPanel Orientation="Horizontal">
+                                            <Icon:PackIconMaterial Kind="ClockOutline" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                                            <TextBlock TextWrapping="Wrap" FontSize="15">Thời lượng: 2 giờ 10 phút</TextBlock>
+                                        </WrapPanel>
+                                        <WrapPanel Orientation="Horizontal">
+                                            <Icon:PackIconMaterial Kind="CalendarOutline" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                                            <TextBlock TextWrapping="Wrap" FontSize="15">Năm phát hành: 2019</TextBlock>
+                                        </WrapPanel>
+                                        <WrapPanel Orientation="Horizontal">
+                                            <Icon:PackIconMaterial Kind="CubeOutline" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                                            <TextBlock TextWrapping="Wrap" FontSize="15">Thể loại: Hành động</TextBlock>
+                                        </WrapPanel>
+                                        <WrapPanel Orientation="Horizontal">
+                                            <Icon:PackIconMaterial Kind="Human" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                                            <TextBlock TextWrapping="Wrap" FontSize="15">Giới hạn độ tuổi: R</TextBlock>
+                                        </WrapPanel>
+                                    </StackPanel>
+                                </ScrollViewer>
+                                <Button Width="100" HorizontalAlignment="Right" VerticalAlignment="Bottom" Style="{StaticResource EditFilmButton}">
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <Icon:PackIconMaterial Kind="PencilOutline" Margin="0,0,5,0"/>
+                                        <TextBlock>Chỉnh sửa</TextBlock>
+                                    </StackPanel>
+                                </Button>
+                            </Grid>
+                        </DockPanel>
+                    </Border>
+
+                    <Grid  Margin="0,0,0,20" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="35*"/>
+                            <ColumnDefinition Width="65*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Border Grid.Column="0" Margin="0,0,10,0" Background="white" CornerRadius="5">
+                            <StackPanel Orientation="Vertical" Margin="10">
+                                <Grid>
+                                    <Label VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="15" Content="Đạo diễn"/>
+                                    <Button HorizontalAlignment="Right" Style="{StaticResource EditFilmButton}">
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <Icon:PackIconMaterial Kind="PencilOutline"/>
+                                        </StackPanel>
+                                    </Button>
+                                </Grid>
+                                <DockPanel LastChildFill="True">
+                                    <WrapPanel DockPanel.Dock="Left" Orientation="Vertical" Width="150" Margin="5,10,5,0">
+                                        <Rectangle RadiusX="5" RadiusY="5" Width="150" Height="180">
+                                            <Rectangle.Fill>
+                                                <ImageBrush ImageSource="https://media.themoviedb.org/t/p/w500/fkXChMX6CUXY1yOxBehAzvaTCl7.jpg"/>
+                                            </Rectangle.Fill>
+                                        </Rectangle>
+                                        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap">John Watts</TextBlock>
+                                    </WrapPanel>
+                                    <DockPanel DockPanel.Dock="Right" LastChildFill="True">
+                                        <Label DockPanel.Dock="Top" FontSize="14">Tiểu sử</Label>
+                                        <ScrollViewer DockPanel.Dock="Bottom" VerticalScrollBarVisibility="Auto" Margin="5,0,5,0">
+                                            <WrapPanel>
+                                                <TextBlock TextWrapping="Wrap" Foreground="Gray">Bạn cũng có thể thiết lập trạng thái của cửa sổ trong mã code bằng cách sử dụng thuộc tính WindowState của cửa sổ. Để làm điều này, bạn có thể thêm đoạn code sau vào trong hàm khởi tạo của cửa sổ (thường là hàm MainWindow()):</TextBlock>
+                                            </WrapPanel>
+                                        </ScrollViewer>
+                                    </DockPanel>
+                                </DockPanel>
+                            </StackPanel>
+                        </Border>
+
+                        <Border Grid.Column="1" Background="white" CornerRadius="5">
+                            <StackPanel Orientation="Vertical" Margin="10,10,20,10">
+                                <Grid>
+                                    <Label VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="15" Content="Danh sách diễn viên"/>
+                                    <Button HorizontalAlignment="Right" Style="{StaticResource EditFilmButton}">
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <Icon:PackIconMaterial Kind="PencilOutline"/>
+                                        </StackPanel>
+                                    </Button>
+                                </Grid>
+                                <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Auto">
+                                    <StackPanel Orientation="Horizontal" Margin="10">
+                                        <WrapPanel Orientation="Vertical" Width="150" Margin="5,0,5,0">
+                                            <Rectangle RadiusX="5" RadiusY="5" Width="150" Height="180">
+                                                <Rectangle.Fill>
+                                                    <ImageBrush ImageSource="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Jacob_Batalon_%2828035642754%29_%28cropped%29.jpg/1200px-Jacob_Batalon_%2828035642754%29_%28cropped%29.jpg"/>
+                                                </Rectangle.Fill>
+                                            </Rectangle>
+                                            <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap">Jacob Batalon</TextBlock>
+                                        </WrapPanel>
+                                        <WrapPanel Orientation="Vertical" Width="150" Margin="5,0,5,0">
+                                            <Rectangle RadiusX="5" RadiusY="5" Width="150" Height="180">
+                                                <Rectangle.Fill>
+                                                    <ImageBrush ImageSource="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Remy_Hll_%2839829198722%29.jpg/640px-Remy_Hll_%2839829198722%29.jpg"/>
+                                                </Rectangle.Fill>
+                                            </Rectangle>
+                                            <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap">Remi Hii</TextBlock>
+                                        </WrapPanel>
+                                    </StackPanel>
+                                </ScrollViewer>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+
+                    <Grid Margin="0,0,0,20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40*"/>
+                            <ColumnDefinition Width="60*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <Border Background="white" Margin="0,0,10,0" CornerRadius="5">
+                            <StackPanel Orientation="Vertical" Margin="10">
+                                <Grid Margin="0,0,0,10">
+                                    <Label FontSize="15" Content="Suất chiếu"/>
+                                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                        
+                                        <Button VerticalAlignment="Center" Style="{StaticResource EditFilmButton}">
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                <Icon:PackIconMaterial Kind="Plus"/>
+                                            </StackPanel>
+                                        </Button>
+                                        <Button VerticalAlignment="Center" Style="{StaticResource DeleteFilmButton}">
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                <Icon:PackIconMaterial Kind="DeleteOutline"/>
+                                            </StackPanel>
+                                        </Button>
+                                    </WrapPanel>
+                                </Grid>
+                                
+                                <ListView
+                                    ItemsSource="{Binding list}"
+                                    ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                    BorderThickness="0"
+                                    Height="200">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border BorderThickness="1" BorderBrush="#dcddde" CornerRadius="5" Padding="10,5,10,5">
+                                                <StackPanel Orientation="Vertical">
+                                                    <TextBlock FontWeight="SemiBold" TextAlignment="Center" Text="{Binding Date}"/>
+                                                    <TextBlock FontWeight="SemiBold" TextAlignment="Center" Text="{Binding Time}"/>
+                                                </StackPanel>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                    <ListView.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel HorizontalAlignment="Center"/>
+                                        </ItemsPanelTemplate>
+                                    </ListView.ItemsPanel>
+                                </ListView>
+                            </StackPanel>
+                        </Border>
+                        <Border Grid.Column="1" Background="white" CornerRadius="5">
+                            <StackPanel Orientation="Vertical" Margin="10">
+                                <Grid Margin="0,0,0,10">
+                                    <Label FontSize="15" Content="Doanh thu &amp; lợi nhuận"/>
+                                    <WrapPanel HorizontalAlignment="Right" Margin="0,0,15,0">
+                                        <Label FontSize="14" Foreground="#6c6a6e">Hiển thị theo:</Label>
+                                        <ComboBox x:Name="SalesCombobox" Width="100" Height="30" Style="{StaticResource CustomComboBoxStyle}">
+                                            <ComboBoxItem Content="Ngày"/>
+                                            <ComboBoxItem Content="Tuần"/>
+                                            <ComboBoxItem Content="Tháng"/>
+                                            <ComboBoxItem Content="Năm"/>
+                                        </ComboBox>
+                                    </WrapPanel>
+                                </Grid>
+                                <lvc:CartesianChart Height="200" Series="{Binding SeriesCollection}" LegendLocation="Bottom" >
+                                    <lvc:CartesianChart.AxisY>
+                                        <lvc:Axis LabelFormatter="{Binding YFormatter}"></lvc:Axis>
+                                    </lvc:CartesianChart.AxisY>
+                                    <lvc:CartesianChart.AxisX>
+                                        <lvc:Axis Labels="{Binding Labels}"></lvc:Axis>
+                                    </lvc:CartesianChart.AxisX>
+                                </lvc:CartesianChart>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+
+
+
+                </StackPanel>
+            </ScrollViewer>
+        </DockPanel>
+    </Grid>
+</Window>

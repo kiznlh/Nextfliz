@@ -1,29 +1,32 @@
-﻿using System;
+﻿using LiveCharts;
+using LiveCharts.Wpf;
+using Nextfliz.Views;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
-namespace Nextfliz.Views
+namespace Nextfliz
 {
-    /// <summary>
-    /// Interaction logic for FilmManagement.xaml
-    /// </summary>
-    public partial class FilmManagement : Window
+    public class TopFilm
     {
-        public FilmManagement()
-        {
-            InitializeComponent();
-            ObservableCollection<TopFilm> list = new ObservableCollection<TopFilm>();
+        public string no { get; set; }
+        public string name { get; set; }
+        public string director { get; set; }
+        public string date { get; set; }
+        public string sell { get; set; }
+    }
+
+    class AdminVM
+    {
+        public SeriesCollection SeriesCollection { get; set; }
+        public string[] Labels { get; set; }
+        public Func<double, string> YFormatter { get; set; }
+        public ObservableCollection<TopFilm> list { get; set; }
+        public AdminVM() {
+            list = new ObservableCollection<TopFilm>();
             list.Add(new TopFilm()
             {
                 no = "1",
@@ -65,7 +68,22 @@ namespace Nextfliz.Views
                 sell = "1000.001"
             });
 
-            TopFilmDataGrid.ItemsSource = list;
+            SeriesCollection = new SeriesCollection
+            {
+                new LineSeries
+                {
+                    Title = "Doanh thu",
+                    Values = new ChartValues<double> { 100432424, 60342424, 50234234, 2024230 ,4124242 }
+                },
+                new LineSeries
+                {
+                    Title = "Lợi nhuận",
+                    Values = new ChartValues<double> { 232424, 50342424, 30234234, 1024230 ,524242 }
+                }
+            };
+
+            YFormatter = value => value.ToString("C");
+            Labels = new[] { "Jan", "Feb", "Mar", "Apr", "May" };
         }
     }
 }
