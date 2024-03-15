@@ -78,8 +78,8 @@
 
                             </DataGridTextColumn>
                             <DataGridTemplateColumn
-                            IsReadOnly="True"
-                            Width="*">
+                                IsReadOnly="True"
+                                Width="*">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">

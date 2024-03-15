@@ -10,7 +10,7 @@
       Title="AdminDashboard">
 
     <StackPanel
-Margin="20,0,20,0">
+        Margin="20,0,20,0">
 
         <Grid>
             <Grid.ColumnDefinitions>
@@ -21,72 +21,72 @@ Margin="20,0,20,0">
             </Grid.ColumnDefinitions>
 
             <Border
-        Background="White"
-        Margin="0,20,10,0"
-        CornerRadius="5"
-        Grid.Column="0">
+                Background="White"
+                Margin="0,20,10,0"
+                CornerRadius="5"
+                Grid.Column="0">    
                 <DockPanel LastChildFill="True">
                     <Border
-                CornerRadius="2"
-                BorderBrush="#111c91"
-                BorderThickness="3"
-                Margin="10,10,0,10">
+                    CornerRadius="2"
+                    BorderBrush="#111c91"
+                    BorderThickness="3"
+                    Margin="10,10,0,10">
                     </Border>
 
                     <DockPanel
-                LastChildFill="True"
-                Margin="0,10,0,10">
+                    LastChildFill="True"
+                    Margin="0,10,0,10">
                         <TextBlock
-                    TextAlignment="Center"
-                    DockPanel.Dock="Top"
-                    FontSize="13"
-                    FontWeight="DemiBold">
-                    Số phim đang bán vé
+                        TextAlignment="Center"
+                        DockPanel.Dock="Top"
+                        FontSize="13"
+                        FontWeight="DemiBold">
+                            Số phim đang bán vé
                         </TextBlock>
                         <TextBlock
-                    TextAlignment="Center"
-                    DockPanel.Dock="Bottom"
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Center"
-                    FontSize="30"
-                    FontWeight="Bold">
-                    32
+                        TextAlignment="Center"
+                        DockPanel.Dock="Bottom"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        FontSize="30"
+                        FontWeight="Bold">
+                            32
                         </TextBlock>
                     </DockPanel>
                 </DockPanel>
             </Border>
 
             <Border
-        Background="White"
-        Margin="10,20,10,0"
-        CornerRadius="5"
-        Grid.Column="1">
+                Background="White"
+                Margin="10,20,10,0"
+                CornerRadius="5"
+                Grid.Column="1">
                 <DockPanel LastChildFill="True">
                     <Border
-                CornerRadius="2"
-                BorderBrush="#199123"
-                BorderThickness="3"
-                Margin="10,10,0,10">
+                    CornerRadius="2"
+                    BorderBrush="#199123"
+                    BorderThickness="3"
+                    Margin="10,10,0,10">
                     </Border>
 
                     <DockPanel
-                LastChildFill="True"
-                Margin="0,10,0,10">
+                    LastChildFill="True"
+                    Margin="0,10,0,10">
                         <TextBlock
-                    TextAlignment="Center"
-                    DockPanel.Dock="Top"
-                    FontSize="13"
-                    FontWeight="DemiBold">
-                    Suất chiếu trong ngày
+                        TextAlignment="Center"
+                        DockPanel.Dock="Top"
+                        FontSize="13"
+                        FontWeight="DemiBold">
+                            Suất chiếu trong ngày
                         </TextBlock>
                         <TextBlock
-                    TextAlignment="Center"
-                    DockPanel.Dock="Bottom"
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Center"
-                    FontSize="30"
-                    FontWeight="Bold">
-                    108
+                        TextAlignment="Center"
+                        DockPanel.Dock="Bottom"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        FontSize="30"
+                        FontWeight="Bold">
+                            108
                         </TextBlock>
                     </DockPanel>
                 </DockPanel>
@@ -94,72 +94,72 @@ Margin="20,0,20,0">
 
 
             <Border
-        Background="White"
-        Margin="10,20,10,0"
-        CornerRadius="5"
-        Grid.Column="2">
+                Background="White"
+                Margin="10,20,10,0"
+                CornerRadius="5"
+                Grid.Column="2">
                 <DockPanel LastChildFill="True">
                     <Border
-                CornerRadius="2"
-                BorderBrush="#b0239d"
-                BorderThickness="3"
-                Margin="10,10,0,10">
+                        CornerRadius="2"
+                        BorderBrush="#b0239d"
+                        BorderThickness="3"
+                        Margin="10,10,0,10">
                     </Border>
 
                     <DockPanel
-                LastChildFill="True"
-                Margin="0,10,0,10">
+                        LastChildFill="True"
+                        Margin="0,10,0,10">
                         <TextBlock
-                    TextAlignment="Center"
-                    DockPanel.Dock="Top"
-                    FontSize="13"
-                    FontWeight="DemiBold">
-                    Suất chiếu trong tuần
+                            TextAlignment="Center"
+                            DockPanel.Dock="Top"
+                            FontSize="13"
+                            FontWeight="DemiBold">
+                            Suất chiếu trong tuần
                         </TextBlock>
                         <TextBlock
-                    TextAlignment="Center"
-                    DockPanel.Dock="Bottom"
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Center"
-                    FontSize="30"
-                    FontWeight="Bold">
-                    864
+                            TextAlignment="Center"
+                            DockPanel.Dock="Bottom"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            FontSize="30"
+                            FontWeight="Bold">
+                            864
                         </TextBlock>
                     </DockPanel>
                 </DockPanel>
             </Border>
 
             <Border
-        Background="White"
-        Margin="10,20,0,0"
-        CornerRadius="5"
-        Grid.Column="3">
+                Background="White"
+                Margin="10,20,0,0"
+                CornerRadius="5"
+                Grid.Column="3">
                 <DockPanel LastChildFill="True">
                     <Border
-                CornerRadius="2"
-                BorderBrush="#911923"
-                BorderThickness="3"
-                Margin="10,10,0,10">
+                        CornerRadius="2"
+                        BorderBrush="#911923"
+                        BorderThickness="3"
+                        Margin="10,10,0,10">
                     </Border>
 
                     <DockPanel
-                LastChildFill="True"
-                Margin="0,10,0,10">
+                        LastChildFill="True"
+                        Margin="0,10,0,10">
                         <TextBlock
-                    TextAlignment="Center"
-                    DockPanel.Dock="Top"
-                    FontSize="13"
-                    FontWeight="DemiBold">
-                    Suất chiếu trong tháng
+                            TextAlignment="Center"
+                            DockPanel.Dock="Top"
+                            FontSize="13"
+                            FontWeight="DemiBold">
+                            Suất chiếu trong tháng
                         </TextBlock>
                         <TextBlock
-                    TextAlignment="Center"
-                    DockPanel.Dock="Bottom"
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Center"
-                    FontSize="30"
-                    FontWeight="Bold">
-                    3390
+                            TextAlignment="Center"
+                            DockPanel.Dock="Bottom"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            FontSize="30"
+                            FontWeight="Bold">
+                            3390
                         </TextBlock>
                     </DockPanel>
                 </DockPanel>
@@ -194,46 +194,67 @@ Margin="20,0,20,0">
 
         <Border Background="white" Margin="0,0,0,20" CornerRadius="5">
             <StackPanel
-        Margin="10"
-        Orientation="Vertical"
-        >
+                Margin="10"
+                Orientation="Vertical"
+                >
                 <Label FontSize="15" Foreground="#6c6a6e">Top bán vé</Label>
                 <DataGrid
-            ItemsSource="{Binding list}"
-            x:Name="TopFilmDataGrid"
-            Style="{StaticResource TopFilmStyle}"
-            ColumnHeaderStyle="{DynamicResource TopFilmHeader}"
-            RowStyle="{DynamicResource TopFilmRow}"
-            CellStyle="{DynamicResource TopFilmCell}">
+                    ItemsSource="{Binding list}"
+                    x:Name="TopFilmDataGrid"
+                    Style="{StaticResource TopFilmStyle}"
+                    ColumnHeaderStyle="{DynamicResource TopFilmHeader}"
+                    RowStyle="{DynamicResource TopFilmRow}"
+                    CellStyle="{DynamicResource TopFilmCell}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="No." IsReadOnly="True" Width="50" Binding="{Binding no}"/>
+                        <DataGridTemplateColumn
+                            IsReadOnly="True"
+                            Width="80">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                        <Image Height="50" Source="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcThq0GNDOwqP8p58fBFIBQoaxqg2MwHHSQ0aVebJ0z5PkgQ-_Hg"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
                         <DataGridTextColumn
-                    Binding="{Binding name}"
-                    FontWeight="SemiBold"
-                    Header="Tên phim"
-                    IsReadOnly="True"
-                    Width="2*">
+                            Binding="{Binding name}"
+                            FontWeight="SemiBold"
+                            Header="Tên phim"
+                            IsReadOnly="True"
+                            Width="2*">
+
+                        </DataGridTextColumn>
+                        <DataGridTemplateColumn
+                            Header="Đạo diễn"
+                            IsReadOnly="True"
+                            Width="*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                        <Ellipse Stroke="Black" StrokeThickness="0.3" HorizontalAlignment="Right" Width="30" Height="30" Margin="0,0,5,0">
+                                            <Ellipse.Fill>
+                                                <ImageBrush Stretch="UniformToFill" ImageSource="https://variety.com/wp-content/uploads/2022/01/jon-watts.jpg"/>
+                                            </Ellipse.Fill>
+                                        </Ellipse>
+                                        <TextBlock VerticalAlignment="Center" Text="{Binding director}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn
+                            Binding="{Binding date}"
+                            Header="Ngày chiếu"
+                            IsReadOnly="True"
+                            Width="*">
 
                         </DataGridTextColumn>
                         <DataGridTextColumn
-                    Binding="{Binding director}"
-                    Header="Đạo diễn"
-                    IsReadOnly="True"
-                    Width="*">
-
-                        </DataGridTextColumn>
-                        <DataGridTextColumn
-                    Binding="{Binding date}"
-                    Header="Ngày chiếu"
-                    IsReadOnly="True"
-                    Width="*">
-
-                        </DataGridTextColumn>
-                        <DataGridTextColumn
-                    Binding="{Binding sell}"
-                    Header="Vé bán"
-                    IsReadOnly="True"
-                    Width="*">
+                            Binding="{Binding sell}"
+                            Header="Vé bán"
+                            IsReadOnly="True"
+                            Width="*">
 
                         </DataGridTextColumn>
                     </DataGrid.Columns>

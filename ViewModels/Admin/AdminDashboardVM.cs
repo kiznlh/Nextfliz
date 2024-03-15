@@ -31,7 +31,7 @@ namespace Nextfliz
             {
                 no = "1",
                 name = "Chàng trai năm ấy",
-                director = "Vũ",
+                director = "Nguyễn Văn A",
                 date = "31-01-2023",
                 sell = "1000.001"
             });
@@ -39,7 +39,7 @@ namespace Nextfliz
             {
                 no = "2",
                 name = "Chàng trai năm ấy",
-                director = "Vũ",
+                director = "Nguyễn Văn A",
                 date = "31-01-2023",
                 sell = "1000.001"
             });
@@ -47,7 +47,7 @@ namespace Nextfliz
             {
                 no = "3",
                 name = "Chàng trai năm ấy",
-                director = "Vũ",
+                director = "Nguyễn Văn A",
                 date = "31-01-2023",
                 sell = "1000.001"
             });
@@ -55,7 +55,7 @@ namespace Nextfliz
             {
                 no = "4",
                 name = "Chàng trai năm ấy",
-                director = "Vũ",
+                director = "Nguyễn Văn A",
                 date = "31-01-2023",
                 sell = "1000.001"
             });
@@ -63,7 +63,7 @@ namespace Nextfliz
             {
                 no = "99",
                 name = "Chàng trai năm ấy",
-                director = "Vũ",
+                director = "Nguyễn Văn A",
                 date = "31-01-2023",
                 sell = "1000.001"
             });

@@ -17,7 +17,7 @@ namespace Nextfliz
         private Frame contentFrame;
         public AdminVM(Frame contentFrame) {
             this.contentFrame = contentFrame;
-            contentFrame.Navigate(new FilmManagement());
+            contentFrame.Navigate(new AdminDashboard());
         }
     }
 }
