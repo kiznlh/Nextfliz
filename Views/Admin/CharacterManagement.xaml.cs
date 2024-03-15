@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Nextfliz.Views.Admin
 {
     /// <summary>
-    /// Interaction logic for FilmManagement.xaml
+    /// Interaction logic for CharacterManagement.xaml
     /// </summary>
-    public partial class FilmManagement : Page
+    public partial class CharacterManagement : Window
     {
-        public FilmManagement()
+        public CharacterManagement()
         {
             InitializeComponent();
         }

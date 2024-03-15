@@ -1,0 +1,246 @@
+﻿<Page x:Class="Nextfliz.Views.Admin.AdminDashboard"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+      xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Nextfliz.Views.Admin"
+      mc:Ignorable="d"
+      Title="AdminDashboard">
+
+    <StackPanel
+Margin="20,0,20,0">
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Border
+        Background="White"
+        Margin="0,20,10,0"
+        CornerRadius="5"
+        Grid.Column="0">
+                <DockPanel LastChildFill="True">
+                    <Border
+                CornerRadius="2"
+                BorderBrush="#111c91"
+                BorderThickness="3"
+                Margin="10,10,0,10">
+                    </Border>
+
+                    <DockPanel
+                LastChildFill="True"
+                Margin="0,10,0,10">
+                        <TextBlock
+                    TextAlignment="Center"
+                    DockPanel.Dock="Top"
+                    FontSize="13"
+                    FontWeight="DemiBold">
+                    Số phim đang bán vé
+                        </TextBlock>
+                        <TextBlock
+                    TextAlignment="Center"
+                    DockPanel.Dock="Bottom"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    FontSize="30"
+                    FontWeight="Bold">
+                    32
+                        </TextBlock>
+                    </DockPanel>
+                </DockPanel>
+            </Border>
+
+            <Border
+        Background="White"
+        Margin="10,20,10,0"
+        CornerRadius="5"
+        Grid.Column="1">
+                <DockPanel LastChildFill="True">
+                    <Border
+                CornerRadius="2"
+                BorderBrush="#199123"
+                BorderThickness="3"
+                Margin="10,10,0,10">
+                    </Border>
+
+                    <DockPanel
+                LastChildFill="True"
+                Margin="0,10,0,10">
+                        <TextBlock
+                    TextAlignment="Center"
+                    DockPanel.Dock="Top"
+                    FontSize="13"
+                    FontWeight="DemiBold">
+                    Suất chiếu trong ngày
+                        </TextBlock>
+                        <TextBlock
+                    TextAlignment="Center"
+                    DockPanel.Dock="Bottom"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    FontSize="30"
+                    FontWeight="Bold">
+                    108
+                        </TextBlock>
+                    </DockPanel>
+                </DockPanel>
+            </Border>
+
+
+            <Border
+        Background="White"
+        Margin="10,20,10,0"
+        CornerRadius="5"
+        Grid.Column="2">
+                <DockPanel LastChildFill="True">
+                    <Border
+                CornerRadius="2"
+                BorderBrush="#b0239d"
+                BorderThickness="3"
+                Margin="10,10,0,10">
+                    </Border>
+
+                    <DockPanel
+                LastChildFill="True"
+                Margin="0,10,0,10">
+                        <TextBlock
+                    TextAlignment="Center"
+                    DockPanel.Dock="Top"
+                    FontSize="13"
+                    FontWeight="DemiBold">
+                    Suất chiếu trong tuần
+                        </TextBlock>
+                        <TextBlock
+                    TextAlignment="Center"
+                    DockPanel.Dock="Bottom"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    FontSize="30"
+                    FontWeight="Bold">
+                    864
+                        </TextBlock>
+                    </DockPanel>
+                </DockPanel>
+            </Border>
+
+            <Border
+        Background="White"
+        Margin="10,20,0,0"
+        CornerRadius="5"
+        Grid.Column="3">
+                <DockPanel LastChildFill="True">
+                    <Border
+                CornerRadius="2"
+                BorderBrush="#911923"
+                BorderThickness="3"
+                Margin="10,10,0,10">
+                    </Border>
+
+                    <DockPanel
+                LastChildFill="True"
+                Margin="0,10,0,10">
+                        <TextBlock
+                    TextAlignment="Center"
+                    DockPanel.Dock="Top"
+                    FontSize="13"
+                    FontWeight="DemiBold">
+                    Suất chiếu trong tháng
+                        </TextBlock>
+                        <TextBlock
+                    TextAlignment="Center"
+                    DockPanel.Dock="Bottom"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    FontSize="30"
+                    FontWeight="Bold">
+                    3390
+                        </TextBlock>
+                    </DockPanel>
+                </DockPanel>
+            </Border>
+
+        </Grid>
+
+        <Border Background="white" Margin="0,20,0,20" CornerRadius="5">
+            <StackPanel Orientation="Vertical" Margin="10">
+                <Grid Margin="0,0,0,10">
+                    <Label FontSize="15" Foreground="#6c6a6e" Content="Doanh thu &amp; lợi nhuận"/>
+                    <WrapPanel HorizontalAlignment="Right" Margin="0,0,15,0">
+                        <Label FontSize="14" Foreground="#6c6a6e">Hiển thị theo:</Label>
+                        <ComboBox x:Name="SalesCombobox" Width="100" Height="30" Style="{StaticResource CustomComboBoxStyle}">
+                            <ComboBoxItem Content="Ngày"/>
+                            <ComboBoxItem Content="Tuần"/>
+                            <ComboBoxItem Content="Tháng"/>
+                            <ComboBoxItem Content="Năm"/>
+                        </ComboBox>
+                    </WrapPanel>
+                </Grid>
+                <lvc:CartesianChart Height="200" Series="{Binding SeriesCollection}" LegendLocation="Bottom" >
+                    <lvc:CartesianChart.AxisY>
+                        <lvc:Axis LabelFormatter="{Binding YFormatter}"></lvc:Axis>
+                    </lvc:CartesianChart.AxisY>
+                    <lvc:CartesianChart.AxisX>
+                        <lvc:Axis Labels="{Binding Labels}"></lvc:Axis>
+                    </lvc:CartesianChart.AxisX>
+                </lvc:CartesianChart>
+            </StackPanel>
+        </Border>
+
+        <Border Background="white" Margin="0,0,0,20" CornerRadius="5">
+            <StackPanel
+        Margin="10"
+        Orientation="Vertical"
+        >
+                <Label FontSize="15" Foreground="#6c6a6e">Top bán vé</Label>
+                <DataGrid
+            ItemsSource="{Binding list}"
+            x:Name="TopFilmDataGrid"
+            Style="{StaticResource TopFilmStyle}"
+            ColumnHeaderStyle="{DynamicResource TopFilmHeader}"
+            RowStyle="{DynamicResource TopFilmRow}"
+            CellStyle="{DynamicResource TopFilmCell}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="No." IsReadOnly="True" Width="50" Binding="{Binding no}"/>
+                        <DataGridTextColumn
+                    Binding="{Binding name}"
+                    FontWeight="SemiBold"
+                    Header="Tên phim"
+                    IsReadOnly="True"
+                    Width="2*">
+
+                        </DataGridTextColumn>
+                        <DataGridTextColumn
+                    Binding="{Binding director}"
+                    Header="Đạo diễn"
+                    IsReadOnly="True"
+                    Width="*">
+
+                        </DataGridTextColumn>
+                        <DataGridTextColumn
+                    Binding="{Binding date}"
+                    Header="Ngày chiếu"
+                    IsReadOnly="True"
+                    Width="*">
+
+                        </DataGridTextColumn>
+                        <DataGridTextColumn
+                    Binding="{Binding sell}"
+                    Header="Vé bán"
+                    IsReadOnly="True"
+                    Width="*">
+
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+            </StackPanel>
+        </Border>
+
+    </StackPanel>
+</Page>
