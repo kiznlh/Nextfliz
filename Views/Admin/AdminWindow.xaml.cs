@@ -27,7 +27,7 @@ namespace Nextfliz.Views.Admin
         public AdminWindow()
         {
             InitializeComponent();
-            DataContext = new AdminVM((Frame) contentFrame);
+            DataContext = new AdminVM((Frame) contentFrame, this);
         }
 
     }

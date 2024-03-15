@@ -70,7 +70,7 @@
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
-                                            
+                                            <Image Height="50" Source="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcThq0GNDOwqP8p58fBFIBQoaxqg2MwHHSQ0aVebJ0z5PkgQ-_Hg"/>
                                         </StackPanel>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>

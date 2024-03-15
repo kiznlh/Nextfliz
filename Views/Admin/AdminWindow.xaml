@@ -38,7 +38,7 @@
                             </TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button x:Name="FilmNavBtn" Grid.Row="1" Style="{DynamicResource AdminNavButton}" Command="{Binding ToFilmManagement}">
+                    <Button x:Name="filmNavBtn" Grid.Row="1" Style="{DynamicResource AdminNavButton}" Command="{Binding ToFilmManagement}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                             <Icon:PackIconMaterial Kind="VideoMinusOutline"/>
                             <TextBlock Margin="5,0,0,0">
