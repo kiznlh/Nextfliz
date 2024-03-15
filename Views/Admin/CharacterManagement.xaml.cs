@@ -10,6 +10,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Nextfliz.Views.Admin
@@ -17,11 +18,12 @@ namespace Nextfliz.Views.Admin
     /// <summary>
     /// Interaction logic for CharacterManagement.xaml
     /// </summary>
-    public partial class CharacterManagement : Window
+    public partial class CharacterManagement : Page
     {
         public CharacterManagement()
         {
             InitializeComponent();
+            DataContext = new CharacterManagementVM();
         }
     }
 }

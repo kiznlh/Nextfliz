@@ -30,7 +30,7 @@
                         <RowDefinition Height="50"/>
                     </Grid.RowDefinitions>
 
-                    <Button Grid.Row="0" Style="{DynamicResource AdminNavButtonSelected}">
+                    <Button x:Name="dashboardNavBtn" Grid.Row="0" Style="{DynamicResource AdminNavButtonSelected}" Command="{Binding ToDashboard}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                             <Icon:PackIconMaterial Kind="ViewDashboardOutline"/>
                             <TextBlock Margin="5,0,0,0">
@@ -38,7 +38,7 @@
                             </TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button Grid.Row="1" Style="{DynamicResource AdminNavButton}">
+                    <Button x:Name="FilmNavBtn" Grid.Row="1" Style="{DynamicResource AdminNavButton}" Command="{Binding ToFilmManagement}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                             <Icon:PackIconMaterial Kind="VideoMinusOutline"/>
                             <TextBlock Margin="5,0,0,0">
@@ -46,7 +46,7 @@
                             </TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button Grid.Row="2" Style="{DynamicResource AdminNavButton}">
+                    <Button x:Name="voucherNavBtn" Grid.Row="2" Style="{DynamicResource AdminNavButton}" Command="{Binding ToVoucherManagement}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                             <Icon:PackIconMaterial Kind="TicketOutline"/>
                             <TextBlock Margin="5,0,0,0">
@@ -54,7 +54,7 @@
                             </TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button Grid.Row="3" Style="{DynamicResource AdminNavButton}">
+            <Button x:Name="characterNavBtn" Grid.Row="3" Style="{DynamicResource AdminNavButton}" Command="{Binding ToCharacterManagement}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                             <Icon:PackIconMaterial Kind="AccountOutline"/>
                             <TextBlock Margin="5,0,0,0">
