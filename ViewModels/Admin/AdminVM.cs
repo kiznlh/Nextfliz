@@ -19,5 +19,8 @@ namespace Nextfliz
             this.contentFrame = contentFrame;
             contentFrame.Navigate(new AdminDashboard());
         }
+
+
+        
     }
 }

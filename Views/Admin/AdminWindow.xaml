@@ -30,7 +30,7 @@
                         <RowDefinition Height="50"/>
                     </Grid.RowDefinitions>
 
-                    <Button Grid.Row="0" Style="{StaticResource AdminNavButtonSelected}">
+                    <Button Grid.Row="0" Style="{DynamicResource AdminNavButtonSelected}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                             <Icon:PackIconMaterial Kind="ViewDashboardOutline"/>
                             <TextBlock Margin="5,0,0,0">
@@ -38,7 +38,7 @@
                             </TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button Grid.Row="1" Style="{StaticResource AdminNavButton}">
+                    <Button Grid.Row="1" Style="{DynamicResource AdminNavButton}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                             <Icon:PackIconMaterial Kind="VideoMinusOutline"/>
                             <TextBlock Margin="5,0,0,0">
@@ -46,7 +46,7 @@
                             </TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button Grid.Row="2" Style="{StaticResource AdminNavButton}">
+                    <Button Grid.Row="2" Style="{DynamicResource AdminNavButton}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                             <Icon:PackIconMaterial Kind="TicketOutline"/>
                             <TextBlock Margin="5,0,0,0">
@@ -54,7 +54,7 @@
                             </TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button Grid.Row="3" Style="{StaticResource AdminNavButton}">
+                    <Button Grid.Row="3" Style="{DynamicResource AdminNavButton}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                             <Icon:PackIconMaterial Kind="AccountOutline"/>
                             <TextBlock Margin="5,0,0,0">
