@@ -16,13 +16,14 @@ using System.Windows.Shapes;
 namespace Nextfliz.Views.Admin
 {
     /// <summary>
-    /// Interaction logic for FilmManagement.xaml
+    /// Interaction logic for CharacterManagement.xaml
     /// </summary>
-    public partial class FilmManagement : Page
+    public partial class CharacterManagement : Page
     {
-        public FilmManagement()
+        public CharacterManagement()
         {
             InitializeComponent();
+            DataContext = new CharacterManagementVM();
         }
     }
 }
