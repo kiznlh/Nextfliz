@@ -9,6 +9,6 @@
       Title="TestPageForNewControl">
 
     <Grid>
-        <local:SliderControl></local:SliderControl>
+        <Button Click="Button_Click"> Click me</Button>
     </Grid>
 </Page>

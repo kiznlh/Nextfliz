@@ -9,6 +9,7 @@ using System.Windows.Media.Imaging;
 
 namespace Nextfliz.Views.MainApp
 {
+   
     public class CenterConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -25,6 +26,28 @@ namespace Nextfliz.Views.MainApp
     }
     public partial class FilmCardControl: UserControl
     {
+        // Dependency properties for width and height
+        public static readonly DependencyProperty WidthProperty = DependencyProperty.Register(
+            "Width", typeof(double), typeof(FilmCardControl), new PropertyMetadata(double.NaN));
+
+        public static readonly DependencyProperty HeightProperty = DependencyProperty.Register(
+            "Height", typeof(double), typeof(FilmCardControl), new PropertyMetadata(double.NaN));
+
+        // Width property
+        public double Width
+        {
+            get { return (double)GetValue(WidthProperty); }
+            set { SetValue(WidthProperty, value); }
+        }
+
+        // Height property
+        public double Height
+        {
+            get { return (double)GetValue(HeightProperty); }
+            set { SetValue(HeightProperty, value); }
+        }
+
+
         private double originalWidth;
         private double originalHeight;
 
@@ -44,7 +67,7 @@ namespace Nextfliz.Views.MainApp
             originalHeight = this.Height;
 
             // Initialize with a default URI
-            InitializeVideoElement("../../../Resources/Images/film_trailer.mp4");
+            InitializeVideoElement("../../../Resources/Images/film_trailer2.mp4");
         }
 
         // Method to initialize the video element

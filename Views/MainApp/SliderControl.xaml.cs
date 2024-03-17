@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 using System.Windows.Threading;
 
@@ -21,13 +22,14 @@ namespace Nextfliz.Views.MainApp
             for (int i = 0; i < 10; i++)
             {
                 FilmCardControl filmCard = new FilmCardControl();
+                
                 AddItem(filmCard);
             }
         }
 
         public void AddItem(UIElement item)
         {
-            uniformGrid.Children.Add(item); // Changed to add items to the UniformGrid
+            panel.Children.Add(item); // Changed to add items to the UniformGrid
         }
 
         private void SlideLeft_Click(object sender, RoutedEventArgs e)
@@ -41,11 +43,12 @@ namespace Nextfliz.Views.MainApp
 
         private void SlideRight_Click(object sender, RoutedEventArgs e)
         {
-            if (currentIndex < uniformGrid.Children.Count - 1)
+            if (currentIndex < panel.Children.Count - 1)
             {
                 currentIndex++;
                 AnimateSlide();
             }
+
         }
 
         private void AnimateSlide()
