@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Nextfliz.Models;
+namespace Nextfliz;
 
 public partial class Director
 {
