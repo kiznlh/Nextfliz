@@ -20,8 +20,8 @@
         <Button Content="◄" Click="SlideLeft_Click" Margin="5" Width="auto" Height="20"/>
 
         <!-- ScrollViewer -->
-        <ScrollViewer Grid.Column="1" x:Name="scrollViewer" HorizontalScrollBarVisibility="Hidden" Width="600" Height="400" VerticalScrollBarVisibility="Disabled" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <UniformGrid x:Name="uniformGrid" Rows="1"/>
+        <ScrollViewer Grid.Column="1" x:Name="scrollViewer" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Disabled">
+            <StackPanel x:Name="panel" Orientation="Horizontal"/>
         </ScrollViewer>
 
         <!-- Right button -->

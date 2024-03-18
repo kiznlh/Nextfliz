@@ -16,21 +16,13 @@ using System.Windows.Shapes;
 namespace Nextfliz.Views.MainApp
 {
     /// <summary>
-    /// Interaction logic for TestPageForNewControl.xaml
+    /// Interaction logic for FilmDetailPage.xaml
     /// </summary>
-    public partial class TestPageForNewControl : Page
+    public partial class FilmDetailPage : Page
     {
-        public TestPageForNewControl()
+        public FilmDetailPage()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            if (Application.Current.MainWindow is WindowUserMainWindow mainWindow)
-            {
-                mainWindow.TestNavi();
-            }
         }
     }
 }

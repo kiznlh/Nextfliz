@@ -22,12 +22,16 @@ namespace Nextfliz.Views.MainApp
         PageSearch pageSearch;
         TestPageForNewControl testPage;
         WindowMainPage mainPage;
+
+        FilmDetailPage filmDetailPage;
         public WindowUserMainWindow()
         {
             InitializeComponent();
             pageSearch = new PageSearch();
             testPage = new TestPageForNewControl();
             mainPage = new WindowMainPage();
+
+            filmDetailPage = new FilmDetailPage();
         }
 
         private void Search_Click(object sender, RoutedEventArgs e)
@@ -44,6 +48,22 @@ namespace Nextfliz.Views.MainApp
         {
             contentFrame.Navigate(testPage);
             screentitle.Text = "User";
+        }
+
+        public void TestNavi()
+        {
+            contentFrame.Navigate(filmDetailPage);
+            
+        }
+
+        public void goBack()
+        {
+            contentFrame.GoBack();
+        }
+
+        public void goForward()
+        {
+            contentFrame.GoForward();
         }
     }
 }
