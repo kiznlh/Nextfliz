@@ -68,7 +68,7 @@ CREATE TABLE Ticket (
     ngay_dat_ve DATETIME,
     suat_chieu_id CHAR(5) FOREIGN KEY REFERENCES SuatChieu(suat_chieu_id),
     gia_ve DECIMAL(10, 2),
-    ghe_ngoi NVARCHAR(50)
+    vi_tri_ghe NVARCHAR(5),
 );
 
 CREATE TABLE Voucher (
@@ -83,4 +83,11 @@ CREATE TABLE FilmCast (
     PRIMARY KEY (movie_id, actor_id),
     FOREIGN KEY (movie_id) REFERENCES Movie(movie_id),
     FOREIGN KEY (actor_id) REFERENCES Actor(actor_id)
+);
+
+CREATE TABLE Seat (
+    suat_chieu_id CHAR(5),
+    vi_tri_ghe NVARCHAR(5),
+    PRIMARY KEY (suat_chieu_id, vi_tri_ghe),
+    FOREIGN KEY (suat_chieu_id) REFERENCES SuatChieu(suat_chieu_id)
 );
