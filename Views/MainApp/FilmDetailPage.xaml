@@ -7,7 +7,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="800" d:DesignWidth="1150"
       Title="FilmDetailPage"
-      Background="White">
+      >
 
     <Grid>
         <Grid.RowDefinitions>
@@ -23,12 +23,12 @@
 
         <!-- Movie Details -->
         <StackPanel Grid.Column="1" Margin="20,20,20,20" Grid.Row="1"> <!--Need Binding{}-->
-            <TextBlock Text="Movie Title" FontSize="24" FontWeight="Bold"/>
-            <TextBlock Text="Genre: Action" FontSize="16"/>
-            <TextBlock Text="Duration: 2h 30m" FontSize="16"/>
-            <TextBlock Text="Release Date: January 1, 2024" FontSize="16"/>
-            <TextBlock Text="Rating: PG-13" FontSize="16"/>
-            <TextBlock Text="Certification: Rated PG-13 for some intense sequences" FontSize="16" Margin="0,20,0,0"/>
+            <TextBlock Text="Movie Title" FontSize="24" FontWeight="Bold" Foreground="White"/>
+            <TextBlock Text="Genre: Action" FontSize="16" Foreground="White"/>
+            <TextBlock Text="Duration: 2h 30m" FontSize="16" Foreground="White" />
+            <TextBlock Text="Release Date: January 1, 2024" FontSize="16" Foreground="White"/>
+            <TextBlock Text="Rating: PG-13" FontSize="16" Foreground="White"/>
+            <TextBlock Text="Certification: Rated PG-13 for some intense sequences" FontSize="16" Margin="0,0,0,0" Foreground="White"/>
             
             <!-- Stars Section -->
             <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
@@ -39,15 +39,8 @@
                 </StackPanel>
             </StackPanel>
 
-            <!-- Director Section -->
-            <!--Need Binding{}-->
-            <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
-                <Image Source="director_avatar.jpg" Width="50" Height="50"/>
-                <StackPanel Margin="10,0,0,0">
-                    <TextBlock Text="Director:" FontSize="16"/>
-                    <TextBlock Text="Director Name" FontSize="16"/>
-                </StackPanel>
-            </StackPanel>
+            
+            
 
         </StackPanel>
     </Grid>
