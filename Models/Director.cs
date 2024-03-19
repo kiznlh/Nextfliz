@@ -7,7 +7,7 @@ public partial class Director
 {
     public string DirectorId { get; set; } = null!;
 
-    public string? TenDaoDien { get; set; }
+    public string? HoTen { get; set; }
 
     public string? HinhAnh { get; set; }
 

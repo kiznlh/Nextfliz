@@ -23,7 +23,7 @@ namespace Nextfliz.Views.Admin
         public CharacterManagement()
         {
             InitializeComponent();
-            DataContext = new CharacterManagementVM();
+            this.DataContext = new CharacterManagementVM();
         }
     }
 }

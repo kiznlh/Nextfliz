@@ -7,7 +7,7 @@ public partial class Actor
 {
     public string ActorId { get; set; } = null!;
 
-    public string? TenDienVien { get; set; }
+    public string? HoTen { get; set; }
 
     public string? HinhAnh { get; set; }
 

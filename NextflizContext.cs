@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-using Nextfliz.Models;
 
 namespace Nextfliz;
 
@@ -56,7 +55,7 @@ public partial class NextflizContext : DbContext
             entity.Property(e => e.HinhAnh)
                 .HasMaxLength(255)
                 .HasColumnName("hinh_anh");
-            entity.Property(e => e.TenDienVien)
+            entity.Property(e => e.HoTen)
                 .HasMaxLength(100)
                 .HasColumnName("ten_dien_vien");
             entity.Property(e => e.TieuSu).HasColumnName("tieu_su");
@@ -92,7 +91,7 @@ public partial class NextflizContext : DbContext
             entity.Property(e => e.HinhAnh)
                 .HasMaxLength(255)
                 .HasColumnName("hinh_anh");
-            entity.Property(e => e.TenDaoDien)
+            entity.Property(e => e.HoTen)
                 .HasMaxLength(100)
                 .HasColumnName("ten_dao_dien");
             entity.Property(e => e.TieuSu).HasColumnName("tieu_su");
