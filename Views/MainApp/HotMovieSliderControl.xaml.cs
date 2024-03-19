@@ -1,18 +1,20 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
+using System.Windows.Media;
 using System.Windows.Threading;
 
 namespace Nextfliz.Views.MainApp
 {
-    public partial class SliderControl : UserControl
+    public partial class HotMovieSliderControl : UserControl
     {
         private double scrollOffset = 0;
         private int currentIndex = 0;
         private DispatcherTimer slideTimer;
         private EventHandler slideAnimationHandler;
 
-        public SliderControl()
+        public HotMovieSliderControl()
         {
             InitializeComponent();
             InitializeSlideTimer();
@@ -20,8 +22,8 @@ namespace Nextfliz.Views.MainApp
             for (int i = 0; i < 10; i++)
             {
                 FilmCardControl filmCard = new FilmCardControl();
-                filmCard.Height = 300;
-                filmCard.Width = 400;
+                filmCard.Height = 450;
+                filmCard.Width = 600;
                 AddItem(filmCard);
             }
         }
@@ -31,11 +33,17 @@ namespace Nextfliz.Views.MainApp
             FilmCardControl filmCard = item as FilmCardControl;
             if (filmCard != null)
             {
+               
+                double halfWidth = (1000 - (filmCard.Width)) / 2;
+
+  
+                filmCard.Margin = new Thickness(halfWidth, 0, halfWidth, 0); 
                 filmCard.HorizontalAlignment = HorizontalAlignment.Left;
             }
             panel.Children.Add(item);
-        }
 
+           
+        }
 
         private void SlideLeft_Click(object sender, RoutedEventArgs e)
         {
@@ -53,17 +61,19 @@ namespace Nextfliz.Views.MainApp
                 currentIndex++;
                 AnimateSlide();
             }
+
         }
 
         private void AnimateSlide()
         {
-            double itemWidth = 400; 
-    
-            double targetOffset = currentIndex * (itemWidth + 50 * 2);// spacing between items
+            double itemWidth = 600; // Assuming item width is 500
+            double halfWidth = (1000 - (itemWidth)) / 2;
+
+            double targetOffset = currentIndex * (itemWidth + halfWidth * 2);// spacing between items
             double delta = Math.Sign(targetOffset - scrollOffset) * 20; // Adjust the scrolling speed
 
             slideTimer.Stop();
-            slideTimer.Tick -= slideAnimationHandler;
+            slideTimer.Tick -= slideAnimationHandler; 
 
             slideAnimationHandler = (sender, e) =>
             {
@@ -79,18 +89,16 @@ namespace Nextfliz.Views.MainApp
                     scrollViewer.ScrollToHorizontalOffset(scrollOffset);
                 }
             };
-
+                
             slideTimer.Tick += slideAnimationHandler;
             slideTimer.Start();
         }
+
 
         private void InitializeSlideTimer()
         {
             slideTimer = new DispatcherTimer();
             slideTimer.Interval = TimeSpan.FromMilliseconds(10); // Adjust this value for smoother or slower animation
         }
-
-       
-
     }
 }

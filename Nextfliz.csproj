@@ -44,6 +44,8 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="System.Linq" Version="4.3.0" />
+    <PackageReference Include="System.Linq.Expressions" Version="4.3.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -55,6 +57,12 @@
     <Resource Include="Resources\Images\film_bg.jpg" />
     <Resource Include="Resources\Images\film_trailer.mp4" />
     <Resource Include="Resources\Images\xD.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\MainApp\HotMovieSliderControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
 
 </Project>

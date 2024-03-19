@@ -23,14 +23,20 @@ namespace Nextfliz.Views.MainApp
         public TestPageForNewControl()
         {
             InitializeComponent();
+
+            ActorDetailCard actor = new ActorDetailCard();
+            actor.ImageSource = new BitmapImage(new Uri("C:\\Users\\Hai Nguyen Lam\\Documents\\Nextfliz\\Resources\\Images\\avatar.png"));
+            actor.Text1 = "hehe1";
+            actor.Text2 = "hehe2";
+            container.Children.Add(actor);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            if (Application.Current.MainWindow is WindowUserMainWindow mainWindow)
-            {
-                mainWindow.TestNavi();
-            }
-        }
+        //private void Button_Click(object sender, RoutedEventArgs e)
+        //{
+        //    if (Application.Current.MainWindow is WindowUserMainWindow mainWindow)
+        //    {
+        //        mainWindow.TestNavi();
+        //    }
+        //}
     }
 }
