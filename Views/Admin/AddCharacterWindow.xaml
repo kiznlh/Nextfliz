@@ -1,0 +1,38 @@
+﻿<Window x:Class="Nextfliz.View.Admin.AddCharacterWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks" 
+        xmlns:local="clr-namespace:Nextfliz.View.Admin"
+        mc:Ignorable="d"
+        Height="450" Width="400" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <Label HorizontalAlignment="Center" FontWeight="bold" FontSize="20">Thêm mới nhân vật</Label>
+            <Label FontWeight="SemiBold">Họ và tên:</Label>
+            <TextBox Margin="10,0,10,0"/>
+            <Label FontWeight="SemiBold">Link hình ảnh:</Label>
+            <TextBox Margin="10,0,10,0"/>
+            <Label FontWeight="SemiBold">Tiểu sử:</Label>
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Height="200">
+                <TextBox 
+                    x:Name="biographyTextBox" 
+                    TextWrapping="Wrap" 
+                    AcceptsReturn="True" 
+                    VerticalScrollBarVisibility="Auto" 
+                    HorizontalScrollBarVisibility="Disabled"
+                    MinHeight="200"
+                    Margin="10,0,10,0"/>
+            </ScrollViewer>
+            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
+                <Button HorizontalAlignment="Right" Width="100" Height="38" Style="{StaticResource AddFilmButton}">
+                    <StackPanel Orientation="Horizontal">
+                        <Icon:PackIconMaterial Kind="Plus"  Margin="0,0,5,0"/>
+                        <TextBlock>Thêm</TextBlock>
+                    </StackPanel>
+                </Button>
+            </WrapPanel>
+        </StackPanel>
+    </Grid>
+</Window>

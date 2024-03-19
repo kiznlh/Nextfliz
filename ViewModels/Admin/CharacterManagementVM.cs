@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Nextfliz.View.Admin;
 
 namespace Nextfliz 
 {
@@ -16,6 +17,7 @@ namespace Nextfliz
         public event PropertyChangedEventHandler PropertyChanged;
         public RelayCommand toNextPage { get; set; }
         public RelayCommand toPreviousPage { get; set; }
+        public RelayCommand showAddPanel { get; set; }
         public ObservableCollection<Object> showingList { get; set; } = new ObservableCollection<Object>();
         private int listSize;
         public int listType { get; set; }
@@ -53,6 +55,7 @@ namespace Nextfliz
             this.listType = listType;
             toNextPage = new RelayCommand(nextPage, canPerform);
             toPreviousPage = new RelayCommand(previousPage, canPerform);
+            showAddPanel = new RelayCommand(showAdd, canPerform);
 
             using (var context = new NextflizContext())
             {
@@ -139,6 +142,12 @@ namespace Nextfliz
                     }
                 }
             }
+        }
+        
+        private void showAdd(object value)
+        {
+            AddCharacterWindow addPanel = new AddCharacterWindow();
+            addPanel.ShowDialog();
         }
 
         private bool canPerform(object value)
