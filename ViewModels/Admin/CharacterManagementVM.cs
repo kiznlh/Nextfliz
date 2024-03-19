@@ -20,6 +20,7 @@ namespace Nextfliz
         public RelayCommand toPreviousPage { get; set; }
         public RelayCommand showAddPanel { get; set; }
         public RelayCommand deleteItemCommand { get; set; }
+        public RelayCommand editItemCommand { get; set; }
         public ObservableCollection<Object> showingList { get; set; } = new ObservableCollection<Object>();
         private int listSize;
         public int listType { get; set; }
@@ -59,6 +60,7 @@ namespace Nextfliz
             toPreviousPage = new RelayCommand(previousPage, canPerform);
             showAddPanel = new RelayCommand(showAdd, canPerform);
             deleteItemCommand = new RelayCommand(deleteItem, canPerform);
+            editItemCommand = new RelayCommand(editItem, canPerform);
 
             updateList();
         }
@@ -178,8 +180,23 @@ namespace Nextfliz
 
         private void showAdd(object value)
         {
-            AddCharacterWindow addPanel = new AddCharacterWindow(listType);
+            AddCharacterWindow addPanel = new AddCharacterWindow(listType, null);
             addPanel.ShowDialog();
+            updateList();
+        }
+
+        private void editItem(object obj)
+        {
+            if (obj is Actor actorToEdit)
+            {
+                AddCharacterWindow addPanel = new AddCharacterWindow(listType, actorToEdit.ActorId);
+                addPanel.ShowDialog();
+            }
+            if (obj is Director directorToEdit)
+            {
+                AddCharacterWindow addPanel = new AddCharacterWindow(listType, directorToEdit.DirectorId);
+                addPanel.ShowDialog();
+            }
             updateList();
         }
 
