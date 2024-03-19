@@ -48,23 +48,39 @@ namespace Nextfliz
         }
 
         public const int numPerPage = 2;
-        public CharacterManagementVM()
+        public CharacterManagementVM(int listType)
         {
-            listType = 0;
-            currentPage = 1;
+            this.listType = listType;
             toNextPage = new RelayCommand(nextPage, canPerform);
             toPreviousPage = new RelayCommand(previousPage, canPerform);
 
             using (var context = new NextflizContext())
             {
-                var actors = context.Actors.Take(numPerPage).ToList();
-                listSize = context.Actors.Count();
-                foreach (var item in actors)
+                if (listType == 0)
                 {
-                    showingList.Add(item);
+                    var actors = context.Actors.Take(numPerPage).ToList();
+                    listSize = context.Actors.Count();
+                    foreach (var item in actors)
+                    {
+                        showingList.Add(item);
+                    }
+                    totalPage = "/ " + Math.Ceiling(context.Actors.Count() * 1.0 / numPerPage);
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("TotalPage"));
                 }
-                totalPage = "/ " + Math.Ceiling(context.Actors.Count() * 1.0 / numPerPage);
+                else
+                {
+                    var directors = context.Directors.Take(numPerPage).ToList();
+                    listSize = context.Directors.Count();
+                    foreach (var item in directors)
+                    {
+                        showingList.Add(item);
+                    }
+                    totalPage = "/ " + Math.Ceiling(context.Directors.Count() * 1.0 / numPerPage);
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("TotalPage"));
+                }
             }
+
+            currentPage = listSize != 0 ? 1 : 0;
         }
 
         private void nextPage(object value)
@@ -95,9 +111,10 @@ namespace Nextfliz
                 }
             }
         }
+
         private void previousPage(object value)
         {
-            if (currentPage == 1)
+            if (currentPage <= 1)
                 return;
             
             showingList.Clear();
@@ -123,6 +140,7 @@ namespace Nextfliz
                 }
             }
         }
+
         private bool canPerform(object value)
         {
             return true;

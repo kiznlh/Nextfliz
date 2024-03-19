@@ -20,7 +20,7 @@
                 <Grid Margin="0,0,0,20">
                     <WrapPanel HorizontalAlignment="Left" Margin="0,0,15,0">
                         <Label FontSize="14" Foreground="#6c6a6e">Danh sách:</Label>
-                        <ComboBox x:Name="SalesCombobox" Width="100" SelectedIndex="{Binding listType}" Height="30" Style="{StaticResource CustomComboBoxStyle}">
+                        <ComboBox x:Name="TypeCombobox" Width="100" SelectionChanged="Combobox_SelectionChanged" Height="30" Style="{StaticResource CustomComboBoxStyle}">
                             <ComboBoxItem Content="Diễn viên"/>
                             <ComboBoxItem Content="Đạo diễn"/>
                         </ComboBox>

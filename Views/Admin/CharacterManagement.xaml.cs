@@ -23,7 +23,13 @@ namespace Nextfliz.Views.Admin
         public CharacterManagement()
         {
             InitializeComponent();
-            this.DataContext = new CharacterManagementVM();
+            TypeCombobox.SelectedIndex = 0;
+            this.DataContext = new CharacterManagementVM(TypeCombobox.SelectedIndex);//0: actor, 1: director
+        }
+
+        private void Combobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this.DataContext = new CharacterManagementVM(TypeCombobox.SelectedIndex);
         }
     }
 }
