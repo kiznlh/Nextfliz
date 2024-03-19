@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Nextfliz.View.Admin;
+using System.IO;
 
 namespace Nextfliz 
 {
@@ -18,6 +19,7 @@ namespace Nextfliz
         public RelayCommand toNextPage { get; set; }
         public RelayCommand toPreviousPage { get; set; }
         public RelayCommand showAddPanel { get; set; }
+        public RelayCommand deleteItemCommand { get; set; }
         public ObservableCollection<Object> showingList { get; set; } = new ObservableCollection<Object>();
         private int listSize;
         public int listType { get; set; }
@@ -56,6 +58,7 @@ namespace Nextfliz
             toNextPage = new RelayCommand(nextPage, canPerform);
             toPreviousPage = new RelayCommand(previousPage, canPerform);
             showAddPanel = new RelayCommand(showAdd, canPerform);
+            deleteItemCommand = new RelayCommand(deleteItem, canPerform);
 
             updateList();
         }
@@ -87,6 +90,8 @@ namespace Nextfliz
                     totalPage = "/ " + Math.Ceiling(context.Directors.Count() * 1.0 / numPerPage);
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("TotalPage"));
                 }
+                currentPage = listSize != 0 ? 1 : 0;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CurrentPage"));
             }
 
             currentPage = listSize != 0 ? 1 : 0;
@@ -149,7 +154,28 @@ namespace Nextfliz
                 }
             }
         }
-        
+
+        private void deleteItem(object obj)
+        {
+            if (obj is Actor actorToDelete)
+            {
+                using (var dbContext = new NextflizContext())
+                {
+                    dbContext.Actors.Remove(actorToDelete);
+                    dbContext.SaveChanges();
+                }
+            }
+            if (obj is Director directorToDelete)
+            {
+                using (var dbContext = new NextflizContext())
+                {
+                    dbContext.Directors.Remove(directorToDelete);
+                    dbContext.SaveChanges();
+                }
+            }
+            updateList();
+        }
+
         private void showAdd(object value)
         {
             AddCharacterWindow addPanel = new AddCharacterWindow(listType);

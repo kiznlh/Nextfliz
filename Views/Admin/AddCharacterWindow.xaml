@@ -28,8 +28,7 @@
             <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
                 <Button HorizontalAlignment="Right" Width="100" Height="38" Style="{StaticResource AddFilmButton}" Command="{Binding addCharacterCommand}">
                     <StackPanel Orientation="Horizontal">
-                        <Icon:PackIconMaterial Kind="Plus"  Margin="0,0,5,0"/>
-                        <TextBlock>Thêm</TextBlock>
+                        <TextBlock>Lưu</TextBlock>
                     </StackPanel>
                 </Button>
             </WrapPanel>

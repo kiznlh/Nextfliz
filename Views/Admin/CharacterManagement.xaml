@@ -96,7 +96,7 @@
                                             <Button Style="{StaticResource EditFilmButton}">
                                                 <Icon:PackIconMaterial Kind="PencilOutline"/>
                                             </Button>
-                                            <Button Style="{StaticResource DeleteFilmButton}">
+                                            <Button Style="{StaticResource DeleteFilmButton}" Command="{Binding DataContext.deleteItemCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}">
                                                 <Icon:PackIconMaterial Kind="DeleteOutline"/>
                                             </Button>
                                         </StackPanel>
