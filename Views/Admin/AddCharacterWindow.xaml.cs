@@ -19,9 +19,10 @@ namespace Nextfliz.View.Admin
     /// </summary>
     public partial class AddCharacterWindow : Window
     {
-        public AddCharacterWindow()
+        public AddCharacterWindow(int type)
         {
             InitializeComponent();
+            this.DataContext = new AddCharacterVM(this, type);
         }
     }
 }

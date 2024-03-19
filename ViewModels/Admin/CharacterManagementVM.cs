@@ -57,6 +57,12 @@ namespace Nextfliz
             toPreviousPage = new RelayCommand(previousPage, canPerform);
             showAddPanel = new RelayCommand(showAdd, canPerform);
 
+            updateList();
+        }
+
+        private void updateList()
+        {
+            showingList.Clear();
             using (var context = new NextflizContext())
             {
                 if (listType == 0)
@@ -146,8 +152,9 @@ namespace Nextfliz
         
         private void showAdd(object value)
         {
-            AddCharacterWindow addPanel = new AddCharacterWindow();
+            AddCharacterWindow addPanel = new AddCharacterWindow(listType);
             addPanel.ShowDialog();
+            updateList();
         }
 
         private bool canPerform(object value)
