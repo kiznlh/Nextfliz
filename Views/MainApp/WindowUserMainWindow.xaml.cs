@@ -12,11 +12,25 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+
 namespace Nextfliz.Views.MainApp
 {
     /// <summary>
     /// Interaction logic for WindowUserMainWindow.xaml
     /// </summary>
+    /// 
+    public static class UserSession
+    {
+        private static bool isLoggedIn = false;
+
+        public static bool IsLoggedIn
+        {
+            get { return isLoggedIn; }
+            set { isLoggedIn = value; }
+        }
+    }
+
+
     public partial class WindowUserMainWindow : Window
     {
         PageSearch pageSearch;
@@ -24,6 +38,10 @@ namespace Nextfliz.Views.MainApp
         WindowMainPage mainPage;
 
         FilmDetailPage filmDetailPage;
+
+        LoginPage loginPage;
+        SignUpPage signUpPage;
+        
         public WindowUserMainWindow()
         {
             InitializeComponent();
@@ -32,6 +50,9 @@ namespace Nextfliz.Views.MainApp
             mainPage = new WindowMainPage();
 
             filmDetailPage = new FilmDetailPage();
+
+            loginPage = new LoginPage();
+            signUpPage = new SignUpPage();
         }
 
         private void Search_Click(object sender, RoutedEventArgs e)
@@ -47,7 +68,11 @@ namespace Nextfliz.Views.MainApp
         private void User_Click(object sender, RoutedEventArgs e)
         {
             contentFrame.Navigate(testPage);
-            screentitle.Text = "User";
+            //if (!UserSession.IsLoggedIn)
+            //{
+            //    contentFrame.Navigate(loginPage); 
+            //}
+            //screentitle.Text = "User";
         }
 
         public void TestNavi()
@@ -55,7 +80,14 @@ namespace Nextfliz.Views.MainApp
             contentFrame.Navigate(filmDetailPage);
             
         }
-
+        public void goToLogin()
+        {
+            contentFrame.Navigate(loginPage);
+        }
+        public void goToSignUp()
+        {
+            contentFrame.Navigate(signUpPage);
+        }
         public void goBack()
         {
             contentFrame.GoBack();

@@ -6,8 +6,9 @@
     <DockPanel>
         <DockPanel DockPanel.Dock="Top" MaxHeight="100">
             <Image DockPanel.Dock="Left" Source="/Resources/Icons/logo_text_icon.png" Height="100" Width="300"></Image>
-            <TextBlock DockPanel.Dock="Right" Name="screentitle" Foreground="Wheat" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="50" Text="Title"></TextBlock>
+            <TextBlock HorizontalAlignment="Center" Name="screentitle" Foreground="Transparent" VerticalAlignment="Center" FontSize="50" Text="Title"></TextBlock>
         </DockPanel>
+
 
         <Grid DockPanel.Dock="Bottom">
             <Grid.ColumnDefinitions>

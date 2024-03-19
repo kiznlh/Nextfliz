@@ -59,8 +59,8 @@ namespace Nextfliz.Views.MainApp
         {
             double itemWidth = 400; 
     
-            double targetOffset = currentIndex * (itemWidth + 50 * 2);// spacing between items
-            double delta = Math.Sign(targetOffset - scrollOffset) * 20; // Adjust the scrolling speed
+            double targetOffset = currentIndex * (itemWidth + 50 * 2);
+            double delta = Math.Sign(targetOffset - scrollOffset) * 10;
 
             slideTimer.Stop();
             slideTimer.Tick -= slideAnimationHandler;

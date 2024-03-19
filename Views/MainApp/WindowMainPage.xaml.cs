@@ -16,9 +16,9 @@ namespace Nextfliz.Views.MainApp
         private void HotMovieSliderControl_Loaded(object sender, RoutedEventArgs e)
         {
             // Access the ActualWidth property of HotMovieSliderControl
-            double hotMovieSliderWidth = hotMovieSliderControl.ActualWidth;
-            // Use the width as needed
-            MessageBox.Show($"HotMovieSliderControl Width: {hotMovieSliderWidth}");
+            //double hotMovieSliderWidth = hotMovieSliderControl.ActualWidth;
+            //// Use the width as needed
+            //MessageBox.Show($"HotMovieSliderControl Width: {hotMovieSliderWidth}");
         }
     }
 }

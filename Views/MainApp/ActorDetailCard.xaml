@@ -14,15 +14,15 @@
             <!-- First row for the image -->
             <RowDefinition Height="*" />
             <!-- Second row divided into two smaller rows -->
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
 
         <!-- Image in the first row -->
         <Image Grid.Row="0" Source="{Binding ImageSource, ElementName=Card}" Stretch="UniformToFill" />
 
         <!-- TextBlocks in the second row -->
-        <TextBlock Grid.Row="1" Text="{Binding Text1,ElementName=Card}" TextWrapping="Wrap"/>
-        <TextBlock Grid.Row="2" Text="{Binding Text2,ElementName=Card}" TextWrapping="Wrap"/>
+        <TextBlock Grid.Row="1" Text="{Binding Text1,ElementName=Card}" TextWrapping="Wrap" FontSize="30" Foreground="White"/>
+        <TextBlock Grid.Row="2" Text="{Binding Text2,ElementName=Card}" TextWrapping="Wrap" Foreground="White"/>
     </Grid>
 </UserControl>
