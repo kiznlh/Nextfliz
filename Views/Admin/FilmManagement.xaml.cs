@@ -23,6 +23,7 @@ namespace Nextfliz.Views.Admin
         public FilmManagement()
         {
             InitializeComponent();
+            this.DataContext = new FilmManagementVM();
         }
     }
 }

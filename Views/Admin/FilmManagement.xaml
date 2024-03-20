@@ -41,7 +41,10 @@
                         <Button Style="{StaticResource PaginationButton}">
                             <Icon:PackIconMaterial Kind="ChevronLeft"/>
                         </Button>
-                        <Label FontWeight="SemiBold" Margin="10,0,10,0" FontSize="14">1 / ...</Label>
+                        <WrapPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Label FontWeight="SemiBold" Margin="10,0,0,0" FontSize="14" Content="{Binding CurrentPage}"/>
+                            <Label FontWeight="SemiBold" Margin="0,0,10,0" FontSize="14" Content="{Binding TotalPage}"/>
+                        </WrapPanel>
                         <Button Style="{StaticResource PaginationButton}">
                             <Icon:PackIconMaterial Kind="ChevronRight"/>
                         </Button>
@@ -70,14 +73,9 @@
                             Width="*">
 
                             </DataGridTextColumn>
-                            <DataGridTextColumn
-                            Binding="{Binding date}"
-                            Header="Ngày chiếu"
-                            IsReadOnly="True"
-                            Width="*">
-
-                            </DataGridTextColumn>
+                            
                             <DataGridTemplateColumn
+                                Header="Thao tác"
                                 IsReadOnly="True"
                                 Width="*">
                                 <DataGridTemplateColumn.CellTemplate>
