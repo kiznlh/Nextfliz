@@ -17,6 +17,9 @@ namespace Nextfliz
 
         public RelayCommand showGenreManagement { get; set; }
         public RelayCommand addFilmCommand { get; set; }
+        public RelayCommand toNextPage { get; set; }
+        public RelayCommand toPreviousPage { get; set; }
+        public RelayCommand deleteItemCommand { get; set; }
 
         private int listSize;
         private int currentPage { get; set; }
@@ -52,6 +55,9 @@ namespace Nextfliz
         {
             showGenreManagement = new RelayCommand(showGenre, canPerform);
             addFilmCommand = new RelayCommand(showAddPanel, canPerform);
+            toNextPage = new RelayCommand(nextPage, canPerform);
+            toPreviousPage = new RelayCommand(previousPage, canPerform);
+            deleteItemCommand = new RelayCommand(deleteItem, canPerform);
 
             updateList();
         }
@@ -90,6 +96,58 @@ namespace Nextfliz
             AddFilmWindow addWindow = new AddFilmWindow();
             addWindow.ShowDialog();
             updateList();
+        }
+
+        private void nextPage(object value)
+        {
+            if (currentPage == Math.Ceiling(listSize * 1.0 / numPerPage))
+                return;
+
+            showingList.Clear();
+            currentPage++;
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CurrentPage"));
+            using (var context = new NextflizContext())
+            {
+                var items = context.Movies.Skip(numPerPage * (currentPage - 1)).Take(numPerPage).ToList();
+                foreach (var item in items)
+                {
+                    showingList.Add(item);
+                }
+            }
+        }
+
+        private void previousPage(object value)
+        {
+            if (currentPage <= 1)
+                return;
+
+            showingList.Clear();
+            currentPage--;
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CurrentPage"));
+            using (var context = new NextflizContext())
+            {
+                var items = context.Movies.Skip(numPerPage * (currentPage - 1)).Take(numPerPage).ToList();
+                foreach (var item in items)
+                {
+                    showingList.Add(item);
+                }
+            }
+        }
+
+        private void deleteItem(object obj)
+        {
+            if (obj is Movie movieToDelete)
+            {
+                using (var dbContext = new NextflizContext())
+                {
+                    var rowsToDelete = dbContext.FilmCasts.Where(x => x.MovieId == movieToDelete.MovieId);
+                    dbContext.FilmCasts.RemoveRange(rowsToDelete);
+                    dbContext.Movies.Remove(movieToDelete);
+
+                    dbContext.SaveChanges();
+                }
+                updateList();
+            } 
         }
 
         private bool canPerform(object value)

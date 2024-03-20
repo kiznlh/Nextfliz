@@ -52,7 +52,7 @@ namespace Nextfliz
             }
         }
 
-        public const int numPerPage = 2;
+        public const int numPerPage = 10;
         public CharacterManagementVM(int listType)
         {
             this.listType = listType;

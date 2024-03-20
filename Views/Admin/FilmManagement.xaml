@@ -43,14 +43,14 @@
                 <Grid Margin="0,0,0,10">
                     <Label HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16" Margin="100,0,0,0" FontWeight="SemiBold">Danh sách phim</Label>
                     <StackPanel Margin="0,0,100,0"  HorizontalAlignment="right" Orientation="Horizontal">
-                        <Button Style="{StaticResource PaginationButton}">
+                        <Button Style="{StaticResource PaginationButton}" Command="{Binding toPreviousPage}">
                             <Icon:PackIconMaterial Kind="ChevronLeft"/>
                         </Button>
                         <WrapPanel Orientation="Horizontal" VerticalAlignment="Center">
                             <Label FontWeight="SemiBold" Margin="10,0,0,0" FontSize="14" Content="{Binding CurrentPage}"/>
                             <Label FontWeight="SemiBold" Margin="0,0,10,0" FontSize="14" Content="{Binding TotalPage}"/>
                         </WrapPanel>
-                        <Button Style="{StaticResource PaginationButton}">
+                        <Button Style="{StaticResource PaginationButton}" Command="{Binding toNextPage}">
                             <Icon:PackIconMaterial Kind="ChevronRight"/>
                         </Button>
                     </StackPanel>
@@ -90,7 +90,7 @@
                                             <Button Style="{StaticResource EditFilmButton}">
                                                 <Icon:PackIconMaterial Kind="PencilOutline"/>
                                             </Button>
-                                            <Button Style="{StaticResource DeleteFilmButton}">
+                                            <Button Style="{StaticResource DeleteFilmButton}" Command="{Binding DataContext.deleteItemCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}">
                                                 <Icon:PackIconMaterial Kind="DeleteOutline"/>
                                             </Button>
                                         </StackPanel>
