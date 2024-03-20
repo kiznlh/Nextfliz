@@ -27,7 +27,6 @@ public partial class Actor
             return dbContext.Actors.Any(a => a.ActorId == actorId);
         }
     }
-
     public string ActorId { get; set; } = null!;
 
     public string? HoTen { get; set; }
@@ -36,5 +35,5 @@ public partial class Actor
 
     public string? TieuSu { get; set; }
 
-    public virtual ICollection<Movie> Movies { get; set; } = new List<Movie>();
+    public virtual ICollection<FilmCast> FilmCasts { get; set; } = new List<FilmCast>();
 }

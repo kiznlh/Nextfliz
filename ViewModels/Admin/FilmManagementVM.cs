@@ -16,6 +16,8 @@ namespace Nextfliz
         public ObservableCollection<Movie> showingList { get; set; } = new ObservableCollection<Movie>();
 
         public RelayCommand showGenreManagement { get; set; }
+        public RelayCommand addFilmCommand { get; set; }
+
         private int listSize;
         private int currentPage { get; set; }
         public int CurrentPage
@@ -49,6 +51,7 @@ namespace Nextfliz
         public FilmManagementVM()
         {
             showGenreManagement = new RelayCommand(showGenre, canPerform);
+            addFilmCommand = new RelayCommand(showAddPanel, canPerform);
 
             updateList();
         }
@@ -80,6 +83,13 @@ namespace Nextfliz
         {
             GenreManagement genrePanel = new GenreManagement();
             genrePanel.ShowDialog();
+        }
+
+        private void showAddPanel(object value)
+        {
+            AddFilmWindow addWindow = new AddFilmWindow();
+            addWindow.ShowDialog();
+            updateList();
         }
 
         private bool canPerform(object value)

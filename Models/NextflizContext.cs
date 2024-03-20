@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace Nextfliz.Models;
+namespace Nextfliz;
 
 public partial class NextflizContext : DbContext
 {
@@ -18,6 +18,8 @@ public partial class NextflizContext : DbContext
     public virtual DbSet<Actor> Actors { get; set; }
 
     public virtual DbSet<Director> Directors { get; set; }
+
+    public virtual DbSet<FilmCast> FilmCasts { get; set; }
 
     public virtual DbSet<Genre> Genres { get; set; }
 
@@ -41,7 +43,7 @@ public partial class NextflizContext : DbContext
     {
         modelBuilder.Entity<Actor>(entity =>
         {
-            entity.HasKey(e => e.ActorId).HasName("PK__Actor__8B2447B4974380F7");
+            entity.HasKey(e => e.ActorId).HasName("PK__Actor__8B2447B480DBD1AC");
 
             entity.ToTable("Actor");
 
@@ -61,7 +63,7 @@ public partial class NextflizContext : DbContext
 
         modelBuilder.Entity<Director>(entity =>
         {
-            entity.HasKey(e => e.DirectorId).HasName("PK__Director__F5205E491E7986E8");
+            entity.HasKey(e => e.DirectorId).HasName("PK__Director__F5205E49EBC373C0");
 
             entity.ToTable("Director");
 
@@ -79,9 +81,40 @@ public partial class NextflizContext : DbContext
             entity.Property(e => e.TieuSu).HasColumnName("tieu_su");
         });
 
+        modelBuilder.Entity<FilmCast>(entity =>
+        {
+            entity.HasKey(e => e.FilmCastId).HasName("PK__FilmCast__06E8FBBB27885326");
+
+            entity.ToTable("FilmCast");
+
+            entity.Property(e => e.FilmCastId)
+                .HasMaxLength(10)
+                .IsUnicode(false)
+                .IsFixedLength()
+                .HasColumnName("film_cast_id");
+            entity.Property(e => e.ActorId)
+                .HasMaxLength(5)
+                .IsUnicode(false)
+                .IsFixedLength()
+                .HasColumnName("actor_id");
+            entity.Property(e => e.MovieId)
+                .HasMaxLength(5)
+                .IsUnicode(false)
+                .IsFixedLength()
+                .HasColumnName("movie_id");
+
+            entity.HasOne(d => d.Actor).WithMany(p => p.FilmCasts)
+                .HasForeignKey(d => d.ActorId)
+                .HasConstraintName("FK__FilmCast__actor___4E88ABD4");
+
+            entity.HasOne(d => d.Movie).WithMany(p => p.FilmCasts)
+                .HasForeignKey(d => d.MovieId)
+                .HasConstraintName("FK__FilmCast__movie___4D94879B");
+        });
+
         modelBuilder.Entity<Genre>(entity =>
         {
-            entity.HasKey(e => e.GenreId).HasName("PK__Genre__18428D42C8247630");
+            entity.HasKey(e => e.GenreId).HasName("PK__Genre__18428D425FE1719E");
 
             entity.ToTable("Genre");
 
@@ -97,7 +130,7 @@ public partial class NextflizContext : DbContext
 
         modelBuilder.Entity<Movie>(entity =>
         {
-            entity.HasKey(e => e.MovieId).HasName("PK__Movie__83CDF74925CC5555");
+            entity.HasKey(e => e.MovieId).HasName("PK__Movie__83CDF74945523F27");
 
             entity.ToTable("Movie");
 
@@ -136,38 +169,11 @@ public partial class NextflizContext : DbContext
             entity.HasOne(d => d.Genre).WithMany(p => p.Movies)
                 .HasForeignKey(d => d.GenreId)
                 .HasConstraintName("FK__Movie__genre_id__3F466844");
-
-            entity.HasMany(d => d.Actors).WithMany(p => p.Movies)
-                .UsingEntity<Dictionary<string, object>>(
-                    "FilmCast",
-                    r => r.HasOne<Actor>().WithMany()
-                        .HasForeignKey("ActorId")
-                        .OnDelete(DeleteBehavior.ClientSetNull)
-                        .HasConstraintName("FK__FilmCast__actor___4E88ABD4"),
-                    l => l.HasOne<Movie>().WithMany()
-                        .HasForeignKey("MovieId")
-                        .OnDelete(DeleteBehavior.ClientSetNull)
-                        .HasConstraintName("FK__FilmCast__movie___4D94879B"),
-                    j =>
-                    {
-                        j.HasKey("MovieId", "ActorId").HasName("PK__FilmCast__DB7FB33215FC3FFF");
-                        j.ToTable("FilmCast");
-                        j.IndexerProperty<string>("MovieId")
-                            .HasMaxLength(5)
-                            .IsUnicode(false)
-                            .IsFixedLength()
-                            .HasColumnName("movie_id");
-                        j.IndexerProperty<string>("ActorId")
-                            .HasMaxLength(5)
-                            .IsUnicode(false)
-                            .IsFixedLength()
-                            .HasColumnName("actor_id");
-                    });
         });
 
         modelBuilder.Entity<Seat>(entity =>
         {
-            entity.HasKey(e => new { e.SuatChieuId, e.ViTriGhe }).HasName("PK__Seat__D37C11B1BFAB6672");
+            entity.HasKey(e => new { e.SuatChieuId, e.ViTriGhe }).HasName("PK__Seat__D37C11B190356705");
 
             entity.ToTable("Seat");
 
@@ -188,7 +194,7 @@ public partial class NextflizContext : DbContext
 
         modelBuilder.Entity<SuatChieu>(entity =>
         {
-            entity.HasKey(e => e.SuatChieuId).HasName("PK__SuatChie__8BDAEB5BA787D801");
+            entity.HasKey(e => e.SuatChieuId).HasName("PK__SuatChie__8BDAEB5B88FFD07A");
 
             entity.ToTable("SuatChieu");
 
@@ -213,7 +219,7 @@ public partial class NextflizContext : DbContext
 
         modelBuilder.Entity<Ticket>(entity =>
         {
-            entity.HasKey(e => e.TicketId).HasName("PK__Ticket__D596F96B6143B1A7");
+            entity.HasKey(e => e.TicketId).HasName("PK__Ticket__D596F96B986107CC");
 
             entity.ToTable("Ticket");
 
@@ -258,7 +264,7 @@ public partial class NextflizContext : DbContext
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.Username).HasName("PK__User__F3DBC5730C5794F2");
+            entity.HasKey(e => e.Username).HasName("PK__User__F3DBC573ACFD6694");
 
             entity.ToTable("User");
 
@@ -279,7 +285,7 @@ public partial class NextflizContext : DbContext
 
         modelBuilder.Entity<Voucher>(entity =>
         {
-            entity.HasKey(e => e.VoucherId).HasName("PK__Voucher__80B6FFA80422BA30");
+            entity.HasKey(e => e.VoucherId).HasName("PK__Voucher__80B6FFA82002A7CB");
 
             entity.ToTable("Voucher");
 

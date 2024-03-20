@@ -73,9 +73,9 @@ CREATE TABLE Voucher (
 );
 
 CREATE TABLE FilmCast (
+    film_cast_id CHAR(10) PRiMARY KEY,
     movie_id CHAR(5),
     actor_id CHAR(5),
-    PRIMARY KEY (movie_id, actor_id),
     FOREIGN KEY (movie_id) REFERENCES Movie(movie_id),
     FOREIGN KEY (actor_id) REFERENCES Actor(actor_id)
 );

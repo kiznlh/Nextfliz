@@ -27,7 +27,6 @@ public partial class Director
             return dbContext.Directors.Any(d => d.DirectorId == directorId);
         }
     }
-
     public string DirectorId { get; set; } = null!;
 
     public string? HoTen { get; set; }
