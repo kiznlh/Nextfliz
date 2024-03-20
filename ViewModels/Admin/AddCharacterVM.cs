@@ -127,7 +127,7 @@ namespace Nextfliz
             }
             else
             {
-                if (itemId == null) 
+                if (itemId != null) 
                     using (var dbContext = new NextflizContext())
                     {
                         var directorToUpdate = dbContext.Directors.FirstOrDefault(a => a.DirectorId == itemId);

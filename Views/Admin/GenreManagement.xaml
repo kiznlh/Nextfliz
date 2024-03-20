@@ -1,0 +1,62 @@
+﻿<Window x:Class="Nextfliz.Views.Admin.GenreManagement"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks" 
+        xmlns:local="clr-namespace:Nextfliz.Views.Admin"
+        mc:Ignorable="d"
+        Title="GenreManagement" Height="450" Width="500" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <Label HorizontalAlignment="Center" FontWeight="bold" FontSize="20">Quản lí thể loại</Label>
+            <Label FontSize="15" FontWeight="SemiBold">Thêm thể loại:</Label>
+            <StackPanel Orientation="Horizontal">
+                <TextBox Width="350" Text="{Binding NewItem}" Margin="10,0,5,0"/>
+                <Button HorizontalAlignment="Right" Width="25" Height="25" Style="{StaticResource AddFilmButton}" Command="{Binding addButtonCommand}">
+                    <StackPanel Orientation="Horizontal">
+                        <Icon:PackIconMaterial Kind="Plus"/>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+            <Label FontSize="15" FontWeight="SemiBold">Danh sách thể loại:</Label>
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Height="250">
+                <StackPanel Margin="10,0,10,0">
+                    <DataGrid
+                        x:Name="TopFilmDataGrid"
+                        ItemsSource="{Binding showingList}"
+                        Style="{StaticResource FilmListStyle}"
+                        ColumnHeaderStyle="{DynamicResource FilmListHeader}"
+                        RowStyle="{DynamicResource FilmListRow}"
+                        CellStyle="{DynamicResource TopFilmCell}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn
+                                Header="Tên thể loại"
+                                Binding="{Binding TenTheLoai}"
+                                IsReadOnly="True"
+                                Width="*">
+                            </DataGridTextColumn>
+                            <DataGridTemplateColumn
+                                Header="Thao tác"
+                                IsReadOnly="True"
+                                Width="*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button Style="{StaticResource EditFilmButton}" Command="{Binding DataContext.editItemCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}">
+                                                <Icon:PackIconMaterial Kind="PencilOutline"/>
+                                            </Button>
+                                            <Button Style="{StaticResource DeleteFilmButton}" Command="{Binding DataContext.deleteItemCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}">
+                                                <Icon:PackIconMaterial Kind="DeleteOutline"/>
+                                            </Button>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+            </ScrollViewer>
+        </StackPanel>
+    </Grid>
+</Window>

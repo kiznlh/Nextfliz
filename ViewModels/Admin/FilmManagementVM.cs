@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Nextfliz.View.Admin;
+using Nextfliz.Views.Admin;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -12,6 +14,8 @@ namespace Nextfliz
     {
         public event PropertyChangedEventHandler PropertyChanged;
         public ObservableCollection<Movie> showingList { get; set; } = new ObservableCollection<Movie>();
+
+        public RelayCommand showGenreManagement { get; set; }
         private int listSize;
         private int currentPage { get; set; }
         public int CurrentPage
@@ -44,6 +48,8 @@ namespace Nextfliz
 
         public FilmManagementVM()
         {
+            showGenreManagement = new RelayCommand(showGenre, canPerform);
+
             updateList();
         }
 
@@ -68,6 +74,17 @@ namespace Nextfliz
             }
 
             currentPage = listSize != 0 ? 1 : 0;
+        }
+
+        private void showGenre(object value)
+        {
+            GenreManagement genrePanel = new GenreManagement();
+            genrePanel.ShowDialog();
+        }
+
+        private bool canPerform(object value)
+        {
+            return true;
         }
     }
 }

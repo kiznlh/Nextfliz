@@ -18,6 +18,11 @@
             Orientation="Vertical"
             >
                 <Grid Margin="0,0,0,20">
+                    <Button HorizontalAlignment="Left" Width="100" Height="38" Style="{StaticResource GenreButton}" Command="{Binding showGenreManagement}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock>Quản lí thể loại</TextBlock>
+                        </StackPanel>
+                    </Button>
                     <StackPanel
                     HorizontalAlignment="Center"
                     Orientation="Horizontal">
@@ -53,6 +58,7 @@
 
                 <WrapPanel Margin="100,0,100,0">
                     <DataGrid
+                        ItemsSource="{Binding showingList}"
                     x:Name="TopFilmDataGrid"
                     Style="{StaticResource FilmListStyle}"
                     ColumnHeaderStyle="{DynamicResource FilmListHeader}"
@@ -60,7 +66,7 @@
                     CellStyle="{DynamicResource TopFilmCell}">
                         <DataGrid.Columns>
                             <DataGridTextColumn
-                            Binding="{Binding name}"
+                            Binding="{Binding TenPhim}"
                             FontWeight="SemiBold"
                             Header="Tên phim"
                             IsReadOnly="True"
