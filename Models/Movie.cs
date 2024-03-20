@@ -21,9 +21,7 @@ public partial class Movie
 
     public string? HinhAnh { get; set; }
 
-    public string? CertificationId { get; set; }
-
-    public virtual Certification? Certification { get; set; }
+    public string? Certification { get; set; }
 
     public virtual Director? Director { get; set; }
 

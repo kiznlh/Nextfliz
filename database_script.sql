@@ -24,11 +24,6 @@ CREATE TABLE Genre (
     ten_the_loai NVARCHAR(100)
 );
 
-CREATE TABLE Certification (
-    certification_id CHAR(5) PRIMARY KEY,
-    phan_loai NVARCHAR(50)
-);
-
 CREATE TABLE Actor (
     actor_id CHAR(5) PRIMARY KEY,
     ten_dien_vien NVARCHAR(100),
@@ -52,7 +47,7 @@ CREATE TABLE Movie (
     diem_danh_gia FLOAT,
     director_id CHAR(5) FOREIGN KEY REFERENCES Director(director_id),
     hinh_anh NVARCHAR(255),
-    certification_id CHAR(5) FOREIGN KEY REFERENCES Certification(certification_id)
+    certification NVARCHAR(20)
 );
 
 CREATE TABLE SuatChieu (
