@@ -12,6 +12,7 @@
     <None Remove="Resources\Icons\home_icon.png" />
     <None Remove="Resources\Icons\logo_text_icon.png" />
     <None Remove="Resources\Icons\search_icon.png" />
+    <None Remove="Resources\Icons\seat_icon.png" />
     <None Remove="Resources\Icons\user_icon.png" />
     <None Remove="Resources\Images\channels4_profile.jpg" />
     <None Remove="Resources\Images\F5QFgIGacAAmyc8.jpg" />
@@ -51,6 +52,7 @@
   <ItemGroup>
     <Resource Include="Resources\Icons\logo_text_icon.png" />
     <Resource Include="Resources\Icons\search_icon.png" />
+    <Resource Include="Resources\Icons\seat_icon.png" />
     <Resource Include="Resources\Icons\user_icon.png" />
     <Resource Include="Resources\Images\channels4_profile.jpg" />
     <Resource Include="Resources\Images\F5QFgIGacAAmyc8.jpg" />
@@ -61,6 +63,9 @@
 
   <ItemGroup>
     <Compile Update="Views\MainApp\HotMovieSliderControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\MainApp\LoginPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
