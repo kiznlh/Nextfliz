@@ -53,17 +53,19 @@ namespace Nextfliz.Views.MainApp
 
             loginPage = new LoginPage();
             signUpPage = new SignUpPage();
+
+            contentFrame.Navigate(mainPage);
         }
 
         private void Search_Click(object sender, RoutedEventArgs e)
         {
             contentFrame.Navigate(pageSearch);
-            screentitle.Text = "Search";
+            
         }
         private void Home_Click(object sender, RoutedEventArgs e)
         {
             contentFrame.Navigate(mainPage);
-            screentitle.Text = "Home";
+   
         }
         private void User_Click(object sender, RoutedEventArgs e)
         {
@@ -74,7 +76,11 @@ namespace Nextfliz.Views.MainApp
             //}
             //screentitle.Text = "User";
         }
-
+      
+        public void navigateToAPage(Page page)
+        {
+            contentFrame.Navigate(page);
+        }
         public void TestNavi()
         {
             contentFrame.Navigate(filmDetailPage);
@@ -90,12 +96,30 @@ namespace Nextfliz.Views.MainApp
         }
         public void goBack()
         {
-            contentFrame.GoBack();
+            if (contentFrame.NavigationService.CanGoBack)
+            {
+                contentFrame.GoBack();
+            }
+            
         }
 
         public void goForward()
         {
-            contentFrame.GoForward();
+            if (contentFrame.NavigationService.CanGoForward)
+            {
+                contentFrame.GoForward();
+            }
+           
+        }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            goBack();
+        }
+
+        private void Forward_Click(object sender, RoutedEventArgs e)
+        {
+            goForward();
         }
     }
 }

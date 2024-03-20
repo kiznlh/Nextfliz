@@ -5,8 +5,23 @@
         Background="#030303">
     <DockPanel>
         <DockPanel DockPanel.Dock="Top" MaxHeight="100">
-            <Image DockPanel.Dock="Left" Source="/Resources/Icons/logo_text_icon.png" Height="100" Width="300"></Image>
-            <TextBlock HorizontalAlignment="Center" Name="screentitle" Foreground="Transparent" VerticalAlignment="Center" FontSize="50" Text="Title"></TextBlock>
+            <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
+
+                <Button HorizontalAlignment="Center" VerticalAlignment="Center" Click="Back_Click" Background="Transparent" BorderThickness="0">
+                    <Image Source="/Resources/Icons/back_icon.png" Width="50" Height="50"/>
+                </Button>
+
+
+                <Button HorizontalAlignment="Center" VerticalAlignment="Center" Click="Forward_Click" Background="Transparent" BorderThickness="0">
+                    <Image Source="/Resources/Icons/forward_icon.png" Width="50" Height="50">
+                      
+                    </Image>
+                </Button>
+
+
+
+            </StackPanel>
+            <Image DockPanel.Dock="Right" Source="/Resources/Icons/logo_text_icon.png" Height="100" Width="300"></Image>
         </DockPanel>
 
 

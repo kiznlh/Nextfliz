@@ -9,6 +9,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Icons\back_icon.png" />
+    <None Remove="Resources\Icons\forward_icon.png" />
+    <None Remove="Resources\Icons\forward_icon.webp" />
     <None Remove="Resources\Icons\home_icon.png" />
     <None Remove="Resources\Icons\logo_text_icon.png" />
     <None Remove="Resources\Icons\search_icon.png" />
@@ -22,6 +25,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\Icons\back_icon.png" />
+    <Resource Include="Resources\Icons\forward_icon.png" />
     <Resource Include="Resources\Icons\home_icon.png" />
   </ItemGroup>
 

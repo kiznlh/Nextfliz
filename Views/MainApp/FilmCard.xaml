@@ -11,12 +11,12 @@
     <UserControl.Resources>
         <local:CenterConverter x:Key="CenterConverter"/>
     </UserControl.Resources>
-    <Grid Margin="50" x:Name="container" MouseEnter="Container_MouseEnter" MouseLeave="Container_MouseLeave">
+    <Grid Margin="50" x:Name="container" MouseEnter="Container_MouseEnter" MouseLeave="Container_MouseLeave" MouseDown="container_MouseDown">
         <Grid.Background>
             <ImageBrush ImageSource="/Resources/Images/film_bg.jpg"/>
         </Grid.Background>
         <Grid.RenderTransform>
-            <ScaleTransform x:Name="scaleTransform" CenterX="{Binding ActualWidth, ElementName=container, Converter={StaticResource CenterConverter}}" CenterY="{Binding ActualHeight, ElementName=grid, Converter={StaticResource CenterConverter}}" ScaleX="1" ScaleY="1"/>
+            <ScaleTransform x:Name="scaleTransform" CenterX="{Binding ActualWidth, ElementName=container, Converter={StaticResource CenterConverter}}" CenterY="{Binding ActualHeight, ElementName=container, Converter={StaticResource CenterConverter}}" ScaleX="1" ScaleY="1"/>
         </Grid.RenderTransform>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>

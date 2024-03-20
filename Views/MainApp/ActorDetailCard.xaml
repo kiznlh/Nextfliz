@@ -9,19 +9,16 @@
              Background="Transparent"
              d:DesignHeight="400" d:DesignWidth="300">
     <Grid>
-        <!-- Define two rows -->
         <Grid.RowDefinitions>
-            <!-- First row for the image -->
             <RowDefinition Height="*" />
-            <!-- Second row divided into two smaller rows -->
             <RowDefinition Height="auto" />
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
 
-        <!-- Image in the first row -->
+        <!-- Image -->
         <Image Grid.Row="0" Source="{Binding ImageSource, ElementName=Card}" Stretch="UniformToFill" />
 
-        <!-- TextBlocks in the second row -->
+        <!-- Description -->
         <TextBlock Grid.Row="1" Text="{Binding Text1,ElementName=Card}" TextWrapping="Wrap" FontSize="30" Foreground="White"/>
         <TextBlock Grid.Row="2" Text="{Binding Text2,ElementName=Card}" TextWrapping="Wrap" Foreground="White"/>
     </Grid>

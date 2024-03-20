@@ -10,14 +10,14 @@
              d:DesignHeight="450" d:DesignWidth="800">
 
     <UniformGrid Columns="6" Rows="5">
-        <TextBlock Text="Dãy\Ghế" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Red"/>
-        <TextBlock Text="1" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Red"/>
-        <TextBlock Text="2" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Red"/>
-        <TextBlock Text="3" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Red"/>
-        <TextBlock Text="4" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Red"/>
-        <TextBlock Text="5" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Red"/>
+        <TextBlock Text="Dãy\Ghế" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+        <TextBlock Text="1" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+        <TextBlock Text="2" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+        <TextBlock Text="3" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+        <TextBlock Text="4" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+        <TextBlock Text="5" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
         <!-- Row A -->
-        <TextBlock Text="A" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Red"/>
+        <TextBlock Text="A" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
         <Grid x:Name="A1Grid" Background="DarkGoldenrod" MouseDown="Seat_Click">
             <Image x:Name="A1" Source="/Resources/Icons/seat_icon.png" Width="50" Height="50"/>
         </Grid>
@@ -35,7 +35,7 @@
         </Grid>
 
         <!-- Row B -->
-        <TextBlock Text="B" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Red"/>
+        <TextBlock Text="B" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
         <Grid x:Name="B1Grid" Background="DarkGoldenrod" MouseDown="Seat_Click">
             <Image x:Name="B1" Source="/Resources/Icons/seat_icon.png" Width="50" Height="50"/>
         </Grid>
@@ -53,7 +53,7 @@
         </Grid>
 
         <!-- Row C -->
-        <TextBlock Text="C" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Red"/>
+        <TextBlock Text="C" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
         <Grid x:Name="C1Grid" Background="DarkGoldenrod" MouseDown="Seat_Click">
             <Image x:Name="C1" Source="/Resources/Icons/seat_icon.png" Width="50" Height="50"/>
         </Grid>
@@ -71,7 +71,7 @@
         </Grid>
 
         <!-- Row D -->
-        <TextBlock Text="D" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Red"/>
+        <TextBlock Text="D" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
         <Grid x:Name="D1Grid" Background="DarkGoldenrod" MouseDown="Seat_Click">
             <Image x:Name="D1" Source="/Resources/Icons/seat_icon.png" Width="50" Height="50"/>
         </Grid>

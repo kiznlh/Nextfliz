@@ -1,0 +1,51 @@
+﻿<Page x:Class="Nextfliz.Views.MainApp.UserProfilePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Nextfliz.Views.MainApp"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="600"
+      
+      Width="600"
+      Title="UserProfilePage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Image Source="/Resources/Images/avatar.png" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            <TextBlock x:Name="userName" Text="{Binding username}" Foreground="BlanchedAlmond" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20,0,0,0"/>
+        </StackPanel>
+
+        
+        <!--Change information-->
+        <Grid Grid.Row="1">
+            <StackPanel VerticalAlignment="Center">
+                <Label Foreground="BlanchedAlmond" FontSize="20">Thông tin cá nhân</Label>
+                <DockPanel>
+                    <DatePicker DockPanel.Dock="Left" SelectedDate="{Binding birthday}" Width="300"></DatePicker>
+                    <ComboBox DockPanel.Dock="Right" SelectedItem="{Binding Gender}" Width="50">
+                        <ComboBoxItem Content="Nam" Foreground="BlanchedAlmond"/>
+                        <ComboBoxItem Content="Nữ" Foreground="BlanchedAlmond"/>
+                    </ComboBox>
+                </DockPanel>
+                <Button x:Name="saveInforButton" Content="Lưu" Width="auto" Height="auto" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="BlanchedAlmond" Background="Transparent" BorderThickness="1" FontSize="20"></Button>
+            </StackPanel>
+        </Grid>
+
+   
+        <Grid Grid.Row="3">
+          
+        </Grid>
+
+      
+        <Grid Grid.Row="4">
+           
+        </Grid>
+    </Grid>
+</Page>

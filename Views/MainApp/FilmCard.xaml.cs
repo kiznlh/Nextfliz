@@ -118,5 +118,15 @@ namespace Nextfliz.Views.MainApp
             this.ControlWidth = originalWidth * scaleFactor;
             this.ControlHeight = originalHeight * scaleFactor;
         }
+
+        private void container_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            FilmDetailPage filmDetailPage = new FilmDetailPage();
+
+            if (Application.Current.MainWindow is WindowUserMainWindow mainWindow)
+            {
+                mainWindow.navigateToAPage(filmDetailPage);
+            }
+        }
     }
 }

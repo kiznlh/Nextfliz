@@ -4,38 +4,62 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Nextfliz.Views.MainApp"
-      mc:Ignorable="d" 
-      d:DesignHeight="800" d:DesignWidth="1150"
-      Title="FilmDetailPage"
+      mc:Ignorable="d" d:DesignWidth="1150"
+      Title="FilmDetailPage" 
       >
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalAlignment="Center">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <!-- Poster row -->
+                <RowDefinition Height="1*"/>
+                <!-- Details row -->
+                <RowDefinition Height="1*"/>
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <!-- Poster row -->
-            <RowDefinition Height="1*"/>
-            <!-- Details row -->
-        </Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
 
-        <!-- Poster -->
-        <!--Need Binding{}-->
-        <Image Source="/Resources/Images/film_bg.jpg" Stretch="Uniform" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,0,0,0" Width="auto" Height="auto" Grid.Row="0"/>
+            <!-- Poster -->
+            <!--Need Binding{}-->
+            <Image Source="/Resources/Images/film_bg.jpg" Stretch="Uniform" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,0,0,0" Width="1000" Grid.Row="0"/>
 
-        <!-- Movie Details -->
-        <StackPanel Grid.Column="1" Margin="20,20,20,20" Grid.Row="1"> <!--Need Binding{}-->
-            <TextBlock Text="Movie Title" FontSize="24" FontWeight="Bold" Foreground="White"/>
-            <TextBlock Text="Genre: Action" FontSize="16" Foreground="White"/>
-            <TextBlock Text="Duration: 2h 30m" FontSize="16" Foreground="White" />
-            <TextBlock Text="Release Date: January 1, 2024" FontSize="16" Foreground="White"/>
-            <TextBlock Text="Rating: PG-13" FontSize="16" Foreground="White"/>
-            <TextBlock Text="Certification: Rated PG-13 for some intense sequences" FontSize="16" Margin="0,0,0,0" Foreground="White"/>
-            
-            <!-- Actor and Director Section -->
-            
+            <!-- Movie Details -->
+            <StackPanel Margin="20,20,20,20" Grid.Row="1" VerticalAlignment="Center" >
+                <!--Need Binding{}-->
+                <TextBlock Text="Movie Title" FontSize="24" FontWeight="Bold" Foreground="White"/>
+                <TextBlock Text="Genre: Action" FontSize="16" Foreground="White"/>
+                <TextBlock Text="Duration: 2h 30m" FontSize="16" Foreground="White" />
+                <TextBlock Text="Release Date: January 1, 2024" FontSize="16" Foreground="White"/>
+                <TextBlock Text="Rating: PG-13" FontSize="16" Foreground="White"/>
+                <TextBlock Text="Certification: Rated PG-13 for some intense sequences" FontSize="16" Margin="0,0,0,0" Foreground="White"/>
 
-            
-            
+                <!-- Actor and Director Section -->
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                    <!--Need biding, can change to listview later-->
+                    <StackPanel Orientation="Horizontal" x:Name="actorsPanel"></StackPanel>
+                </ScrollViewer>
 
-        </StackPanel>
-    </Grid>
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                    <StackPanel Orientation="Horizontal" x:Name="directorPanel"></StackPanel>
+                </ScrollViewer>
+
+                
+            </StackPanel>
+            <!--Booking seats (View Only), Need biding-->
+            <DockPanel Grid.Row="2" Height="auto" Margin="0,50,0,0">
+                <StackPanel Orientation="Vertical" DockPanel.Dock="Left" VerticalAlignment="Center">
+                    <Label Foreground="White" FontSize="50" Content="Suất chiếu:" Padding="10" HorizontalAlignment="Center"></Label>
+                    <ComboBox x:Name="timeStampComboBox" Height="50" Width="auto"/>
+                    <TextBlock Text="Màu vàng là còn trống. Màu đỏ là đã có người đặt." Foreground="White" FontSize="15" FontStyle="Italic" Padding="5"/>
+                </StackPanel>
+               
+                <local:SeatsLayoutControl IsReadOnly="True" DockPanel.Dock="Right" Width="auto" Height="auto"/>
+            </DockPanel>
+
+            <!-- Border around the button -->
+            <Border Grid.Row="3" BorderBrush="Cyan" BorderThickness="1" Margin="0,50,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="10">
+                <Button Content="Đặt vé" FontSize="50" Foreground="Cyan" Background="Transparent"/>
+            </Border>
+        </Grid>
+    </ScrollViewer>
 </Page>
