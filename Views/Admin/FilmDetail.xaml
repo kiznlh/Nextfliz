@@ -98,30 +98,33 @@ Margin="20,0,20,0">
             </Border>
 
             <Border Grid.Column="1" Background="white" CornerRadius="5">
-                <StackPanel Orientation="Vertical" Margin="10,10,20,10">
+                <StackPanel Orientation="Vertical" Margin="10,10,10,10">
                     <Grid>
                         <Label VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="15" Content="Danh sách diễn viên"/>
                     </Grid>
-                    <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Auto">
-                        <StackPanel Orientation="Horizontal" Margin="10">
-                            <WrapPanel Orientation="Vertical" Width="150" Margin="5,0,5,0">
-                                <Rectangle RadiusX="5" RadiusY="5" Width="150" Height="180">
-                                    <Rectangle.Fill>
-                                        <ImageBrush ImageSource="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Jacob_Batalon_%2828035642754%29_%28cropped%29.jpg/1200px-Jacob_Batalon_%2828035642754%29_%28cropped%29.jpg"/>
-                                    </Rectangle.Fill>
-                                </Rectangle>
-                                <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap">Jacob Batalon</TextBlock>
-                            </WrapPanel>
-                            <WrapPanel Orientation="Vertical" Width="150" Margin="5,0,5,0">
-                                <Rectangle RadiusX="5" RadiusY="5" Width="150" Height="180">
-                                    <Rectangle.Fill>
-                                        <ImageBrush ImageSource="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Remy_Hll_%2839829198722%29.jpg/640px-Remy_Hll_%2839829198722%29.jpg"/>
-                                    </Rectangle.Fill>
-                                </Rectangle>
-                                <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap">Remi Hii</TextBlock>
-                            </WrapPanel>
-                        </StackPanel>
-                    </ScrollViewer>
+                    <ListView
+                        ItemsSource="{Binding actorList}"
+                        ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                        BorderThickness="0"
+                        Height="250">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <WrapPanel Orientation="Vertical" Width="150" Margin="5,0,5,0">
+                                    <Rectangle RadiusX="5" RadiusY="5" Width="150" Height="180">
+                                        <Rectangle.Fill>
+                                            <ImageBrush ImageSource="{Binding HinhAnh}"/>
+                                        </Rectangle.Fill>
+                                    </Rectangle>
+                                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding HoTen}"></TextBlock>
+                                </WrapPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation="Horizontal" Margin="10"/>
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                    </ListView>
                 </StackPanel>
             </Border>
         </Grid>

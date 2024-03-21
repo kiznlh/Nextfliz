@@ -1,9 +1,11 @@
 ﻿using LiveCharts;
 using LiveCharts.Wpf;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,8 +14,10 @@ namespace Nextfliz
 {
     class FilmDetailVM : INotifyPropertyChanged
     {
+        private const string noImage = "https://hosting.ca/wp-content/uploads/2017/09/broken-image.png";
         private string filmId;
         public event PropertyChangedEventHandler PropertyChanged;
+        public ObservableCollection<Actor> actorList { get; set; } = new ObservableCollection<Actor>();
         private string name { get; set; }
         public string Name
         {
@@ -178,13 +182,51 @@ namespace Nextfliz
                 image = item.HinhAnh;
                 name = item.TenPhim;
                 rating = item.DiemDanhGia.ToString();
+                year = item.NamPhatHanh.ToString();
                 time = item.ThoiLuong.ToString();
                 certification = item.Certification;
                 var itemGenre = dbContext.Genres.FirstOrDefault(a => a.GenreId == item.GenreId);
                 genre = itemGenre.TenTheLoai;
+                if (item.DirectorId != null)
+                {
+                    var director = dbContext.Directors.FirstOrDefault(d => d.DirectorId == item.DirectorId);
+                    directorImage = director.HinhAnh;
+                    directorName = director.HoTen;
+                    directorBio = director.TieuSu;
+                }
+                else
+                {
+                    directorImage = noImage;
+                    directorName = "Không có đạo diễn";
+                    directorBio = "Thiếu thông tin đạo diễn ";
+                }
+                var actorsInMovie = (
+                    from actor in dbContext.Actors
+                    join filmCast in dbContext.FilmCasts on actor.ActorId equals filmCast.ActorId
+                    where filmCast.MovieId == item.MovieId
+                    select new
+                    {
+                        actor.ActorId,
+                        actor.HoTen,
+                        actor.TieuSu,
+                        actor.HinhAnh,
+                    }
+                ).ToList();
+                foreach (var actor in actorsInMovie )
+                {
+                    for (int i = 0; i < 10; i++)
+                    {
+                        Actor actorToAdd = new Actor();
+                        actorToAdd.ActorId = actor.ActorId;
+                        actorToAdd.HinhAnh = actor.HinhAnh;
+                        actorToAdd.HoTen = actor.HoTen;
+                        actorToAdd.TieuSu = actor.TieuSu;
+                        actorList.Add(actorToAdd);
+                    }
+                    
+                }
             }
         }
 
-        //Su dung listView cho danh sach dien vien de do mac cong
     }
 }
