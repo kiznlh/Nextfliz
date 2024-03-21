@@ -20,6 +20,7 @@ namespace Nextfliz
         public RelayCommand toNextPage { get; set; }
         public RelayCommand toPreviousPage { get; set; }
         public RelayCommand deleteItemCommand { get; set; }
+        public RelayCommand searchFilmCommand { get; set; }
 
         private int listSize;
         private int currentPage { get; set; }
@@ -36,6 +37,19 @@ namespace Nextfliz
             }
         }
         private string totalPage { get; set; }
+        private string searchText { get; set; }
+        public string SearchText
+        {
+            get { return searchText; }
+            set
+            {
+                if (searchText != value)
+                {
+                    searchText = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SearchText"));
+                }
+            }
+        }
         public string TotalPage
         {
             get { return totalPage; }
@@ -58,6 +72,8 @@ namespace Nextfliz
             toNextPage = new RelayCommand(nextPage, canPerform);
             toPreviousPage = new RelayCommand(previousPage, canPerform);
             deleteItemCommand = new RelayCommand(deleteItem, canPerform);
+            searchFilmCommand = new RelayCommand(searchFilm, canPerform);
+            searchText = "";
 
             updateList();
         }
@@ -76,6 +92,32 @@ namespace Nextfliz
                 }
 
                 totalPage = "/ " + Math.Ceiling(context.Movies.Count() * 1.0 / numPerPage);
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("TotalPage"));
+
+                currentPage = listSize != 0 ? 1 : 0;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CurrentPage"));
+            }
+
+            currentPage = listSize != 0 ? 1 : 0;
+        }
+
+        private void searchFilm(object value)
+        {
+            if (searchText.Length == 0)
+                return;
+
+            showingList.Clear();
+            using (var context = new NextflizContext())
+            {
+                var movies = context.Movies.Where(e => e.TenPhim.Contains(searchText)).ToList();
+                listSize = movies.Count();
+
+                foreach (var item in movies)
+                {
+                    showingList.Add(item);
+                }
+
+                totalPage = "/ " + Math.Ceiling(movies.Count() * 1.0 / numPerPage);
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("TotalPage"));
 
                 currentPage = listSize != 0 ? 1 : 0;

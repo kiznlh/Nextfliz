@@ -144,6 +144,7 @@ namespace Nextfliz
             image = "";
             time = "";
             rating = "";
+            certification = "";
             year = "";
             this.window = window;
             addActorCommand = new RelayCommand(chooseActor, canPerform);
