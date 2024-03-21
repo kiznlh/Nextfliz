@@ -3,10 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace Nextfliz
 {
@@ -199,7 +201,10 @@ namespace Nextfliz
         private void addFilm(object obj)
         {
             if (name.Length == 0 || image.Length == 0 || time.Length == 0 || rating.Length == 0 || year.Length == 0 || certification.Length == 0 || chosenGenre == null || chosenDirector == null || chosenActors.Count == 0)
+            {
+                MessageBox.Show("Có trường đang để trống", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
+            }
             using (var context = new NextflizContext())
             {
                 var newMovie = new Movie();

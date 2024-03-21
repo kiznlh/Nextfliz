@@ -5,25 +5,51 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks" 
         xmlns:local="clr-namespace:Nextfliz.View.Admin"
+        xmlns:total="clr-namespace:Nextfliz"
         mc:Ignorable="d"
         Height="450" Width="400" WindowStartupLocation="CenterScreen">
     <Grid>
         <StackPanel Orientation="Vertical">
             <Label HorizontalAlignment="Center" FontWeight="bold" FontSize="20">Thêm mới nhân vật</Label>
             <Label FontWeight="SemiBold">Họ và tên:</Label>
-            <TextBox Text="{Binding Name}" Margin="10,0,10,0"/>
+            <TextBox Margin="10,0,10,0" Validation.ErrorTemplate="{StaticResource validationTemplate}" Style="{StaticResource textboxInError}">
+                <TextBox.Text>
+                    <Binding Path="Name" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <total:nonEmptyRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
             <Label FontWeight="SemiBold">Link hình ảnh:</Label>
-            <TextBox Text="{Binding Image}" Margin="10,0,10,0"/>
+            <TextBox Margin="10,0,10,0" Validation.ErrorTemplate="{StaticResource validationTemplate}" Style="{StaticResource textboxInError}">
+                <TextBox.Text>
+                    <Binding Path="Image" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <total:nonEmptyRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
             <Label FontWeight="SemiBold">Tiểu sử:</Label>
             <ScrollViewer VerticalScrollBarVisibility="Auto" Height="200">
-                <TextBox 
-                    Text="{Binding Biography}"
+                <TextBox
                     TextWrapping="Wrap" 
                     AcceptsReturn="True" 
                     VerticalScrollBarVisibility="Auto" 
                     HorizontalScrollBarVisibility="Disabled"
                     MinHeight="200"
-                    Margin="10,0,10,0"/>
+                    Margin="10,0,10,0"
+                    Validation.ErrorTemplate="{StaticResource validationTemplate}" 
+                    Style="{StaticResource textboxInError}">
+                    <TextBox.Text>
+                        <Binding Path="Biography" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <total:nonEmptyRule/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
             </ScrollViewer>
             <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
                 <Button HorizontalAlignment="Right" Width="100" Height="38" Style="{StaticResource AddFilmButton}" Command="{Binding saveButtonCommand}">
