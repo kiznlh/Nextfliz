@@ -5,14 +5,78 @@ using Nextfliz.Views.Admin;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Nextfliz
 {
+    public class nonEmptyRule : ValidationRule
+    {
+        public override ValidationResult Validate(object value, CultureInfo cultureInfo)
+        {
+            string text = (string)value;
+            if (text == null || text.Length == 0)
+            {
+                return new ValidationResult(false, "Nội dung này không được để trống");
+            }
+            else
+            {
+                return ValidationResult.ValidResult;
+            }
+        }
+    }
+
+    public class timeInputRule : ValidationRule
+    {
+        public override ValidationResult Validate(object value, CultureInfo cultureInfo)
+        {
+            string text = (string)value;
+            string pattern = @"^[1-9]\d*$";
+            if (text == null || text.Length == 0)
+            {
+                return new ValidationResult(false, "Nội dung này không được để trống");
+            }
+            if (!Regex.IsMatch(text, pattern))
+            {
+               return new ValidationResult(false, "Vui lòng nhập số nguyên dương");
+            }
+            if (int.Parse(text) <= 0)
+            {
+                return new ValidationResult(false, "Thời lượng phim không hợp lệ");
+            }
+            return ValidationResult.ValidResult;
+        }
+    }
+
+    public class ratingInputRule : ValidationRule
+    {
+        public override ValidationResult Validate(object value, CultureInfo cultureInfo)
+        {
+            string text = (string)value;
+            string pattern = @"^(0*[1-9]\d*\.?\d*|0+\.\d*[1-9]\d*)$";
+            if (text == null || text.Length == 0)
+            {
+                return new ValidationResult(false, "Nội dung này không được để trống");
+            }
+            if (!Regex.IsMatch(text, pattern))
+            {
+                return new ValidationResult(false, "Vui lòng nhập số thập phân");
+            }
+            if (int.Parse(text) < 0 || int.Parse(text) > 10)
+            {
+                return new ValidationResult(false, "Đánh giá không hợp lệ phải trong khoảng 0.0  - 10.0");
+            }
+            return ValidationResult.ValidResult;
+        }
+    }
+
     class AdminVM
     {
         private Frame contentFrame;
