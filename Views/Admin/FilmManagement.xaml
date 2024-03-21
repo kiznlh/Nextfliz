@@ -27,7 +27,9 @@
                     HorizontalAlignment="Center"
                     Orientation="Horizontal">
                         <Label VerticalAlignment="Center" FontSize="16">Tìm kiếm phim:</Label>
-                        <TextBox Width="300" Height="34" Text="{Binding SearchText}"/>
+                        <Border BorderThickness="1" BorderBrush="Gray" Padding="5,0,5,0">
+                            <TextBox Width="300" BorderThickness="0" VerticalAlignment="Center" Text="{Binding SearchText}"/>
+                        </Border>
                         <Button Margin="5,0,0,0" Style="{StaticResource SearchFilmButton}" Command="{Binding searchFilmCommand}">
                             <Icon:PackIconMaterial Kind="Magnify" Foreground="Black"/>
                         </Button>
