@@ -40,7 +40,9 @@
 
    
         <Grid Grid.Row="3">
-          
+            <StackPanel VerticalAlignment="Center">
+                <Label Foreground=""></Label>
+            </StackPanel>
         </Grid>
 
       
