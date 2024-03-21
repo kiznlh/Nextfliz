@@ -118,7 +118,7 @@ namespace Nextfliz
 
         private void OnToFilmManagement(object value)
         {
-            contentFrame.Navigate(new FilmManagement());
+            contentFrame.Navigate(new FilmManagement((Frame) contentFrame));
             Style selected = (Style)Application.Current.FindResource("AdminNavButtonSelected");
             Style unselected = (Style)Application.Current.FindResource("AdminNavButton");
             currentTabButton.Style = unselected;

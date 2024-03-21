@@ -163,6 +163,10 @@ namespace Nextfliz
             {
                 using (var dbContext = new NextflizContext())
                 {
+                    var filmCasts = dbContext.FilmCasts.Where(a => a.ActorId == actorToDelete.ActorId);
+                    foreach (var filmCast in filmCasts)
+                        dbContext.FilmCasts.Remove(filmCast);
+                    dbContext.SaveChanges();
                     dbContext.Actors.Remove(actorToDelete);
                     dbContext.SaveChanges();
                 }
@@ -171,6 +175,10 @@ namespace Nextfliz
             {
                 using (var dbContext = new NextflizContext())
                 {
+                    var movies = dbContext.Movies.Where(a => a.DirectorId == directorToDelete.DirectorId);
+                    foreach (var movie in movies)
+                        movie.DirectorId = null;
+                    dbContext.SaveChanges();
                     dbContext.Directors.Remove(directorToDelete);
                     dbContext.SaveChanges();
                 }

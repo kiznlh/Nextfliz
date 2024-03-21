@@ -20,10 +20,10 @@ namespace Nextfliz.Views.Admin
     /// </summary>
     public partial class FilmManagement : Page
     {
-        public FilmManagement()
+        public FilmManagement(Frame contentFrame)
         {
             InitializeComponent();
-            this.DataContext = new FilmManagementVM();
+            this.DataContext = new FilmManagementVM(contentFrame);
         }
     }
 }

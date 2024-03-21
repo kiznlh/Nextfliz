@@ -10,19 +10,20 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Nextfliz.Views
+namespace Nextfliz.Views.Admin
 {
     /// <summary>
     /// Interaction logic for FilmDetail.xaml
     /// </summary>
-    public partial class FilmDetail : Window
+    public partial class FilmDetail : Page
     {
-        public FilmDetail()
+        public FilmDetail(string filmId)
         {
             InitializeComponent();
-            DataContext = new FilmDetailVM();
+            DataContext = new FilmDetailVM(filmId);
         }
     }
 }
