@@ -48,7 +48,10 @@ namespace Nextfliz
         private void saveEditItem(object obj)
         {
             if (newItemName.Length == 0)
+            {
+                MessageBox.Show("Không được để trống tên thể loại", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
+            }
 
             using (var dbContext = new NextflizContext())
             {
