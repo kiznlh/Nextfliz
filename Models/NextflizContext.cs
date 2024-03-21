@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-
+using System.Configuration;
 namespace Nextfliz;
 
 public partial class NextflizContext : DbContext
@@ -35,9 +35,11 @@ public partial class NextflizContext : DbContext
 
     public virtual DbSet<Voucher> Vouchers { get; set; }
 
+
+    private string connectionString = ConfigurationManager.ConnectionStrings["NextlizContext-phat"].ConnectionString;
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=NTP7525;Initial Catalog = nextfliz; Integrated Security = True; Connect Timeout = 30; Encrypt=True;Trust Server Certificate=True;Application Intent = ReadWrite; Multi Subnet Failover=False");
+        => optionsBuilder.UseSqlServer(connectionString);
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
