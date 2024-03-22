@@ -15,7 +15,6 @@ namespace Nextfliz
         private int type;
         private string itemId;
         public RelayCommand saveButtonCommand { get; set; }
-
         private string name { get; set; }
         public string Name
         {

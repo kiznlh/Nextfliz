@@ -7,12 +7,14 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace Nextfliz
 {
     class FilmManagementVM : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
+        private Frame contentFrame;
         public ObservableCollection<Movie> showingList { get; set; } = new ObservableCollection<Movie>();
 
         public RelayCommand showGenreManagement { get; set; }
@@ -21,6 +23,7 @@ namespace Nextfliz
         public RelayCommand toPreviousPage { get; set; }
         public RelayCommand deleteItemCommand { get; set; }
         public RelayCommand searchFilmCommand { get; set; }
+        public RelayCommand viewDetailCommand { get; set; }
 
         private int listSize;
         private int currentPage { get; set; }
@@ -65,14 +68,16 @@ namespace Nextfliz
 
         public const int numPerPage = 2;
 
-        public FilmManagementVM()
+        public FilmManagementVM(Frame contentFrame)
         {
+            this.contentFrame = contentFrame;
             showGenreManagement = new RelayCommand(showGenre, canPerform);
             addFilmCommand = new RelayCommand(showAddPanel, canPerform);
             toNextPage = new RelayCommand(nextPage, canPerform);
             toPreviousPage = new RelayCommand(previousPage, canPerform);
             deleteItemCommand = new RelayCommand(deleteItem, canPerform);
             searchFilmCommand = new RelayCommand(searchFilm, canPerform);
+            viewDetailCommand = new RelayCommand(viewDetail, canPerform);
             searchText = "";
 
             updateList();
@@ -190,6 +195,14 @@ namespace Nextfliz
                 }
                 updateList();
             } 
+        }
+
+        private void viewDetail(object value)
+        {
+            if (value is Movie movie)
+            {
+                contentFrame.Navigate(new FilmDetail(movie.MovieId));
+            }
         }
 
         private bool canPerform(object value)

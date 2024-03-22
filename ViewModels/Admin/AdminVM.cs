@@ -69,7 +69,7 @@ namespace Nextfliz
             {
                 return new ValidationResult(false, "Vui lòng nhập số thập phân");
             }
-            if (int.Parse(text) < 0 || int.Parse(text) > 10)
+            if (double.Parse(text) < 0.0 || double.Parse(text) > 10)
             {
                 return new ValidationResult(false, "Đánh giá không hợp lệ phải trong khoảng 0.0  - 10.0");
             }
@@ -118,7 +118,7 @@ namespace Nextfliz
 
         private void OnToFilmManagement(object value)
         {
-            contentFrame.Navigate(new FilmManagement());
+            contentFrame.Navigate(new FilmManagement((Frame) contentFrame));
             Style selected = (Style)Application.Current.FindResource("AdminNavButtonSelected");
             Style unselected = (Style)Application.Current.FindResource("AdminNavButton");
             currentTabButton.Style = unselected;
