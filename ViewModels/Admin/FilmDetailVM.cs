@@ -214,16 +214,12 @@ namespace Nextfliz
                 ).ToList();
                 foreach (var actor in actorsInMovie )
                 {
-                    for (int i = 0; i < 10; i++)
-                    {
-                        Actor actorToAdd = new Actor();
-                        actorToAdd.ActorId = actor.ActorId;
-                        actorToAdd.HinhAnh = actor.HinhAnh;
-                        actorToAdd.HoTen = actor.HoTen;
-                        actorToAdd.TieuSu = actor.TieuSu;
-                        actorList.Add(actorToAdd);
-                    }
-                    
+                    Actor actorToAdd = new Actor();
+                    actorToAdd.ActorId = actor.ActorId;
+                    actorToAdd.HinhAnh = actor.HinhAnh;
+                    actorToAdd.HoTen = actor.HoTen;
+                    actorToAdd.TieuSu = actor.TieuSu;
+                    actorList.Add(actorToAdd);
                 }
             }
         }
