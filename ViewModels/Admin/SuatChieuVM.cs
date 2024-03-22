@@ -51,6 +51,19 @@ namespace Nextfliz
                 }
             }
         }
+        private string price { get; set; }
+        public string Price
+        {
+            get { return price; }
+            set
+            {
+                if (price != value)
+                {
+                    price = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Price"));
+                }
+            }
+        }
         private string filmId;
         private string suatChieuId;
         private AddSuatChieu dialog;
@@ -60,6 +73,7 @@ namespace Nextfliz
             date = "";
             hour = "";
             minute = "";
+            price = "";
             this.filmId = filmId;
             this.suatChieuId = suatChieuId;
             this.dialog = dialog;
@@ -73,13 +87,14 @@ namespace Nextfliz
                     date = item.NgayGioChieu.GetValueOrDefault().Day + "-" + item.NgayGioChieu.GetValueOrDefault().Month + "-" + item.NgayGioChieu.GetValueOrDefault().Year;
                     hour = item.NgayGioChieu.GetValueOrDefault().Hour.ToString();
                     minute = item.NgayGioChieu.GetValueOrDefault().Minute.ToString();
+                    price = item.GiaVe.ToString().Replace(",", ".");
                 }
             }
         }
 
         private void saveButtonClicked(object value)
         {
-            if (date.Length == 0 || hour.Length == 0 || minute.Length == 0)
+            if (date.Length == 0 || hour.Length == 0 || minute.Length == 0 || price.Length == 0)
                 return;
 
             if (suatChieuId != null)
@@ -94,6 +109,7 @@ namespace Nextfliz
                         int year = int.Parse(date.Split("-")[2]);
                         DateTime newData = new DateTime(year, month, day, int.Parse(hour), int.Parse(minute), 0);
                         itemToUpdate.NgayGioChieu = newData;
+                        itemToUpdate.GiaVe = decimal.Parse(price);
                         dbContext.SaveChanges();
                     }
                 }
@@ -108,6 +124,7 @@ namespace Nextfliz
                     int year = int.Parse(date.Split("-")[2]);
                     DateTime newData = new DateTime(year, month, day, int.Parse(hour), int.Parse(minute), 0);
                     newSuatChieu.NgayGioChieu = newData;
+                    newSuatChieu.GiaVe = decimal.Parse(price);
                     context.SuatChieus.Add(newSuatChieu);
 
                     context.SaveChanges();

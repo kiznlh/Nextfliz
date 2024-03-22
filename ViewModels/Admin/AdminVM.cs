@@ -177,6 +177,23 @@ namespace Nextfliz
             return ValidationResult.ValidResult;
         }
     }
+    public class priceInputRule : ValidationRule
+    {
+        public override ValidationResult Validate(object value, CultureInfo cultureInfo)
+        {
+            string text = (string)value;
+            string pattern = @"^[0-9]\d{0,7}(\.\d{1,2})?$";
+            if (text == null || text.Length == 0)
+            {
+                return new ValidationResult(false, "Nội dung này không được để trống");
+            }
+            if (!Regex.IsMatch(text, pattern))
+            {
+                return new ValidationResult(false, "Vui lòng nhập số nguyên dương hoặc thập phân dương có tối đa 2 chữ số sau dấu chấm");
+            }
+            return ValidationResult.ValidResult;
+        }
+    }
 
     class AdminVM
     {

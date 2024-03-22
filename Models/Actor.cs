@@ -27,6 +27,7 @@ public partial class Actor
             return dbContext.Actors.Any(a => a.ActorId == actorId);
         }
     }
+
     public string ActorId { get; set; } = null!;
 
     public string? HoTen { get; set; }

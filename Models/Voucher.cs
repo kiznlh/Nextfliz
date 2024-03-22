@@ -7,9 +7,7 @@ public partial class Voucher
 {
     public string VoucherId { get; set; } = null!;
 
-    public string? MovieId { get; set; }
+    public int? SoLuong { get; set; }
 
     public double? TiLeGiam { get; set; }
-
-    public virtual Movie? Movie { get; set; }
 }

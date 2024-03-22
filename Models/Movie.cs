@@ -27,6 +27,30 @@ public partial class Movie
             return dbContext.Movies.Any(a => a.MovieId == id);
         }
     }
+
+    public static void DeleteMovie(string id)
+    {
+        using (var dbContext = new NextflizContext())
+        {
+            var suatChieus = dbContext.SuatChieus.Where(s => s.MovieId == id);
+            foreach (SuatChieu suatChieu in suatChieus)
+            {
+                SuatChieu.DeleteSuatChieu(suatChieu.SuatChieuId);
+            }
+            dbContext.SaveChanges();
+
+            var filmCasts = dbContext.FilmCasts.Where(f => f.MovieId == id);
+            foreach (FilmCast filmCast in filmCasts)
+            {
+                dbContext.FilmCasts.Remove(filmCast);
+            }
+            dbContext.SaveChanges();
+
+            var itemToDelete = dbContext.Movies.FirstOrDefault(a => a.MovieId == id);
+            dbContext.Movies.Remove(itemToDelete);
+            dbContext.SaveChanges();
+        }
+    }
     public string MovieId { get; set; } = null!;
 
     public string? TenPhim { get; set; }
@@ -54,6 +78,4 @@ public partial class Movie
     public virtual ICollection<SuatChieu> SuatChieus { get; set; } = new List<SuatChieu>();
 
     public virtual ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();
-
-    public virtual ICollection<Voucher> Vouchers { get; set; } = new List<Voucher>();
 }
