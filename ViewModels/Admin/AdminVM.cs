@@ -121,6 +121,63 @@ namespace Nextfliz
         }
     }
 
+    public class dateInputRule : ValidationRule
+    {
+        public override ValidationResult Validate(object value, CultureInfo cultureInfo)
+        {
+            string text = (string)value;
+            if (text == null || text.Length == 0)
+            {
+                return new ValidationResult(false, "Nội dung này không được để trống");
+            }
+            return ValidationResult.ValidResult;
+        }
+    }
+
+    public class hourInputRule : ValidationRule
+    {
+        public override ValidationResult Validate(object value, CultureInfo cultureInfo)
+        {
+            string text = (string)value;
+            string pattern = @"^[1-9]\d*$";
+            if (text == null || text.Length == 0)
+            {
+                return new ValidationResult(false, "Nội dung này không được để trống");
+            }
+            if (!Regex.IsMatch(text, pattern))
+            {
+                return new ValidationResult(false, "Vui lòng nhập số nguyên dương");
+            }
+            if (int.Parse(text) < 0 || int.Parse(text) > 24)
+            {
+                return new ValidationResult(false, "Giờ không hợp lệ");
+            }
+            return ValidationResult.ValidResult;
+        }
+    }
+
+    public class minuteInputRule : ValidationRule
+    {
+        public override ValidationResult Validate(object value, CultureInfo cultureInfo)
+        {
+            string text = (string)value;
+            string pattern = @"^[1-9]\d*$";
+            if (text == null || text.Length == 0)
+            {
+                return new ValidationResult(false, "Nội dung này không được để trống");
+            }
+            if (!Regex.IsMatch(text, pattern))
+            {
+                return new ValidationResult(false, "Vui lòng nhập số nguyên dương");
+            }
+            if (int.Parse(text) < 0 || int.Parse(text) > 59)
+            {
+                return new ValidationResult(false, "Phút không hợp lệ");
+            }
+            return ValidationResult.ValidResult;
+        }
+    }
+
     class AdminVM
     {
         private Frame contentFrame;

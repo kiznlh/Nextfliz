@@ -132,6 +132,34 @@
             </Style.Triggers>
         </Style>
 
+        <Style x:Key="BlueButton" TargetType="Button">
+            <Setter Property="Background" Value="#1d27ad"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"  
+                    Padding="8"
+                    CornerRadius="3"
+                    Margin="0,0,5,0">
+                            <ContentPresenter HorizontalAlignment="Center"
+                              VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#454fd1"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
         <Style x:Key="EditFilmButton" TargetType="Button">
             <Setter Property="Background" Value="#148231"/>
             <Setter Property="Foreground" Value="White"/>

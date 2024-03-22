@@ -10,15 +10,30 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Nextfliz
 {
+    public class SuatChieuItem
+    {
+        public string id { get; set; }
+        public string date { get; set; }
+        public string time { get; set; }
+        public SuatChieuItem(string id, string date, string time)
+        {
+            this.id = id;
+            this.date = date;
+            this.time = time;
+        }
+    }
+
     class FilmDetailVM : INotifyPropertyChanged
     {
         private const string noImage = "https://hosting.ca/wp-content/uploads/2017/09/broken-image.png";
         private string filmId;
         public event PropertyChangedEventHandler PropertyChanged;
         public ObservableCollection<Actor> actorList { get; set; } = new ObservableCollection<Actor>();
+        public ObservableCollection<SuatChieuItem> suatChieuList { get; set; } = new ObservableCollection<SuatChieuItem>();
         private string name { get; set; }
         public string Name
         {
@@ -149,16 +164,37 @@ namespace Nextfliz
                 }
             }
         }
+        private SuatChieuItem selectedItem { get; set; }
+        public SuatChieuItem SelectedItem
+        {
+            get { return selectedItem; }
+            set
+            {
+                if (selectedItem != value)
+                {
+                    selectedItem = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SelectedItem"));
+                }
+            }
+        }
         public SeriesCollection SeriesCollection { get; set; }
         public string[] Labels { get; set; }
         public Func<double, string> YFormatter { get; set; }
         public RelayCommand editFilmCommand { get; set; }
+        public RelayCommand addSuatChieuCommand { get; set; }
+        public RelayCommand editSuatChieuCommand { get; set; }
+        public RelayCommand deleteSuatChieuCommand { get; set; }
 
         public FilmDetailVM(string filmId)
         {
+            selectedItem = null;
             this.filmId = filmId;
             updateContent();
+            loadSuatChieu();
             editFilmCommand = new RelayCommand(editFilm, canPerform);
+            addSuatChieuCommand = new RelayCommand(addSuatChieu, canPerform);
+            editSuatChieuCommand = new RelayCommand(editSuatChieu, canPerform);
+            deleteSuatChieuCommand = new RelayCommand(deleteSuatChieu, canPerform);
 
             SeriesCollection = new SeriesCollection
             {
@@ -177,6 +213,19 @@ namespace Nextfliz
             YFormatter = value => value.ToString("C");
             Labels = new[] { "Jan", "Feb", "Mar", "Apr", "May" };
             this.filmId = filmId;
+        }
+
+        private void loadSuatChieu()
+        {
+            suatChieuList.Clear();
+            using (var dbContext = new NextflizContext())
+            {
+                var suatChieus = dbContext.SuatChieus.Where(s => s.MovieId == filmId);
+                foreach (SuatChieu sc in suatChieus)
+                {
+                    suatChieuList.Add(new SuatChieuItem(sc.SuatChieuId, sc.NgayGioChieu.GetValueOrDefault().Day + "/" + sc.NgayGioChieu.GetValueOrDefault().Month + "/" + sc.NgayGioChieu.GetValueOrDefault().Year, sc.NgayGioChieu.GetValueOrDefault().Hour + ":" + sc.NgayGioChieu.GetValueOrDefault().Minute));
+                }
+            }
         }
         private void updateContent()
         {
@@ -254,6 +303,37 @@ namespace Nextfliz
             AddFilmWindow editWindow = new AddFilmWindow(filmId);
             editWindow.ShowDialog();
             updateContent();
+        }
+
+
+        private void addSuatChieu(object value)
+        {
+            AddSuatChieu addWindow = new AddSuatChieu(null, filmId);
+            addWindow.ShowDialog();
+            loadSuatChieu();
+        }
+
+        private void editSuatChieu(object value)
+        {
+            if (selectedItem != null)
+            {
+                AddSuatChieu addWindow = new AddSuatChieu(selectedItem.id, filmId);
+                addWindow.ShowDialog();
+                loadSuatChieu();
+            }
+        }
+
+        private void deleteSuatChieu(object value)
+        {
+            if (selectedItem != null)
+            {
+                MessageBoxResult result = MessageBox.Show("Bạn có chắc chắn muốn tiếp tục? \n Lưu ý: xoá suất chiếu sẽ xóa luôn vé của khách hàng đã đặt ở suất chiếu này", "Xác nhận", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (result == MessageBoxResult.Yes)
+                {
+                    SuatChieu.DeleteSuatChieu(selectedItem.id);
+                    loadSuatChieu();
+                }
+            }
         }
 
         private bool canPerform(object value)

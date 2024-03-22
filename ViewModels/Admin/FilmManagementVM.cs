@@ -187,6 +187,10 @@ namespace Nextfliz
             {
                 using (var dbContext = new NextflizContext())
                 {
+                    var suatChieuToDelete = dbContext.SuatChieus.Where(x => x.MovieId == movieToDelete.MovieId);
+                    dbContext.SuatChieus.RemoveRange(suatChieuToDelete);
+                    dbContext.SaveChanges();
+
                     var rowsToDelete = dbContext.FilmCasts.Where(x => x.MovieId == movieToDelete.MovieId);
                     dbContext.FilmCasts.RemoveRange(rowsToDelete);
                     dbContext.Movies.Remove(movieToDelete);
