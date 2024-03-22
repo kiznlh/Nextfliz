@@ -15,14 +15,14 @@ using System.Windows.Shapes;
 namespace Nextfliz.Views.Admin
 {
     /// <summary>
-    /// Interaction logic for AddFilmWindow.xaml
+    /// Interaction logic for AddSuatChieu.xaml
     /// </summary>
-    public partial class AddFilmWindow : Window
+    public partial class AddSuatChieu : Window
     {
-        public AddFilmWindow(string id)
+        public AddSuatChieu(string suatChieuId, string filmId)
         {
             InitializeComponent();
-            this.DataContext = new AddFilmVM(this, id);
+            DataContext = new SuatChieuVM(this, suatChieuId, filmId);
         }
     }
 }

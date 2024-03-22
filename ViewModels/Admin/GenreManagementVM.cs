@@ -95,6 +95,12 @@ namespace Nextfliz
             {
                 using (var dbContext = new NextflizContext())
                 {
+                    var movies =  dbContext.Movies.Where(a => a.GenreId == itemToDelete.GenreId).ToList();
+                    foreach (var movie in movies)
+                    {
+                        movie.GenreId = null;
+                    }
+                    dbContext.SaveChanges();
                     dbContext.Genres.Remove(itemToDelete);
                     dbContext.SaveChanges();
                 }

@@ -68,6 +68,8 @@ namespace Nextfliz
                 if (CheckDuplicateGenre(newItemName))
                 {
                     MessageBox.Show("Thể loại này đã tồn tại", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                    itemToUpdate.TenTheLoai = oldName;
+                    dbContext.SaveChanges();
                     return;
                 }
 
