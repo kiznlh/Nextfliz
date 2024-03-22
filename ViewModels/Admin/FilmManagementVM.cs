@@ -140,7 +140,7 @@ namespace Nextfliz
 
         private void showAddPanel(object value)
         {
-            AddFilmWindow addWindow = new AddFilmWindow();
+            AddFilmWindow addWindow = new AddFilmWindow("");
             addWindow.ShowDialog();
             updateList();
         }

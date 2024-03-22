@@ -19,10 +19,10 @@ namespace Nextfliz.Views.Admin
     /// </summary>
     public partial class AddFilmWindow : Window
     {
-        public AddFilmWindow()
+        public AddFilmWindow(string id)
         {
             InitializeComponent();
-            this.DataContext = new AddFilmVM(this);
+            this.DataContext = new AddFilmVM(this, id);
         }
     }
 }

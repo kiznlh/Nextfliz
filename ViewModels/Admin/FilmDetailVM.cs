@@ -1,6 +1,7 @@
 ﻿using LiveCharts;
 using LiveCharts.Wpf;
 using Microsoft.EntityFrameworkCore;
+using Nextfliz.Views.Admin;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -151,10 +152,13 @@ namespace Nextfliz
         public SeriesCollection SeriesCollection { get; set; }
         public string[] Labels { get; set; }
         public Func<double, string> YFormatter { get; set; }
+        public RelayCommand editFilmCommand { get; set; }
+
         public FilmDetailVM(string filmId)
         {
             this.filmId = filmId;
             updateContent();
+            editFilmCommand = new RelayCommand(editFilm, canPerform);
 
             SeriesCollection = new SeriesCollection
             {
@@ -185,8 +189,15 @@ namespace Nextfliz
                 year = item.NamPhatHanh.ToString();
                 time = item.ThoiLuong.ToString();
                 certification = item.Certification;
-                var itemGenre = dbContext.Genres.FirstOrDefault(a => a.GenreId == item.GenreId);
-                genre = itemGenre.TenTheLoai;
+                if (item.GenreId != null)
+                {
+                    var itemGenre = dbContext.Genres.FirstOrDefault(a => a.GenreId == item.GenreId);
+                    genre = itemGenre.TenTheLoai;
+                }
+                else
+                {
+                    genre = "Không có thể loại";
+                }
                 if (item.DirectorId != null)
                 {
                     var director = dbContext.Directors.FirstOrDefault(d => d.DirectorId == item.DirectorId);
@@ -224,5 +235,15 @@ namespace Nextfliz
             }
         }
 
+        private void editFilm(object value)
+        {
+            AddFilmWindow editWindow = new AddFilmWindow(filmId);
+            editWindow.ShowDialog();
+        }
+
+        private bool canPerform(object value)
+        {
+            return true;
+        }
     }
 }

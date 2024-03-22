@@ -12,7 +12,9 @@
             <Label HorizontalAlignment="Center" FontWeight="bold" FontSize="20">Quản lí thể loại</Label>
             <Label FontSize="15" FontWeight="SemiBold">Thêm thể loại:</Label>
             <StackPanel Orientation="Horizontal">
-                <TextBox Width="350" Text="{Binding NewItem}" Margin="10,0,5,0"/>
+                <Border VerticalAlignment="Center" Width="350" BorderBrush="Gray" BorderThickness="1"  Margin="10,0,5,0">
+                    <TextBox BorderThickness="0" Text="{Binding NewItem}"/>
+                </Border>
                 <Button HorizontalAlignment="Right" Width="25" Height="25" Style="{StaticResource AddFilmButton}" Command="{Binding addButtonCommand}">
                     <StackPanel Orientation="Horizontal">
                         <Icon:PackIconMaterial Kind="Plus"/>
