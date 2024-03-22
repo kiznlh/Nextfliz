@@ -41,7 +41,7 @@
    
         <Grid Grid.Row="3">
             <StackPanel VerticalAlignment="Center">
-                <Label Foreground=""></Label>
+                <Label Foreground="BlanchedAlmond"></Label>
             </StackPanel>
         </Grid>
 
