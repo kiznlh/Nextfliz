@@ -69,6 +69,7 @@ CREATE TABLE Ticket (
 
 CREATE TABLE Voucher (
     voucher_id CHAR(5) PRIMARY KEY,
+    ten_voucher NVARCHAR(100),
 	so_luong INT,
     ti_le_giam FLOAT
 );

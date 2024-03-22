@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using System.Configuration;
+using Nextfliz.Models;
 
 namespace Nextfliz;
 
@@ -290,7 +291,7 @@ public partial class NextflizContext : DbContext
 
         modelBuilder.Entity<Voucher>(entity =>
         {
-            entity.HasKey(e => e.VoucherId).HasName("PK__Voucher__80B6FFA8EE316A52");
+            entity.HasKey(e => e.VoucherId).HasName("PK__Voucher__80B6FFA865D1D970");
 
             entity.ToTable("Voucher");
 
@@ -300,6 +301,9 @@ public partial class NextflizContext : DbContext
                 .IsFixedLength()
                 .HasColumnName("voucher_id");
             entity.Property(e => e.SoLuong).HasColumnName("so_luong");
+            entity.Property(e => e.TenVoucher)
+                .HasMaxLength(100)
+                .HasColumnName("ten_voucher");
             entity.Property(e => e.TiLeGiam).HasColumnName("ti_le_giam");
         });
 
