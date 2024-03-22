@@ -17,6 +17,7 @@ namespace Nextfliz
     class AddFilmVM : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
+        private string id;
         private string name { get; set; }
         public string Name
         {
@@ -151,6 +152,7 @@ namespace Nextfliz
             certification = "";
             year = "";
             this.window = window;
+            this.id = id;
             addActorCommand = new RelayCommand(chooseActor, canPerform);
             removeActorCommand = new RelayCommand(removeActor, canPerform);
             
@@ -158,6 +160,7 @@ namespace Nextfliz
             if (id.Length != 0)
             {
                 loadDataToEdit(id);
+                addFilmCommand = new RelayCommand(editFilm, canPerform);
             }
             else
             {
@@ -204,7 +207,7 @@ namespace Nextfliz
                 name = movie.TenPhim;
                 image = movie.HinhAnh;
                 time = movie.ThoiLuong.ToString();
-                rating = movie.DiemDanhGia.ToString();
+                rating = movie.DiemDanhGia.ToString().Replace(",", ".");
                 certification = movie.Certification;
                 year = movie.NamPhatHanh.ToString();
 
@@ -310,6 +313,46 @@ namespace Nextfliz
                 }
 
                 context.Movies.Add(newMovie);
+                context.SaveChanges();
+            }
+            window.Close();
+        }
+
+        private void editFilm(object obj)
+        {
+            if (name.Length == 0 || image.Length == 0 || time.Length == 0 || rating.Length == 0 || year.Length == 0 || certification.Length == 0 || chosenGenre == null || chosenDirector == null || chosenActors.Count == 0)
+            {
+                MessageBox.Show("Có trường đang để trống hoặc không hợp lệ", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+            using (var context = new NextflizContext())
+            {
+                var movie = context.Movies.FirstOrDefault(m => m.MovieId == id);
+
+                movie.TenPhim = name;
+                movie.HinhAnh = image;
+                movie.ThoiLuong = int.Parse(time);
+                movie.DiemDanhGia = myMath.convertToDouble(rating);
+                movie.NamPhatHanh = int.Parse(year);
+                movie.GenreId = chosenGenre.GenreId;
+                movie.DirectorId = chosenDirector.DirectorId;
+                movie.Certification = certification;
+
+                var filmCastsToRemove = context.FilmCasts
+                                                .Where(fc => fc.MovieId == id)
+                                                .ToList();
+
+                context.FilmCasts.RemoveRange(filmCastsToRemove);
+                context.SaveChanges();
+
+                foreach (Actor actor in chosenActors)
+                {
+                    FilmCast newItem = new FilmCast();
+                    newItem.ActorId = actor.ActorId;
+                    newItem.MovieId = movie.MovieId;
+                    context.FilmCasts.Add(newItem);
+                }
+
                 context.SaveChanges();
             }
             window.Close();

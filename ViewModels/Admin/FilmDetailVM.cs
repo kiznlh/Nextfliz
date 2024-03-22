@@ -180,6 +180,7 @@ namespace Nextfliz
         }
         private void updateContent()
         {
+            actorList.Clear();
             using (var dbContext = new NextflizContext())
             {
                 var item = dbContext.Movies.FirstOrDefault(a => a.MovieId == filmId);
@@ -189,6 +190,13 @@ namespace Nextfliz
                 year = item.NamPhatHanh.ToString();
                 time = item.ThoiLuong.ToString();
                 certification = item.Certification;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Image"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Name"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Rating"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Year"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Time"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Certification"));
+
                 if (item.GenreId != null)
                 {
                     var itemGenre = dbContext.Genres.FirstOrDefault(a => a.GenreId == item.GenreId);
@@ -198,6 +206,8 @@ namespace Nextfliz
                 {
                     genre = "Không có thể loại";
                 }
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Genre"));
+
                 if (item.DirectorId != null)
                 {
                     var director = dbContext.Directors.FirstOrDefault(d => d.DirectorId == item.DirectorId);
@@ -211,6 +221,10 @@ namespace Nextfliz
                     directorName = "Không có đạo diễn";
                     directorBio = "Thiếu thông tin đạo diễn ";
                 }
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("DirectorImage"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("DirectorName"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("DirectorBio"));
+
                 var actorsInMovie = (
                     from actor in dbContext.Actors
                     join filmCast in dbContext.FilmCasts on actor.ActorId equals filmCast.ActorId
@@ -239,6 +253,7 @@ namespace Nextfliz
         {
             AddFilmWindow editWindow = new AddFilmWindow(filmId);
             editWindow.ShowDialog();
+            updateContent();
         }
 
         private bool canPerform(object value)
