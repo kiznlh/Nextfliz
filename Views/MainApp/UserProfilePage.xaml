@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Nextfliz.Views.MainApp"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="600"
+      d:DesignHeight="700" d:DesignWidth="600"
       
       Width="600"
       Title="UserProfilePage">
@@ -13,8 +13,8 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -24,31 +24,42 @@
 
         
         <!--Change information-->
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
             <StackPanel VerticalAlignment="Center">
                 <Label Foreground="BlanchedAlmond" FontSize="20">Thông tin cá nhân</Label>
                 <DockPanel>
-                    <DatePicker DockPanel.Dock="Left" SelectedDate="{Binding birthday}" Width="300"></DatePicker>
-                    <ComboBox DockPanel.Dock="Right" SelectedItem="{Binding Gender}" Width="50">
-                        <ComboBoxItem Content="Nam" Foreground="BlanchedAlmond"/>
-                        <ComboBoxItem Content="Nữ" Foreground="BlanchedAlmond"/>
-                    </ComboBox>
+                    <StackPanel Orientation="Vertical">
+                        <Label Foreground="BlanchedAlmond" FontSize="15" Padding="15">Ngày sinh</Label>
+                        <DatePicker DockPanel.Dock="Left" SelectedDate="{Binding birthday}" Width="300"></DatePicker>
+                    </StackPanel>
+                    <StackPanel>
+                        <Label Foreground="BlanchedAlmond" FontSize="15" Padding="15">Giới tính</Label>
+                        <ComboBox DockPanel.Dock="Right" SelectedItem="{Binding Gender}" Width="50">
+                            <ComboBoxItem Content="Nam" Foreground="BlanchedAlmond"/>
+                            <ComboBoxItem Content="Nữ" Foreground="BlanchedAlmond"/>
+                        </ComboBox>
+                    </StackPanel>
                 </DockPanel>
-                <Button x:Name="saveInforButton" Content="Lưu" Width="auto" Height="auto" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="BlanchedAlmond" Background="Transparent" BorderThickness="1" FontSize="20"></Button>
+                <Button Padding="15" x:Name="saveInforButton" Content="Lưu" Width="auto" Height="auto" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="BlanchedAlmond" Background="Transparent" BorderThickness="1" FontSize="20"></Button>
             </StackPanel>
         </Grid>
 
    
-        <Grid Grid.Row="3">
-            <StackPanel VerticalAlignment="Center">
-                <Label Foreground="BlanchedAlmond"></Label>
-                   <Label></Label>
+        <Grid Grid.Row="2">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Label Foreground="BlanchedAlmond" FontSize="20">Password cũ</Label>
+                <PasswordBox x:Name="oldPassword" Width="200"></PasswordBox>
+                <Label Foreground="BlanchedAlmond" FontSize="20">Password mới</Label>
+                <PasswordBox x:Name="newPassword" Width="200"></PasswordBox>
+                <Label Foreground="BlanchedAlmond" FontSize="20">Xác nhận password mới</Label>
+                <PasswordBox x:Name="confirmNewPassword" Width="200"></PasswordBox>
+                <Button Padding="15" x:Name="changePassword" Content="Lưu" Width="auto" Height="auto" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="BlanchedAlmond" Background="Transparent" BorderThickness="1" FontSize="20"></Button>
             </StackPanel>
         </Grid>
 
       
         <Grid Grid.Row="4">
-           
+            <Button Padding="15" x:Name="bookHistory" Content="Lịch sử đặt vé" Width="auto" Height="auto" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="BlanchedAlmond" Background="Transparent" BorderThickness="1" FontSize="20"></Button>
         </Grid>
     </Grid>
 </Page>

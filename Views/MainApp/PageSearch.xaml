@@ -5,12 +5,13 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Nextfliz.Views.MainApp"
       mc:Ignorable="d" 
-      d:DesignHeight="800" d:DesignWidth="1150"
+      d:DesignHeight="450" d:DesignWidth="800"
       Title="PageSearch">
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/> <!--For filter-->
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
             <!-- Add row for navigation buttons -->
@@ -29,28 +30,33 @@
 
             <!-- ComboBox for Options -->
             <ComboBox Grid.Column="1" Margin="5,0,0,0" VerticalAlignment="Center" SelectedIndex="{Binding SelectedItem}">
-                <ComboBoxItem Content="Option 1"/>
-                <ComboBoxItem Content="Option 2"/>
-                <ComboBoxItem Content="Option 3"/>
+                <ComboBoxItem Content="Tên Phim"/>
+                <ComboBoxItem Content="Diễn viên"/>
+                <ComboBoxItem Content="Đạo diễn"/>
             </ComboBox>
 
             <!-- Search Button -->
             <Button Content="Search" Grid.Column="2" Click="SearchButton_Click" Margin="5,0,0,0" VerticalAlignment="Center"/>
 
         </Grid>
-
+        <!-- Need filter -->
         <!-- Search Results (List View) -->
-        <ListView Grid.Row="1" ItemsSource="{Binding DisplayedResults}" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <local:FilmCardControl Width="auto" Height="auto"/>
-                </DataTemplate>
-            </ListView.ItemTemplate>
+        <ListView Grid.Row="2" ItemsSource="{Binding DisplayedResults}" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Tên Phim" Width ="120" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Diễn viên" Width="60" DisplayMemberBinding="{Binding Actors}"/>
+                    <GridViewColumn Header="Đạo diễn" Width="60" DisplayMemberBinding="{Binding Director}"/>
+                    <GridViewColumn Header="Suất chiếu" Width="120" DisplayMemberBinding="{Binding Ngay_gio_chieu}"/>
+                    <GridViewColumn Header="Giá vé" Width="60" DisplayMemberBinding="{Binding Gia_ve}"/>
+                    <GridViewColumn Header="Năm phát hành" Width="auto" DisplayMemberBinding="{Binding Year}"/>
+                </GridView>
+            </ListView.View>
         </ListView>
 
 
         <!-- Navigation Buttons -->
-        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
             <Button x:Name="previousButton" Content="Previous" Click="PreviousButton_Click" Margin="5"/>
             <Button x:Name="nextButton" Content="Next" Click="NextButton_Click" Margin="5"/>
         </StackPanel>
