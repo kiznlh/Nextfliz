@@ -26,39 +26,43 @@
             </Grid.ColumnDefinitions>
 
             <!-- Search TextBox -->
-            <TextBox Grid.Column="0" Margin="0,0,5,0" VerticalAlignment="Center" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox x:Name="searchField" Grid.Column="0" Margin="0,0,5,0" VerticalAlignment="Center" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"/>
 
             <!-- ComboBox for Options -->
-            <ComboBox Grid.Column="1" Margin="5,0,0,0" VerticalAlignment="Center" SelectedIndex="{Binding SelectedItem}">
-                <ComboBoxItem Content="Tên Phim"/>
-                <ComboBoxItem Content="Diễn viên"/>
-                <ComboBoxItem Content="Đạo diễn"/>
+            <ComboBox x:Name="searchOptions" ItemsSource="{Binding ComboBoxItems}" Grid.Column="1" Margin="5,0,0,0" VerticalAlignment="Center" SelectedItem="{Binding SelectedItem}">
             </ComboBox>
 
             <!-- Search Button -->
-            <Button Content="Search" Grid.Column="2" Click="SearchButton_Click" Margin="5,0,0,0" VerticalAlignment="Center"/>
+            <Button Content="Search" x:Name="searchButton" Grid.Column="2" Margin="5,0,0,0" VerticalAlignment="Center" Command="{Binding SearchCommand}"/>
 
         </Grid>
         <!-- Need filter -->
         <!-- Search Results (List View) -->
-        <ListView Grid.Row="2" ItemsSource="{Binding DisplayedResults}" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <ListView Grid.Row="2" x:Name="listView" SizeChanged="listView_SizeChanged" ItemsSource="{Binding SearchDatas}" Margin="10" Width="Auto">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Tên Phim" Width ="120" DisplayMemberBinding="{Binding Name}"/>
-                    <GridViewColumn Header="Diễn viên" Width="60" DisplayMemberBinding="{Binding Actors}"/>
-                    <GridViewColumn Header="Đạo diễn" Width="60" DisplayMemberBinding="{Binding Director}"/>
-                    <GridViewColumn Header="Suất chiếu" Width="120" DisplayMemberBinding="{Binding Ngay_gio_chieu}"/>
-                    <GridViewColumn Header="Giá vé" Width="60" DisplayMemberBinding="{Binding Gia_ve}"/>
-                    <GridViewColumn Header="Năm phát hành" Width="auto" DisplayMemberBinding="{Binding Year}"/>
+                    <GridView.ColumnHeaderContainerStyle>
+                        <Style TargetType="{x:Type GridViewColumnHeader}">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        </Style>
+                    </GridView.ColumnHeaderContainerStyle>
+                    <GridViewColumn Header="Tên Phim" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Diễn viên" DisplayMemberBinding="{Binding Actors}"/>
+                    <GridViewColumn Header="Đạo diễn" DisplayMemberBinding="{Binding Director}"/>
+                    <GridViewColumn Header="Suất chiếu" DisplayMemberBinding="{Binding Ngay_gio_chieu}"/>
+                    <GridViewColumn Header="Giá vé" DisplayMemberBinding="{Binding Gia_ve}"/>
+                    <GridViewColumn Header="Năm phát hành" DisplayMemberBinding="{Binding Year}"/>
                 </GridView>
             </ListView.View>
         </ListView>
 
 
+
+
         <!-- Navigation Buttons -->
         <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
-            <Button x:Name="previousButton" Content="Previous" Click="PreviousButton_Click" Margin="5"/>
-            <Button x:Name="nextButton" Content="Next" Click="NextButton_Click" Margin="5"/>
+            <Button x:Name="previousButton" Content="Previous" Click="previousButton_Click" Margin="5"/>
+            <Button x:Name="nextButton" Content="Next" Click="nextButton_Click" Margin="5"/>
         </StackPanel>
     </Grid>
 </Page>
