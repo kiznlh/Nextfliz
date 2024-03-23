@@ -53,7 +53,8 @@ CREATE TABLE Movie (
 CREATE TABLE SuatChieu (
     suat_chieu_id CHAR(5) PRIMARY KEY,
     movie_id CHAR(5) FOREIGN KEY REFERENCES Movie(movie_id),
-    ngay_gio_chieu DATETIME
+    ngay_gio_chieu DATETIME,
+    gia_ve DECIMAL(10, 2),/*gia ve goc cua suat chieu*/
 );
 
 CREATE TABLE Ticket (
@@ -62,13 +63,14 @@ CREATE TABLE Ticket (
     movie_id CHAR(5) FOREIGN KEY REFERENCES Movie(movie_id),
     ngay_dat_ve DATETIME,
     suat_chieu_id CHAR(5) FOREIGN KEY REFERENCES SuatChieu(suat_chieu_id),
-    gia_ve DECIMAL(10, 2),
+	gia_ve DECIMAL(10, 2),/*gia ve sau cung(da ap dung voucher)*/
     vi_tri_ghe NVARCHAR(5),
 );
 
 CREATE TABLE Voucher (
     voucher_id CHAR(5) PRIMARY KEY,
-    movie_id CHAR(5) FOREIGN KEY REFERENCES Movie(movie_id),
+    ten_voucher NVARCHAR(100),
+	so_luong INT,
     ti_le_giam FLOAT
 );
 
@@ -85,4 +87,12 @@ CREATE TABLE Seat (
     vi_tri_ghe NVARCHAR(5),
     PRIMARY KEY (suat_chieu_id, vi_tri_ghe),
     FOREIGN KEY (suat_chieu_id) REFERENCES SuatChieu(suat_chieu_id)
+);
+
+CREATE TABLE VoucherUsage (
+    voucher_id CHAR(5),
+	ticket_id NVARCHAR(20),
+	PRIMARY KEY (voucher_id, ticket_id),
+	FOREIGN KEY (voucher_id) REFERENCES Voucher(voucher_id),
+	FOREIGN KEY (ticket_id) REFERENCES Ticket(ticket_id),
 );

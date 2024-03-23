@@ -51,11 +51,14 @@ public partial class SuatChieu
             dbContext.SaveChanges();
         }
     }
+
     public string SuatChieuId { get; set; } = null!;
 
     public string? MovieId { get; set; }
 
     public DateTime? NgayGioChieu { get; set; }
+
+    public decimal? GiaVe { get; set; }
 
     public virtual Movie? Movie { get; set; }
 

@@ -6,7 +6,7 @@
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks" 
         xmlns:local="clr-namespace:Nextfliz.Views.Admin"
         mc:Ignorable="d"
-        Title="EditGenrePopup" Height="180" Width="400" WindowStartupLocation="CenterScreen">
+        Height="180" Width="400" WindowStartupLocation="CenterScreen">
     <Grid>
         <StackPanel Orientation="Vertical">
             <Label HorizontalAlignment="Center" FontWeight="bold" FontSize="20">Cập nhật thể loại</Label>

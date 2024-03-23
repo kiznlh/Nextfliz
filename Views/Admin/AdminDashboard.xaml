@@ -6,8 +6,7 @@
       xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Nextfliz.Views.Admin"
-      mc:Ignorable="d"
-      Title="AdminDashboard">
+      mc:Ignorable="d">
 
     <StackPanel
         Margin="20,0,20,0">

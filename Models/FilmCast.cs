@@ -27,6 +27,7 @@ public partial class FilmCast
             return dbContext.FilmCasts.Any(a => a.FilmCastId == id);
         }
     }
+
     public string FilmCastId { get; set; } = null!;
 
     public string? MovieId { get; set; }

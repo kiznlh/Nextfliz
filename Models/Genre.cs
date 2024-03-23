@@ -27,6 +27,7 @@ public partial class Genre
             return dbContext.Genres.Any(a => a.GenreId == id);
         }
     }
+
     public string GenreId { get; set; } = null!;
 
     public string? TenTheLoai { get; set; }

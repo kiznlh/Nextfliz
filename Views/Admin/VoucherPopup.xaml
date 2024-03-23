@@ -1,61 +1,46 @@
-﻿<Window x:Class="Nextfliz.Views.Admin.AddSuatChieu"
+﻿<Window x:Class="Nextfliz.Views.Admin.VoucherPopup"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Nextfliz.Views.Admin"
         xmlns:total="clr-namespace:Nextfliz"
-        mc:Ignorable="d"
-        Height="210" Width="305" WindowStartupLocation="CenterScreen">
+        mc:Ignorable="d" Height="180" Width="340" WindowStartupLocation="CenterScreen">
     <Grid>
         <StackPanel Orientation="Vertical">
             <WrapPanel Orientation="Horizontal" Margin="0,10,0,0">
-                <Label FontSize="15" FontWeight="SemiBold">Ngày chiếu:</Label>
+                <Label FontSize="15" FontWeight="SemiBold">Tên voucher:</Label>
                 <TextBox VerticalAlignment="Center" Width="200" Margin="0,0,10,0" Validation.ErrorTemplate="{StaticResource validationTemplate}" Style="{StaticResource textboxInError}">
                     <TextBox.Text>
-                        <Binding Path="Date" UpdateSourceTrigger="PropertyChanged">
+                        <Binding Path="Name" UpdateSourceTrigger="PropertyChanged">
                             <Binding.ValidationRules>
-                                <total:dateInputRule/>
+                                <total:nonEmptyRule/>
                             </Binding.ValidationRules>
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
             </WrapPanel>
-            <Label FontSize="15" FontWeight="SemiBold">Giờ chiếu(24h):</Label>
             <WrapPanel Orientation="Horizontal" Margin="10,5,0,0">
-                <TextBlock Margin="0,0,10,0">Giờ:</TextBlock>
+                <TextBlock FontSize="15" FontWeight="SemiBold" Margin="0,0,10,0">Tỷ lệ giảm(%):</TextBlock>
                 <TextBox Width="50" Validation.ErrorTemplate="{StaticResource validationTemplate}" Style="{StaticResource textboxInError}">
                     <TextBox.Text>
-                        <Binding Path="Hour" UpdateSourceTrigger="PropertyChanged">
+                        <Binding Path="Rate" UpdateSourceTrigger="PropertyChanged">
                             <Binding.ValidationRules>
-                                <total:hourInputRule/>
+                                <total:integerInputRule/>
                             </Binding.ValidationRules>
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
-                <TextBlock Margin="10,0,10,0">Phút:</TextBlock>
+                <TextBlock FontSize="15" FontWeight="SemiBold" Margin="10,0,10,0">Số lượng:</TextBlock>
                 <TextBox Width="50" Validation.ErrorTemplate="{StaticResource validationTemplate}" Style="{StaticResource textboxInError}">
                     <TextBox.Text>
-                        <Binding Path="Minute" UpdateSourceTrigger="PropertyChanged">
+                        <Binding Path="Amount" UpdateSourceTrigger="PropertyChanged">
                             <Binding.ValidationRules>
-                                <total:minuteInputRule/>
+                                <total:integerInputRule/>
                             </Binding.ValidationRules>
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
-            </WrapPanel>
-            <WrapPanel Orientation="Horizontal" Margin="10,10,0,0">
-                <TextBlock FontSize="15" FontWeight="SemiBold" Margin="0,0,10,0">Giá vé:</TextBlock>
-                <TextBox Width="100" Validation.ErrorTemplate="{StaticResource validationTemplate}" Style="{StaticResource textboxInError}">
-                    <TextBox.Text>
-                        <Binding Path="Price" UpdateSourceTrigger="PropertyChanged">
-                            <Binding.ValidationRules>
-                                <total:priceInputRule/>
-                            </Binding.ValidationRules>
-                        </Binding>
-                    </TextBox.Text>
-                </TextBox>
-                
             </WrapPanel>
             <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
                 <Button HorizontalAlignment="Right" Width="100" Height="38" Style="{StaticResource AddFilmButton}" Command="{Binding saveButtonCommand}">
