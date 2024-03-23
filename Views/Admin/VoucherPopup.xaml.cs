@@ -10,20 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Nextfliz.Views.Admin
 {
     /// <summary>
-    /// Interaction logic for VoucherManagement.xaml
+    /// Interaction logic for VoucherPopup.xaml
     /// </summary>
-    public partial class VoucherManagement : Page
+    public partial class VoucherPopup : Window
     {
-        public VoucherManagement()
+        public VoucherPopup(string voucherId)
         {
             InitializeComponent();
-            DataContext = new VoucherManagementVM();
+            DataContext = new VoucherPopupVM(this, voucherId);
         }
     }
 }

@@ -307,6 +307,22 @@ public partial class NextflizContext : DbContext
             entity.Property(e => e.TiLeGiam).HasColumnName("ti_le_giam");
         });
 
+        modelBuilder.Entity<VoucherUsage>(entity =>
+        {
+            entity.HasKey(e => new { e.VoucherId, e.TicketId }).HasName("PK__VoucherU__2DEF903E58B1CF9C");
+
+            entity.ToTable("VoucherUsage");
+
+            entity.Property(e => e.VoucherId)
+                .HasMaxLength(5)
+                .IsUnicode(false)
+                .IsFixedLength()
+                .HasColumnName("voucher_id");
+            entity.Property(e => e.TicketId)
+                .HasMaxLength(20)
+                .HasColumnName("ticket_id");
+        });
+
         OnModelCreatingPartial(modelBuilder);
     }
 

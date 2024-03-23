@@ -88,3 +88,11 @@ CREATE TABLE Seat (
     PRIMARY KEY (suat_chieu_id, vi_tri_ghe),
     FOREIGN KEY (suat_chieu_id) REFERENCES SuatChieu(suat_chieu_id)
 );
+
+CREATE TABLE VoucherUsage (
+    voucher_id CHAR(5),
+	ticket_id NVARCHAR(20),
+	PRIMARY KEY (voucher_id, ticket_id),
+	FOREIGN KEY (voucher_id) REFERENCES Voucher(voucher_id),
+	FOREIGN KEY (ticket_id) REFERENCES Ticket(ticket_id),
+);

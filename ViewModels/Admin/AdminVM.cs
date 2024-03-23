@@ -98,6 +98,28 @@ namespace Nextfliz
             return ValidationResult.ValidResult;
         }
     }
+    public class integerInputRule : ValidationRule
+    {
+        public override ValidationResult Validate(object value, CultureInfo cultureInfo)
+        {
+            string text = (string)value;
+            string pattern = @"^[1-9]\d*$";
+            if (text == null || text.Length == 0)
+            {
+                return new ValidationResult(false, "Nội dung này không được để trống");
+            }
+            if (!Regex.IsMatch(text, pattern))
+            {
+                return new ValidationResult(false, "Vui lòng nhập số nguyên dương");
+            }
+            if (int.Parse(text) <= 0)
+            {
+                return new ValidationResult(false, "Số nhập vào không hợp lệ");
+            }
+            return ValidationResult.ValidResult;
+        }
+    }
+
 
     public class ratingInputRule : ValidationRule
     {
@@ -246,6 +268,7 @@ namespace Nextfliz
 
         private void OnToVoucherManagement(object value)
         {
+            contentFrame.Navigate(new VoucherManagement());
             Style selected = (Style)Application.Current.FindResource("AdminNavButtonSelected");
             Style unselected = (Style)Application.Current.FindResource("AdminNavButton");
             currentTabButton.Style = unselected;

@@ -18,17 +18,17 @@
             Orientation="Vertical"
             >
                 <Grid Margin="0,0,0,20">
-                    <Button HorizontalAlignment="Right" Width="100" Height="38" Style="{StaticResource AddFilmButton}" Command="{Binding showAddPanel}">
+                    
+                </Grid>
+
+                <Grid Margin="0,0,0,10">
+                    <Button  Margin="100,0,0,0" HorizontalAlignment="Left" Width="100" Height="38" Style="{StaticResource AddFilmButton}" Command="{Binding showAddPanel}">
                         <StackPanel Orientation="Horizontal">
                             <Icon:PackIconMaterial Kind="Plus"  Margin="0,0,5,0"/>
                             <TextBlock>Thêm</TextBlock>
                         </StackPanel>
                     </Button>
-                </Grid>
-
-                <Grid Margin="0,0,0,10">
-                   
-                    <StackPanel Height="35" Margin="0,0,100,0"  HorizontalAlignment="right" Orientation="Horizontal">
+                    <StackPanel Height="35" Margin="0,0,100,0" HorizontalAlignment="right" Orientation="Horizontal">
                         <Button Style="{StaticResource PaginationButton}" Command="{Binding toPreviousPage}">
                             <Icon:PackIconMaterial Kind="ChevronLeft"/>
                         </Button>
@@ -44,31 +44,33 @@
 
                 <WrapPanel Margin="100,0,100,0">
                     <DataGrid
-                    x:Name="TopFilmDataGrid"
-                    ItemsSource="{Binding showingList}"
-                    Style="{StaticResource FilmListStyle}"
-                    ColumnHeaderStyle="{DynamicResource FilmListHeader}"
-                    RowStyle="{DynamicResource FilmListRow}"
-                    CellStyle="{DynamicResource TopFilmCell}">
+                        x:Name="TopFilmDataGrid"
+                        ItemsSource="{Binding showingList}"
+                        Style="{StaticResource FilmListStyle}"
+                        ColumnHeaderStyle="{DynamicResource FilmListHeader}"
+                        RowStyle="{DynamicResource FilmListRow}"
+                        CellStyle="{DynamicResource TopFilmCell}">
                         <DataGrid.Columns>
-                            <DataGridTemplateColumn
-                            Header="Hình ảnh"
-                            IsReadOnly="True"
-                            Width="*">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <StackPanel Orientation="Horizontal">
-                                            <Image Height="70" Source="{Binding HinhAnh}"/>
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
                             <DataGridTextColumn
-                            Binding="{Binding HoTen}"
+                            Binding="{Binding TenVoucher}"
                             FontWeight="SemiBold"
-                            Header="Họ tên"
+                            Header="Tên voucher"
                             IsReadOnly="True"
                             Width="2*">
+                            </DataGridTextColumn>
+                            <DataGridTextColumn
+                            Binding="{Binding TiLeGiam}"
+                            FontWeight="SemiBold"
+                            Header="Tỷ lệ giảm"
+                            IsReadOnly="True"
+                            Width="*">
+                            </DataGridTextColumn>
+                            <DataGridTextColumn
+                            Binding="{Binding SoLuong}"
+                            FontWeight="SemiBold"
+                            Header="Số lượng"
+                            IsReadOnly="True"
+                            Width="*">
                             </DataGridTextColumn>
                             <DataGridTemplateColumn
                             Header="Thao tác"

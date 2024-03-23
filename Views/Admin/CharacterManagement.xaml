@@ -8,8 +8,7 @@
       xmlns:local="clr-namespace:Nextfliz.Views.Admin"
       xmlns:total="clr-namespace:Nextfliz"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="1000"
-      Title="CharacterManagement">
+      d:DesignHeight="450" d:DesignWidth="1000">
 
     <StackPanel Margin="20,0,20,0">
 

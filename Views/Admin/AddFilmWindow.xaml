@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:Nextfliz.Views.Admin"
         xmlns:total="clr-namespace:Nextfliz"
         mc:Ignorable="d"
-        Title="AddFilmWindow" Height="650" Width="800" WindowStartupLocation="CenterScreen">
+        Height="650" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
         <ScrollViewer>
             <StackPanel Orientation="Vertical">

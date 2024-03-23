@@ -6,7 +6,7 @@
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks" 
         xmlns:local="clr-namespace:Nextfliz.Views.Admin"
         mc:Ignorable="d"
-        Title="GenreManagement" Height="450" Width="500" WindowStartupLocation="CenterScreen">
+        Height="450" Width="500" WindowStartupLocation="CenterScreen">
     <Grid>
         <StackPanel Orientation="Vertical">
             <Label HorizontalAlignment="Center" FontWeight="bold" FontSize="20">Quản lí thể loại</Label>
