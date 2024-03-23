@@ -14,6 +14,7 @@ namespace Nextfliz.ViewModels.MainApp
 {
     public class SearchData
     {
+        public String ID { get; set; }
         public String Name { get; set; }
         public String Actors { get; set; }
 
@@ -79,7 +80,6 @@ namespace Nextfliz.ViewModels.MainApp
 
         public RelayCommand SearchCommand { get; set; }
 
-
         public PageSearchVM()
         {
             SearchDatas = new ObservableCollection<SearchData>();
@@ -137,6 +137,7 @@ namespace Nextfliz.ViewModels.MainApp
                 {
                     var searchData = new SearchData
                     {
+                        ID = movie.MovieId,
                         Name = movie.TenPhim,
                         Year = (int)movie.NamPhatHanh,
                         Ngay_gio_chieu = DateTime.MinValue,

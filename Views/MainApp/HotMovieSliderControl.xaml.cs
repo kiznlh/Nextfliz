@@ -19,13 +19,13 @@ namespace Nextfliz.Views.MainApp
             InitializeComponent();
             InitializeSlideTimer();
 
-            for (int i = 0; i < 10; i++)
-            {
-                FilmCardControl filmCard = new FilmCardControl();
-                filmCard.Height = 450;
-                filmCard.Width = 600;
-                AddItem(filmCard);
-            }
+            //for (int i = 0; i < 10; i++)
+            //{
+            //    FilmCardControl filmCard = new FilmCardControl();
+            //    filmCard.Height = 450;
+            //    filmCard.Width = 600;
+            //    AddItem(filmCard);
+            //}
         }
 
         public void AddItem(UIElement item)
@@ -33,9 +33,9 @@ namespace Nextfliz.Views.MainApp
             FilmCardControl filmCard = item as FilmCardControl;
             if (filmCard != null)
             {
-               
+                filmCard.Height = 450;
+                filmCard.Width = 600;
                 double halfWidth = (1000 - (filmCard.Width)) / 2;
-
   
                 filmCard.Margin = new Thickness(halfWidth, 0, halfWidth, 0); 
                 filmCard.HorizontalAlignment = HorizontalAlignment.Left;
@@ -66,11 +66,13 @@ namespace Nextfliz.Views.MainApp
 
         private void AnimateSlide()
         {
-            double itemWidth = 600; // Assuming item width is 500
+            double itemWidth = 600; 
             double halfWidth = (1000 - (itemWidth)) / 2;
 
             double targetOffset = currentIndex * (itemWidth + halfWidth * 2);// spacing between items
             double delta = Math.Sign(targetOffset - scrollOffset) * 20; // Adjust the scrolling speed
+
+           
 
             slideTimer.Stop();
             slideTimer.Tick -= slideAnimationHandler; 
@@ -94,7 +96,17 @@ namespace Nextfliz.Views.MainApp
             slideTimer.Start();
         }
 
+        private void DisableButtons()
+        {
+            slideLeft.IsEnabled = currentIndex > 0;
+            slideRight.IsEnabled = currentIndex < panel.Children.Count - 1;
+        }
 
+        private void EnableButtons()
+        {
+            slideLeft.IsEnabled = true;
+            slideRight.IsEnabled = true;
+        }
         private void InitializeSlideTimer()
         {
             slideTimer = new DispatcherTimer();

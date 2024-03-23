@@ -28,23 +28,17 @@ namespace Nextfliz.Views.MainApp
 
     public partial class FilmCardControl : UserControl
     {
-        // Dependency properties for width and height
         public static readonly DependencyProperty WidthProperty = DependencyProperty.Register(
             "Width", typeof(double), typeof(FilmCardControl), new PropertyMetadata(double.NaN));
 
         public static readonly DependencyProperty HeightProperty = DependencyProperty.Register(
             "Height", typeof(double), typeof(FilmCardControl), new PropertyMetadata(double.NaN));
 
-        // Width property
-
-
         public double ControlWidth
         {
             get { return (double)GetValue(WidthProperty); }
             set { SetValue(WidthProperty, value); }
         }
-
-        // Height property
         public double ControlHeight
         {
             get { return (double)GetValue(HeightProperty); }
@@ -57,10 +51,43 @@ namespace Nextfliz.Views.MainApp
         private VisualBrush videoBackground;
         private MediaElement videoElement;
 
-        // URI property
-        public string URI { get; set; }
+        // For Binding filmcontrol
+        public static readonly DependencyProperty ImageBGProperty = DependencyProperty.Register(
+        "ImageBG", typeof(string), typeof(FilmCardControl), new PropertyMetadata(null));
 
-        // Default constructor
+        public static readonly DependencyProperty TenPhimProperty = DependencyProperty.Register(
+            "TenPhim", typeof(string), typeof(FilmCardControl), new PropertyMetadata(null));
+
+        public static readonly DependencyProperty CertificationProperty = DependencyProperty.Register(
+            "Certification", typeof(string), typeof(FilmCardControl), new PropertyMetadata(null));
+
+        public static readonly DependencyProperty ThoiLuongProperty = DependencyProperty.Register(
+            "ThoiLuong", typeof(int), typeof(FilmCardControl), new PropertyMetadata(0));
+
+        public string ImageBG
+        {
+            get { return (string)GetValue(ImageBGProperty); }
+            set { SetValue(ImageBGProperty, value); }
+        }
+
+        public string TenPhim
+        {
+            get { return (string)GetValue(TenPhimProperty); }
+            set { SetValue(TenPhimProperty, value); }
+        }
+
+        public string Certification
+        {
+            get { return (string)GetValue(CertificationProperty); }
+            set { SetValue(CertificationProperty, value); }
+        }
+
+        public int ThoiLuong
+        {
+            get { return (int)GetValue(ThoiLuongProperty); }
+            set { SetValue(ThoiLuongProperty, value); }
+        }
+
         public FilmCardControl()
         {
             InitializeComponent();
@@ -68,29 +95,26 @@ namespace Nextfliz.Views.MainApp
             originalWidth = this.ControlWidth;
             originalHeight = this.ControlHeight;
 
-
-            // Initialize with a default URI
+            // Initialize video trailer
             InitializeVideoElement("../../../Resources/Images/film_trailer.mp4");
 
         }
 
-        // Method to initialize the video element
         private void InitializeVideoElement(string uriString)
         {
-            // Create a new MediaElement instance
+        
             videoElement = new MediaElement();
-            // Set the Source to the provided URI string
+         
             videoElement.Source = new Uri(uriString, UriKind.RelativeOrAbsolute);
 
-            videoElement.LoadedBehavior = MediaState.Manual; // Changed to manual for manual control
-                                                             // Create a new VisualBrush with the new MediaElement
+            videoElement.LoadedBehavior = MediaState.Manual;
+
             videoBackground = new VisualBrush(videoElement);
         }
 
         private void Container_MouseEnter(object sender, MouseEventArgs e)
         {
-            ScaleControl(1.05);
-            //Ensure the videoElement is not null and it's playing
+            ScaleControl(1.1);
             if (videoElement != null)
             {
                 videoElement.Play();
@@ -100,13 +124,12 @@ namespace Nextfliz.Views.MainApp
 
         private void Container_MouseLeave(object sender, MouseEventArgs e)
         {
-            ScaleControl(1.0); // Return to original size
-            // Ensure the videoElement is not null and it's paused
+            ScaleControl(1.0); 
             if (videoElement != null)
             {
                 videoElement.Pause();
                 videoElement.Position = TimeSpan.Zero;
-                container.Background = new ImageBrush(new BitmapImage(new Uri("../../../Resources/Images/film_bg.jpg", UriKind.RelativeOrAbsolute)));
+                container.Background = ImageBackground;
             }
         }
 

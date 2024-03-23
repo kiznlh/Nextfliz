@@ -18,8 +18,8 @@
     <None Remove="Resources\Icons\search_icon.png" />
     <None Remove="Resources\Icons\seat_icon.png" />
     <None Remove="Resources\Icons\user_icon.png" />
+    <None Remove="Resources\Images\bg_2.jpg" />
     <None Remove="Resources\Images\channels4_profile.jpg" />
-    <None Remove="Resources\Images\F5QFgIGacAAmyc8.jpg" />
     <None Remove="Resources\Images\film_bg.jpg" />
     <None Remove="Resources\Images\film_trailer.mp4" />
     <None Remove="Resources\Images\xD.jpg" />
@@ -62,7 +62,7 @@
     <Resource Include="Resources\Icons\seat_icon.png" />
     <Resource Include="Resources\Icons\user_icon.png" />
     <Resource Include="Resources\Images\channels4_profile.jpg" />
-    <Resource Include="Resources\Images\F5QFgIGacAAmyc8.jpg" />
+    <Resource Include="Resources\Images\bg_2.jpg" />
     <Resource Include="Resources\Images\film_bg.jpg" />
     <Resource Include="Resources\Images\film_trailer.mp4" />
     <Resource Include="Resources\Images\xD.jpg" />

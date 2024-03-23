@@ -17,13 +17,13 @@ namespace Nextfliz.Views.MainApp
             InitializeComponent();
             InitializeSlideTimer();
 
-            for (int i = 0; i < 10; i++)
-            {
-                FilmCardControl filmCard = new FilmCardControl();
-                filmCard.Height = 300;
-                filmCard.Width = 400;
-                AddItem(filmCard);
-            }
+            //for (int i = 0; i < 10; i++)
+            //{
+            //    FilmCardControl filmCard = new FilmCardControl();
+            //    filmCard.Height = 300;
+            //    filmCard.Width = 400;
+            //    AddItem(filmCard);
+            //}
         }
 
         public void AddItem(UIElement item)
@@ -31,6 +31,8 @@ namespace Nextfliz.Views.MainApp
             FilmCardControl filmCard = item as FilmCardControl;
             if (filmCard != null)
             {
+                filmCard.Height = 300;
+                filmCard.Width = 400;
                 filmCard.HorizontalAlignment = HorizontalAlignment.Left;
             }
             panel.Children.Add(item);
@@ -57,10 +59,13 @@ namespace Nextfliz.Views.MainApp
 
         private void AnimateSlide()
         {
-            double itemWidth = 400; 
-    
+            double itemWidth = 400;
+
             double targetOffset = currentIndex * (itemWidth + 50 * 2);
-            double delta = Math.Sign(targetOffset - scrollOffset) * 10;
+            double delta = Math.Sign(targetOffset - scrollOffset) * 20;
+
+            // Disable buttons during animation
+            DisableButtons();
 
             slideTimer.Stop();
             slideTimer.Tick -= slideAnimationHandler;
@@ -72,6 +77,8 @@ namespace Nextfliz.Views.MainApp
                     scrollOffset = targetOffset;
                     scrollViewer.ScrollToHorizontalOffset(scrollOffset);
                     slideTimer.Stop();
+                    // Re-enable buttons after animation completes
+                    EnableButtons();
                 }
                 else
                 {
@@ -84,13 +91,23 @@ namespace Nextfliz.Views.MainApp
             slideTimer.Start();
         }
 
+        private void DisableButtons()
+        {
+            slideLeft.IsEnabled = currentIndex > 0;
+            slideRight.IsEnabled = currentIndex < panel.Children.Count - 1;
+        }
+
+        private void EnableButtons()
+        {
+            slideLeft.IsEnabled = true;
+            slideRight.IsEnabled = true;
+        }
+
+
         private void InitializeSlideTimer()
         {
             slideTimer = new DispatcherTimer();
-            slideTimer.Interval = TimeSpan.FromMilliseconds(10); // Adjust this value for smoother or slower animation
+            slideTimer.Interval = TimeSpan.FromMilliseconds(20); // Adjust this value for smoother or slower animation
         }
-
-       
-
     }
 }

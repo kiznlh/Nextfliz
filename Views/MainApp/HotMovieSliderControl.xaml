@@ -17,7 +17,7 @@
         </Grid.ColumnDefinitions>
 
         <!-- Left button -->
-        <Button Content="◄" Click="SlideLeft_Click" Margin="5" Width="auto" Height="20"/>
+        <Button Name="slideLeft" Content="◄" Click="SlideLeft_Click" Margin="5" Width="auto" Height="20"/>
 
         <!-- ScrollViewer -->
         <ScrollViewer Grid.Column="1" x:Name="scrollViewer" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Disabled">
@@ -27,6 +27,6 @@
         </ScrollViewer>
 
         <!-- Right button -->
-        <Button Grid.Column="2" Content="►" Click="SlideRight_Click" Margin="5" Width="auto" Height="20"/>
+        <Button x:Name="slideRight" Grid.Column="2" Content="►" Click="SlideRight_Click" Margin="5" Width="auto" Height="20"/>
     </Grid>
 </UserControl>

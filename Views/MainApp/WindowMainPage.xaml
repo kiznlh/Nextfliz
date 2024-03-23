@@ -10,25 +10,23 @@
 
     <ScrollViewer HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="2*"/>
-                <!-- 2/3 of the page -->
+
                 <RowDefinition Height="1*"/>
-                <!-- 1/3 of the page -->
+
             </Grid.RowDefinitions>
 
-            <!-- First Row -->
-            <local:HotMovieSliderControl x:Name="hotMovieSliderControl" Grid.Row="0" MaxHeight="500" MinHeight="500" MinWidth="1000" MaxWidth="1000">
-            </local:HotMovieSliderControl>
-
-            <!-- Second Row -->
-            <StackPanel Grid.Row="1" Orientation="Vertical" MaxWidth="1000" Margin="0,0,0,100">
-                <!-- TextBlock -->
-                <TextBlock Text="Hiện đang thịnh hành" Foreground="#AC1110" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-
-                <!-- Placeholder for your control -->
-                <local:SliderControl MaxHeight="300" MaxWidth="1000">
-
+            <StackPanel Grid.Row="0" Orientation="Vertical" MaxWidth="1000">
+                <TextBlock Text="Hiện đang thịnh hành" Foreground="#AC1110" FontSize="50" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <local:HotMovieSliderControl x:Name="hotMovieSlider" MaxHeight="500" MinHeight="500" MinWidth="1000" MaxWidth="1000">
+                </local:HotMovieSliderControl>
+            </StackPanel>
+            
+            <StackPanel Grid.Row="1" Orientation="Vertical" MaxWidth="1000" Margin="0,30,0,100">
+                <TextBlock Text="Có thể bạn sẽ thích" Foreground="#AC1110" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <local:SliderControl x:Name="randomMovieSlider" MaxHeight="300" MaxWidth="1000" MinHeight="300" MinWidth="1000">
                 </local:SliderControl>
             </StackPanel>
         </Grid>

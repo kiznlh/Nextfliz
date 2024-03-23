@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Nextfliz.ViewModels.MainApp
 {
-    class ActorDetailCardViewModel
+    class ActorDetailCardVM
     {
 
     }

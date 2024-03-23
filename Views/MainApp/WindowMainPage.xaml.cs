@@ -1,24 +1,34 @@
-﻿using System.Windows;
+﻿using Nextfliz.ViewModels.MainApp;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Nextfliz.Views.MainApp
 {
     public partial class WindowMainPage : Page
     {
+        WindowMainPageVM viewModel;
         public WindowMainPage()
         {
             InitializeComponent();
 
-            // Subscribe to the Loaded event of HotMovieSliderControl
-            hotMovieSliderControl.Loaded += HotMovieSliderControl_Loaded;
-        }
+            viewModel = new WindowMainPageVM();
+    
+            DataContext = viewModel;
 
-        private void HotMovieSliderControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            // Access the ActualWidth property of HotMovieSliderControl
-            //double hotMovieSliderWidth = hotMovieSliderControl.ActualWidth;
-            //// Use the width as needed
-            //MessageBox.Show($"HotMovieSliderControl Width: {hotMovieSliderWidth}");
+            var hotMovies = viewModel.hotMovies;
+
+            foreach (var hotMovie in hotMovies)
+            {
+                hotMovieSlider.AddItem(hotMovie);
+            }
+
+            var randomMovies = viewModel.randomMovies;
+            
+            foreach (var randomMovie in randomMovies)
+            {
+                randomMovieSlider.AddItem(randomMovie);
+            }
         }
+       
     }
 }

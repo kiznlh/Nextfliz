@@ -32,7 +32,6 @@ namespace Nextfliz.Views.MainApp
 
             DataContext = viewModel;
 
-            
         }
 
         private void previousButton_Click(object sender, RoutedEventArgs e)
@@ -45,20 +44,6 @@ namespace Nextfliz.Views.MainApp
 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void searchButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void searchOptions_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-
-        }
 
         private void listView_SizeChanged(object sender, SizeChangedEventArgs e)
         {

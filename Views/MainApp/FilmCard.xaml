@@ -13,7 +13,8 @@
     </UserControl.Resources>
     <Grid Margin="50" x:Name="container" MouseEnter="Container_MouseEnter" MouseLeave="Container_MouseLeave" MouseDown="container_MouseDown">
         <Grid.Background>
-            <ImageBrush ImageSource="/Resources/Images/film_bg.jpg"/>
+            <!--<ImageBrush ImageSource="/Resources/Images/film_bg.jpg"/>-->
+            <ImageBrush x:Name="ImageBackground" ImageSource="{Binding ImageBG, ElementName=Card}"/>
         </Grid.Background>
         <Grid.RenderTransform>
             <ScaleTransform x:Name="scaleTransform" CenterX="{Binding ActualWidth, ElementName=container, Converter={StaticResource CenterConverter}}" CenterY="{Binding ActualHeight, ElementName=container, Converter={StaticResource CenterConverter}}" ScaleX="1" ScaleY="1"/>
@@ -26,12 +27,15 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="2" Text="Tên Phim" Foreground="Red" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20,0,0,0"/>
+        <!-- name -->
+        <TextBlock Grid.Row="2" Text="{Binding TenPhim, ElementName=Card}" FontSize="20" Foreground="Red" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20,0,0,10"></TextBlock>
         <StackPanel Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20,0,0,0">
             <Border BorderBrush="Red" BorderThickness="1" CornerRadius="2" Padding="2">
-                <TextBlock Text="16+" Foreground="Red"/>
+                <!-- certification -->
+                <TextBlock Text="{Binding Certification, ElementName=Card}" Foreground="Red" FontSize="15"/>
             </Border>
-            <TextBlock Text="3 Episodes" Foreground="Red" Margin="10,0,0,0"/>
+            <!-- Duration -->
+            <TextBlock Text="{Binding ThoiLuong, ElementName=Card}" Foreground="Red" Margin="10,0,0,0" FontSize="15" HorizontalAlignment="Center"/>
         </StackPanel>
     </Grid>
 </UserControl>
