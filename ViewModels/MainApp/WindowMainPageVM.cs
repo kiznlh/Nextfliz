@@ -52,6 +52,7 @@ namespace Nextfliz.ViewModels.MainApp
                     var saidMovie = context.Movies.Where(m => m.MovieId == movie.MovieId).FirstOrDefault();
                     var filmCard = new FilmCardControl()
                     {
+                        MovieID = saidMovie.MovieId,
                         ImageBG = saidMovie.HinhAnh,
                         TenPhim = saidMovie.TenPhim,
                         Certification = saidMovie.Certification,
@@ -71,9 +72,10 @@ namespace Nextfliz.ViewModels.MainApp
             using (var context = new NextflizContext())
             {
                 var movieIdsOnSale = context.SuatChieus
-                        .Where(s => s.MovieId != null)
+                         .Where(s => s.MovieId != null)
                         .Select(s => s.MovieId)
                         .Distinct()
+                        .OrderBy(m => Guid.NewGuid()) 
                         .Take(randomFilm)
                         .ToList();
 
@@ -84,6 +86,7 @@ namespace Nextfliz.ViewModels.MainApp
                     {
                         var filmCard = new FilmCardControl()
                         {
+                            MovieID = saidMovie.MovieId,
                             ImageBG = saidMovie.HinhAnh,
                             TenPhim = saidMovie.TenPhim,
                             Certification = saidMovie.Certification,

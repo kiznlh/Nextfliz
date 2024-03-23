@@ -29,16 +29,13 @@ namespace Nextfliz.Views.MainApp
             Grid grid = sender as Grid;
             if (grid != null && grid.Background != Brushes.DarkRed && !IsReadOnly)
             {
-                // Toggle background color based on occupancy status
                 grid.Background = grid.Background == Brushes.DarkGreen ? Brushes.DarkGoldenrod : Brushes.DarkGreen;
 
-                // Extract the seat identifier from the grid name
+                //get seatID
                 string seatId = grid.Name.Substring(0, 2);
 
-                // Get the value of the clicked seat from the Tag property
                 string seatValue = grid.Tag as string;
 
-                // Raise the SeatClicked event with the seat identifier and value
                 SeatClicked?.Invoke(this, $"{seatId}");
             }
         }
@@ -49,6 +46,20 @@ namespace Nextfliz.Views.MainApp
             if (grid != null)
             {
                 grid.Background = Brushes.DarkRed;
+            }
+        }
+
+        public void reset()
+        {
+          
+            foreach (UIElement child in seatsGrid.Children)
+            {
+            
+                if (child is Grid grid)
+                {
+                 
+                    grid.Background = Brushes.DarkGoldenrod;
+                }
             }
         }
     }

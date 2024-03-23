@@ -19,13 +19,6 @@ namespace Nextfliz.Views.MainApp
             InitializeComponent();
             InitializeSlideTimer();
 
-            //for (int i = 0; i < 10; i++)
-            //{
-            //    FilmCardControl filmCard = new FilmCardControl();
-            //    filmCard.Height = 450;
-            //    filmCard.Width = 600;
-            //    AddItem(filmCard);
-            //}
         }
 
         public void AddItem(UIElement item)

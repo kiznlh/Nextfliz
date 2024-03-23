@@ -64,6 +64,14 @@ namespace Nextfliz.Views.MainApp
         public static readonly DependencyProperty ThoiLuongProperty = DependencyProperty.Register(
             "ThoiLuong", typeof(int), typeof(FilmCardControl), new PropertyMetadata(0));
 
+        private string _movieID;
+
+        public string MovieID
+        {
+            get { return _movieID; }
+
+            set { _movieID = value; }
+        }
         public string ImageBG
         {
             get { return (string)GetValue(ImageBGProperty); }
@@ -144,7 +152,8 @@ namespace Nextfliz.Views.MainApp
 
         private void container_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            FilmDetailPage filmDetailPage = new FilmDetailPage();
+            
+            FilmDetailPage filmDetailPage = new FilmDetailPage(MovieID);
 
             if (Application.Current.MainWindow is WindowUserMainWindow mainWindow)
             {

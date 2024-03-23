@@ -37,8 +37,6 @@ namespace Nextfliz.Views.MainApp
         TestPageForNewControl testPage;
         WindowMainPage mainPage;
 
-        FilmDetailPage filmDetailPage;
-
         LoginPage loginPage;
         SignUpPage signUpPage;
         
@@ -49,7 +47,7 @@ namespace Nextfliz.Views.MainApp
             testPage = new TestPageForNewControl();
             mainPage = new WindowMainPage();
 
-            filmDetailPage = new FilmDetailPage();
+ 
 
             loginPage = new LoginPage();
             signUpPage = new SignUpPage();
@@ -81,11 +79,7 @@ namespace Nextfliz.Views.MainApp
         {
             contentFrame.Navigate(page);
         }
-        public void TestNavi()
-        {
-            contentFrame.Navigate(filmDetailPage);
-            
-        }
+     
         public void goToLogin()
         {
             contentFrame.Navigate(loginPage);
