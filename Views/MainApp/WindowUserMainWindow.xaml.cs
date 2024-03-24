@@ -28,8 +28,9 @@ namespace Nextfliz.Views.MainApp
             get { return isLoggedIn; }
             set { isLoggedIn = value; }
         }
-    }
 
+        public static string username { get; set; }
+    }
 
     public partial class WindowUserMainWindow : Window
     {
@@ -40,6 +41,7 @@ namespace Nextfliz.Views.MainApp
         LoginPage loginPage;
         SignUpPage signUpPage;
         
+        UserProfilePage userProfilePage;
         public WindowUserMainWindow()
         {
             InitializeComponent();
@@ -47,12 +49,11 @@ namespace Nextfliz.Views.MainApp
             testPage = new TestPageForNewControl();
             mainPage = new WindowMainPage();
 
- 
-
             loginPage = new LoginPage();
             signUpPage = new SignUpPage();
 
             contentFrame.Navigate(mainPage);
+  
         }
 
         private void Search_Click(object sender, RoutedEventArgs e)
@@ -62,19 +63,27 @@ namespace Nextfliz.Views.MainApp
         }
         private void Home_Click(object sender, RoutedEventArgs e)
         {
-            contentFrame.Navigate(mainPage);
+            navigateToHome();
    
         }
         private void User_Click(object sender, RoutedEventArgs e)
         {
-            contentFrame.Navigate(testPage);
-            //if (!UserSession.IsLoggedIn)
-            //{
-            //    contentFrame.Navigate(loginPage); 
-            //}
-            //screentitle.Text = "User";
+            if (UserSession.IsLoggedIn)
+            {
+                userProfilePage = new UserProfilePage();
+
+            }
+            else
+            {
+                contentFrame.Navigate(loginPage);
+
+            }
         }
-      
+        
+        public void navigateToHome()
+        {
+            contentFrame.Navigate(mainPage);
+        }
         public void navigateToAPage(Page page)
         {
             contentFrame.Navigate(page);
