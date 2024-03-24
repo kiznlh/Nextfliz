@@ -2,6 +2,7 @@
 using LiveCharts.Wpf;
 using Nextfliz.Views;
 using Nextfliz.Views.Admin;
+using Nextfliz.Views.MainApp;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -227,6 +228,7 @@ namespace Nextfliz
         public RelayCommand ToFilmManagement { get; set; }
         public RelayCommand ToVoucherManagement { get; set; }
         public RelayCommand ToCharacterManagement { get; set; }
+        public RelayCommand LogoutCommand { get; set; }
 
         public AdminVM(Frame contentFrame, Window mainWindow) {
             this.contentFrame = contentFrame;
@@ -239,6 +241,7 @@ namespace Nextfliz
             ToFilmManagement = new RelayCommand(OnToFilmManagement, CanPerform);
             ToVoucherManagement = new RelayCommand(OnToVoucherManagement, CanPerform);
             ToCharacterManagement = new RelayCommand(OnToCharacterManagement, CanPerform);
+            LogoutCommand = new RelayCommand(logout, CanPerform);
         }
 
         private bool CanPerform(object value)
@@ -284,6 +287,13 @@ namespace Nextfliz
             currentTabButton.Style = unselected;
             currentTabButton = (Button)mainWindow.FindName("characterNavBtn");
             currentTabButton.Style = selected;
+        }
+
+        private void logout(object value)
+        {
+            WindowUserMainWindow guest = new WindowUserMainWindow();
+            guest.Show();
+            mainWindow.Close();
         }
     }
 }
