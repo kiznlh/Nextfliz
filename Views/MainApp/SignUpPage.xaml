@@ -40,8 +40,8 @@
                 <ComboBoxItem Foreground="Red">Nữ</ComboBoxItem>
             </ComboBox>
         </StackPanel>
-        <Button Grid.Row="4" Content="Đăng Kí" Click="SignUp_Click" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Red" FontWeight="Bold" BorderBrush="Red" BorderThickness="2"/>
-        <Button Grid.Row="5" Content="Đã có tài khoản? Đăng nhập!" Click="Login_Click" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Red"/>
+        <Button Grid.Row="4" Content="Đăng Kí" Click="SignUp_Click" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" BorderBrush="Red" BorderThickness="2" Style="{StaticResource loginButton}"/>
+        <Button Grid.Row="5" Content="Đã có tài khoản? Đăng nhập!" Click="Login_Click" VerticalAlignment="Center" Background="Transparent" HorizontalAlignment="Center" Foreground="Red"/>
 
     </Grid>
 </Page>
