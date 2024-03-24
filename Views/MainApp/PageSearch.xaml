@@ -2,7 +2,8 @@
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"  
       xmlns:local="clr-namespace:Nextfliz.Views.MainApp"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
@@ -22,47 +23,148 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="80" />
             </Grid.ColumnDefinitions>
 
             <!-- Search TextBox -->
             <TextBox x:Name="searchField" Grid.Column="0" Margin="0,0,5,0" VerticalAlignment="Center" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"/>
 
             <!-- ComboBox for Options -->
-            <ComboBox x:Name="searchOptions" ItemsSource="{Binding ComboBoxItems}" Grid.Column="1" Margin="5,0,0,0" VerticalAlignment="Center" SelectedItem="{Binding SelectedItem}">
+            <ComboBox x:Name="searchOptions" ItemsSource="{Binding ComboBoxItems}" Grid.Column="1" Margin="5,0,0,0" VerticalAlignment="Center" SelectedItem="{Binding SelectedItem}" Style="{StaticResource CustomComboBoxStyle}">
             </ComboBox>
 
             <!-- Search Button -->
-            <Button Content="Search" x:Name="searchButton" Grid.Column="2" Margin="5,0,0,0" VerticalAlignment="Center" Command="{Binding SearchCommand}"/>
+            <Button Content="Search" x:Name="searchButton" Grid.Column="2" Margin="5,0,0,0" Height="30" VerticalAlignment="Center" Command="{Binding SearchCommand}" Style="{StaticResource AddFilmButton}"/>
 
         </Grid>
         <!-- Need filter -->
+        <Grid Grid.Row="1" Margin="0,0,0,5">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,0,0,0">
+                <Icon:PackIconMaterial VerticalAlignment="Center" Foreground="White" Kind="Sort"/>
+                <WrapPanel Orientation="Horizontal">
+                    <Label FontSize="15" Foreground="White">Sắp xếp theo:</Label>
+                    <ComboBox Style="{StaticResource CustomComboBoxStyle}" SelectedIndex="{Binding SortSelected}" SelectionChanged="ComboBox_SelectionChanged_1">
+                        <ComboBoxItem>Không có</ComboBoxItem>
+                        <ComboBoxItem>Têm phim</ComboBoxItem>
+                        <ComboBoxItem>Đạo diễn</ComboBoxItem>
+                        <ComboBoxItem>Năm phát hành</ComboBoxItem>
+                        <ComboBoxItem>Thể loại</ComboBoxItem>
+                        <ComboBoxItem>Điểm đánh giá</ComboBoxItem>
+                    </ComboBox>
+                </WrapPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,10,0">
+                <Icon:PackIconMaterial VerticalAlignment="Center" Foreground="White" Kind="Filter"/>
+                <WrapPanel Orientation="Horizontal">
+                    <Label FontSize="15" Foreground="White">Thể loại:</Label>
+                    <ComboBox Style="{StaticResource CustomComboBoxStyle}" ItemsSource="{Binding GenreFilter}" SelectedItem="{Binding GenreFilterSelected}" SelectionChanged="ComboBox_SelectionChanged"/>
+                </WrapPanel>
+                <WrapPanel Margin="10,0,0,0" Orientation="Horizontal">
+                    <Label FontSize="15" Foreground="White">Năm phát hành:</Label>
+                    <ComboBox Style="{StaticResource CustomComboBoxStyle}" ItemsSource="{Binding YearFilter}" SelectedItem="{Binding YearFilterSelected}" SelectionChanged="ComboBox_SelectionChanged"/>
+                </WrapPanel>
+                <WrapPanel Margin="10,0,0,0" Orientation="Horizontal">
+                    <Label FontSize="15" Foreground="White">Điểm đánh giá:</Label>
+                    <ComboBox Style="{StaticResource CustomComboBoxStyle}" ItemsSource="{Binding RatingFilter}" SelectedItem="{Binding RatingFilterSelected}" SelectionChanged="ComboBox_SelectionChanged"/>
+                </WrapPanel>
+            </StackPanel>
+        </Grid>
         <!-- Search Results (List View) -->
-        <ListView Grid.Row="2" x:Name="listView" SizeChanged="listView_SizeChanged" ItemsSource="{Binding SearchDatas}" Margin="10" Width="Auto">
-            <ListView.View>
-                <GridView>
-                    <GridView.ColumnHeaderContainerStyle>
-                        <Style TargetType="{x:Type GridViewColumnHeader}">
-                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                        </Style>
-                    </GridView.ColumnHeaderContainerStyle>
-                    <GridViewColumn Header="Tên Phim" DisplayMemberBinding="{Binding Name}"/>
-                    <GridViewColumn Header="Diễn viên" DisplayMemberBinding="{Binding Actors}"/>
-                    <GridViewColumn Header="Đạo diễn" DisplayMemberBinding="{Binding Director}"/>
-                    <GridViewColumn Header="Suất chiếu" DisplayMemberBinding="{Binding Ngay_gio_chieu}"/>
-                    <GridViewColumn Header="Giá vé" DisplayMemberBinding="{Binding Gia_ve}"/>
-                    <GridViewColumn Header="Năm phát hành" DisplayMemberBinding="{Binding Year}"/>
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <DataGrid
+            Grid.Row="2"
+            VerticalAlignment="Top"
+                ItemsSource="{Binding ShowingList}"
+                x:Name="TopFilmDataGrid"
+                Style="{StaticResource SearchResultStyle}"
+                ColumnHeaderStyle="{DynamicResource SearchResultHeader}"
+                RowStyle="{DynamicResource SearchResultRow}"
+                CellStyle="{DynamicResource SearchResultCell}">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn
+                    IsReadOnly="True"
+                    Width="80">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="5,0,0,0" Orientation="Horizontal" VerticalAlignment="Center">
+                                <Image Height="50" Source="{Binding Image}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn
+                    Binding="{Binding Name}"
+                    FontWeight="SemiBold"
+                    Header="Tên phim"
+                    IsReadOnly="True"
+                    Width="2*">
+
+                </DataGridTextColumn>
+                <DataGridTemplateColumn
+                    Header="Đạo diễn"
+                    IsReadOnly="True"
+                    Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <TextBlock VerticalAlignment="Center" Text="{Binding Director}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn
+                    Binding="{Binding Year}"
+                    Header="Năm phát hành"
+                    IsReadOnly="True"
+                    Width="*">
+
+                </DataGridTextColumn>
+                <DataGridTextColumn
+                    Binding="{Binding Genre}"
+                    Header="Thể loại"
+                    IsReadOnly="True"
+                    Width="*">
+
+                </DataGridTextColumn>
+                <DataGridTextColumn
+                    Binding="{Binding Rating}"
+                    Header="Điểm đánh giá"
+                    IsReadOnly="True"
+                    Width="*">
+
+                </DataGridTextColumn>
+                <DataGridTemplateColumn
+                    IsReadOnly="True"
+                    Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Style="{StaticResource DeleteFilmButton}" Command="{Binding DataContext.deleteItemCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}">
+                                    Đặt vé
+                                </Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
 
 
 
 
         <!-- Navigation Buttons -->
         <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
-            <Button x:Name="previousButton" Content="Previous" Click="previousButton_Click" Margin="5"/>
-            <Button x:Name="nextButton" Content="Next" Click="nextButton_Click" Margin="5"/>
+            <StackPanel  HorizontalAlignment="Center" Orientation="Horizontal">
+                <Button Style="{StaticResource PaginationButton}" Command="{Binding toPreviousPage}">
+                    <Icon:PackIconMaterial Kind="ChevronLeft"/>
+                </Button>
+                <WrapPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <Label FontWeight="SemiBold" Margin="10,0,0,0" FontSize="14" Foreground="White" Content="{Binding CurrentPage}"/>
+                    <Label FontWeight="SemiBold" Margin="0,0,10,0" FontSize="14" Foreground="White" Content="{Binding TotalPage}"/>
+                </WrapPanel>
+                <Button Style="{StaticResource PaginationButton}" Command="{Binding toNextPage}">
+                    <Icon:PackIconMaterial Kind="ChevronRight"/>
+                </Button>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Page>

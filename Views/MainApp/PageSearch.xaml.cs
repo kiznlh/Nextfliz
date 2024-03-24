@@ -49,5 +49,15 @@ namespace Nextfliz.Views.MainApp
         {
 
         }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            viewModel.onFilterSelected();
+        }
+
+        private void ComboBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+            viewModel.onSortSelected();
+        }
     }
 }

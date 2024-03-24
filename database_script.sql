@@ -16,7 +16,8 @@ CREATE TABLE [User] (
     password NVARCHAR(255),
     ho_ten NVARCHAR(100),
     ngay_sinh DATE,
-    gioi_tinh NVARCHAR(10)
+    gioi_tinh NVARCHAR(10),
+    role NVARCHAR(10)
 );
 
 CREATE TABLE Genre (
