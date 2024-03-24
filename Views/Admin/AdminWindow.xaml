@@ -6,9 +6,11 @@
         xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:local="clr-namespace:Nextfliz.Views.Admin"
-        
         mc:Ignorable="d"
-        Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        Height="450" Width="800" 
+        WindowState="Maximized"
+        ResizeMode="CanMinimize"
+        WindowStartupLocation="CenterScreen">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -50,7 +52,7 @@
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                             <Icon:PackIconMaterial Kind="TicketOutline"/>
                             <TextBlock Margin="5,0,0,0">
-                                Quản lí voucher
+                                Quản lí vé &amp; voucher
                             </TextBlock>
                         </StackPanel>
                     </Button>

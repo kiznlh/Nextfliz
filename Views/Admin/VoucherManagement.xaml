@@ -17,18 +17,15 @@
             Margin="20"
             Orientation="Vertical"
             >
-                <Grid Margin="0,0,0,20">
-                    
-                </Grid>
 
                 <Grid Margin="0,0,0,10">
-                    <Button  Margin="100,0,0,0" HorizontalAlignment="Left" Width="100" Height="38" Style="{StaticResource AddFilmButton}" Command="{Binding showAddPanel}">
+                    <Button  Margin="10,0,0,0" HorizontalAlignment="Left" Width="100" Height="38" Style="{StaticResource AddFilmButton}" Command="{Binding showAddPanel}">
                         <StackPanel Orientation="Horizontal">
                             <Icon:PackIconMaterial Kind="Plus"  Margin="0,0,5,0"/>
                             <TextBlock>Thêm</TextBlock>
                         </StackPanel>
                     </Button>
-                    <StackPanel Height="35" Margin="0,0,100,0" HorizontalAlignment="right" Orientation="Horizontal">
+                    <StackPanel Height="35" Margin="0,0,10,0" HorizontalAlignment="right" Orientation="Horizontal">
                         <Button Style="{StaticResource PaginationButton}" Command="{Binding toPreviousPage}">
                             <Icon:PackIconMaterial Kind="ChevronLeft"/>
                         </Button>
@@ -42,9 +39,10 @@
                     </StackPanel>
                 </Grid>
 
-                <WrapPanel Margin="100,0,100,0">
+                <WrapPanel Margin="10,0,10,0">
                     <DataGrid
                         x:Name="TopFilmDataGrid"
+                        MinHeight="150"
                         ItemsSource="{Binding showingList}"
                         Style="{StaticResource FilmListStyle}"
                         ColumnHeaderStyle="{DynamicResource FilmListHeader}"
@@ -83,6 +81,81 @@
                                                 <Icon:PackIconMaterial Kind="PencilOutline"/>
                                             </Button>
                                             <Button Style="{StaticResource DeleteFilmButton}" Command="{Binding DataContext.deleteItemCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}">
+                                                <Icon:PackIconMaterial Kind="DeleteOutline"/>
+                                            </Button>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </WrapPanel>
+
+                <Grid Margin="0,10,0,10">
+                    <Label FontWeight="SemiBold" FontSize="17" VerticalAlignment="Center" Margin="10,0,0,0">Danh sách vé đã được đặt:</Label>
+                    <StackPanel Height="35" Margin="0,0,10,0" HorizontalAlignment="right" Orientation="Horizontal">
+                        <Button Style="{StaticResource PaginationButton}" Command="{Binding toPreviousTicketPage}">
+                            <Icon:PackIconMaterial Kind="ChevronLeft"/>
+                        </Button>
+                        <WrapPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Label FontWeight="SemiBold" Margin="10,0,0,0" FontSize="14" Content="{Binding CurrentTicketPage}"/>
+                            <Label FontWeight="SemiBold" Margin="0,0,10,0" FontSize="14" Content="{Binding TotalTicketPage}"/>
+                        </WrapPanel>
+                        <Button Style="{StaticResource PaginationButton}" Command="{Binding toNextTicketPage}">
+                            <Icon:PackIconMaterial Kind="ChevronRight"/>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+                <WrapPanel Margin="10,0,10,0">
+                    <DataGrid
+                            ItemsSource="{Binding showingTicketList}"
+                            Style="{StaticResource FilmListStyle}"
+                            ColumnHeaderStyle="{DynamicResource FilmListHeader}"
+                            RowStyle="{DynamicResource FilmListRow}"
+                            CellStyle="{DynamicResource TopFilmCell}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn
+                                Binding="{Binding HoTen}"
+                                FontWeight="SemiBold"
+                                Header="Tên người dùng"
+                                IsReadOnly="True"
+                                Width="1.5*">
+                            </DataGridTextColumn>
+                            <DataGridTextColumn
+                                Binding="{Binding TenPhim}"
+                                FontWeight="SemiBold"
+                                Header="Phim đặt vé"
+                                IsReadOnly="True"
+                                Width="2*">
+                            </DataGridTextColumn>
+                            <DataGridTextColumn
+                                Binding="{Binding NgayDatVe}"
+                                FontWeight="SemiBold"
+                                Header="Ngày đặt"
+                                IsReadOnly="True"
+                                Width="*">
+                            </DataGridTextColumn>
+                            <DataGridTemplateColumn
+                                Header="Suất chiếu"
+                                IsReadOnly="True"
+                                Width="*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel VerticalAlignment="Center" Orientation="Vertical">
+                                            <TextBlock Text="{Binding NgayChieu}"/>
+                                            <TextBlock TextAlignment="Center" Text="{Binding GioChieu}"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn
+                                Header="Thao tác"
+                                IsReadOnly="True"
+                                Width="*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button Style="{StaticResource DeleteFilmButton}" Command="{Binding DataContext.deleteTicketCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}">
                                                 <Icon:PackIconMaterial Kind="DeleteOutline"/>
                                             </Button>
                                         </StackPanel>
