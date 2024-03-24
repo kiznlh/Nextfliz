@@ -404,6 +404,33 @@ namespace Nextfliz
                         totalLabels.Add(item.NgayDatVe.Date.ToString().Split(" ")[0]);
                     }
                 }
+                else if (totalChartType == 1)
+                {
+                    var query = context.SuatChieus
+                                .Where(x => x.MovieId == filmId)
+                               .Join(
+                                   context.Tickets,
+                                   suatChieu => suatChieu.SuatChieuId,
+                                   ticket => ticket.SuatChieuId,
+                                   (suatChieu, ticket) => new { SuatChieu = suatChieu, Ticket = ticket }
+                               )
+                               .AsEnumerable()
+                               .GroupBy(ti => ti.Ticket.NgayDatVe.HasValue ? GetStartOfWeek(ti.Ticket.NgayDatVe.Value) : DateTime.MinValue)
+                               .Select(group => new
+                               {
+                                   NgayDauTuan = group.Key,
+                                   NgayCuoiTuan = group.Key.AddDays(6),
+                                   TongGiaVeSuatChieu = group.Sum(x => x.SuatChieu.GiaVe),
+                                   TongGiaVeTicket = group.Sum(x => x.Ticket.GiaVe)
+                               })
+                               .ToList();
+                    foreach (var item in query)
+                    {
+                        totalDoanhThu.Values.Add((double)item.TongGiaVeSuatChieu);
+                        totalLoiNhuan.Values.Add((double)item.TongGiaVeTicket);
+                        totalLabels.Add(item.NgayDauTuan.Day.ToString() + "/" + item.NgayDauTuan.Month.ToString() + "/" + item.NgayDauTuan.Year.ToString() + "-" + item.NgayCuoiTuan.Day.ToString() + "/" + item.NgayCuoiTuan.Month.ToString() + "/" + item.NgayCuoiTuan.Year.ToString());
+                    }
+                }
                 else if (totalChartType == 2)
                 {
                     var query = from ticket in context.Tickets
@@ -491,6 +518,33 @@ namespace Nextfliz
                         shLabels.Add(item.NgayDatVe.Date.ToString().Split(" ")[0]);
                     }
                 }
+                else if (shChartType == 1)
+                {
+                    var query = context.SuatChieus
+                                .Where(x => x.MovieId == filmId && x.SuatChieuId == selectedComboboxItem.id)
+                                .Join(
+                                    context.Tickets,
+                                    suatChieu => suatChieu.SuatChieuId,
+                                    ticket => ticket.SuatChieuId,
+                                    (suatChieu, ticket) => new { SuatChieu = suatChieu, Ticket = ticket }
+                                )
+                                .AsEnumerable()
+                                .GroupBy(ti => ti.Ticket.NgayDatVe.HasValue ? GetStartOfWeek(ti.Ticket.NgayDatVe.Value) : DateTime.MinValue)
+                                .Select(group => new
+                                {
+                                    NgayDauTuan = group.Key,
+                                    NgayCuoiTuan = group.Key.AddDays(6),
+                                    TongGiaVeSuatChieu = group.Sum(x => x.SuatChieu.GiaVe),
+                                    TongGiaVeTicket = group.Sum(x => x.Ticket.GiaVe)
+                                })
+                                .ToList();
+                    foreach (var item in query)
+                    {
+                        shDoanhThu.Values.Add((double)item.TongGiaVeSuatChieu);
+                        shLoiNhuan.Values.Add((double)item.TongGiaVeTicket);
+                        shLabels.Add(item.NgayDauTuan.Day.ToString() + "/" + item.NgayDauTuan.Month.ToString() + "/" + item.NgayDauTuan.Year.ToString() + "-" + item.NgayCuoiTuan.Day.ToString() + "/" + item.NgayCuoiTuan.Month.ToString() + "/" + item.NgayCuoiTuan.Year.ToString());
+                    }
+                }
                 else if (shChartType == 2)
                 {
                     var query = from ticket in context.Tickets
@@ -542,6 +596,12 @@ namespace Nextfliz
                     }
                 }
             }
+        }
+
+        public DateTime GetStartOfWeek(DateTime date)
+        {
+            int diff = (7 + (date.DayOfWeek - DayOfWeek.Monday)) % 7;
+            return date.AddDays(-1 * diff).Date;
         }
     }
 }
