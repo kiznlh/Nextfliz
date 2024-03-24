@@ -82,7 +82,7 @@
                     Background="White"
                     VerticalAlignment="Center">
 
-                    <Button BorderThickness="0" Background="Transparent" Width="40" Height="40" Margin="0,0,10,0" HorizontalAlignment="Right">
+                    <Button BorderThickness="0" Background="Transparent" Width="40" Height="40" Margin="0,0,10,0" HorizontalAlignment="Right" Command="{Binding LogoutCommand}">
                         <Icon:PackIconMaterial Kind="Logout"/>
                     </Button>
                 </Grid>

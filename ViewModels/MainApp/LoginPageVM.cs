@@ -1,4 +1,5 @@
 ﻿using Microsoft.IdentityModel.Tokens;
+using Nextfliz.Views.Admin;
 using Nextfliz.Views.MainApp;
 using System;
 using System.Collections.Generic;
@@ -95,8 +96,17 @@ namespace Nextfliz.ViewModels.MainApp
                             UserSession.IsLoggedIn = true;
                             UserSession.username = UserName;
                             MessageBox.Show("Đăng nhập thành công");
-                            mainWindow.navigateToHome();
 
+                            if (saidUser.Role == "Admin")
+                            {
+                                AdminWindow admin = new AdminWindow();
+                                admin.Show();
+                                mainWindow.Close();
+                            }
+                            else
+                            {
+                                mainWindow.navigateToHome();
+                            }
                         }
                     }
                     else
