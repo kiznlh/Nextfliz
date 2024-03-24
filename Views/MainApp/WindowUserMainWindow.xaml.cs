@@ -10,6 +10,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 
@@ -53,7 +54,8 @@ namespace Nextfliz.Views.MainApp
             signUpPage = new SignUpPage();
 
             contentFrame.Navigate(mainPage);
-  
+            
+
         }
 
         private void Search_Click(object sender, RoutedEventArgs e)
@@ -70,7 +72,9 @@ namespace Nextfliz.Views.MainApp
         {
             if (UserSession.IsLoggedIn)
             {
-                userProfilePage = new UserProfilePage();
+                userProfilePage = new UserProfilePage(UserSession.username);
+                navigateToAPage(userProfilePage);
+                
 
             }
             else
@@ -124,5 +128,20 @@ namespace Nextfliz.Views.MainApp
         {
             goForward();
         }
+
+        public void RemoveOneBackPage()
+        {
+            if (contentFrame.NavigationService.CanGoBack)
+            {
+                contentFrame.NavigationService.RemoveBackEntry();
+            }
+        }
+        //public void LogJournalEntry()
+        //{
+        //    foreach (JournalEntry entry in contentFrame.NavigationService.Journal)
+        //    {
+        //        Console.WriteLine("Page URI: " + entry.Source);
+        //    }
+        //}
     }
 }
