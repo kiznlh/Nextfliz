@@ -23,15 +23,15 @@
         <!-- Login UI -->
         <StackPanel Grid.Row="1">
             <Label Foreground="Red" FontSize="20">Tên Đăng Nhập</Label>
-            <TextBox  x:Name="txtUsername" Margin="0 0 0 0" FontSize="20" />
+            <TextBox  x:Name="txtUsername" Margin="0 0 0 0" FontSize="20" Text="{Binding Username}"/>
         </StackPanel>
         <StackPanel Grid.Row="2">
             <Label Foreground="Red" FontSize="20">Mật Khẩu</Label>
-            <PasswordBox x:Name="txtPassword" Margin="0 0 0 0" FontSize="20"/>
+            <PasswordBox x:Name="txtPassword" Margin="0 0 0 0" FontSize="20" />
         </StackPanel>
        
-        <Button Grid.Row="3" Content="Đăng nhập" Click="Login_Click" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Red" FontWeight="Bold" BorderBrush="Red" BorderThickness="2"/>
-        <Button Grid.Row="4" Content="Chưa có tài khoản? Đăng kí!" Click="SignUp_Click" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Red"/>
+        <Button x:Name="loginButton" Grid.Row="3" Content="Đăng nhập" Command="LoginCommand" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Red" Background="Transparent" FontWeight="Bold" BorderBrush="Red" BorderThickness="2"/>
+        <Button x:Name="signUpButton" Grid.Row="4" Content="Chưa có tài khoản? Đăng kí!" Command="SignUpCommand" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Red" Background="Transparent"/>
 
     </Grid>
 </Page>
