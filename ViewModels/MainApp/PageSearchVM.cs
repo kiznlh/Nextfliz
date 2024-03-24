@@ -1,5 +1,6 @@
 ﻿using MaterialDesignThemes.Wpf.Internal;
 using Microsoft.EntityFrameworkCore;
+using Nextfliz.Views.MainApp;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -577,6 +578,14 @@ namespace Nextfliz.ViewModels.MainApp
                 var sortedList = new ObservableCollection<SearchData>(FilteredList.OrderBy(n => n.Rating));
 
                 paginateList(sortedList);
+            }
+        }
+
+        private void toBuyTicket(object obj)
+        {
+            if (obj is SearchData movieToBuy)
+            {
+                FilmDetailPage movie = new FilmDetailPage(movieToBuy.ID);
             }
         }
     }

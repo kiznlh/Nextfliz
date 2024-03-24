@@ -270,7 +270,7 @@ public partial class NextflizContext : DbContext
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.Username).HasName("PK__User__F3DBC5733D9E00F6");
+            entity.HasKey(e => e.Username).HasName("PK__User__F3DBC573807AD684");
 
             entity.ToTable("User");
 
@@ -287,6 +287,9 @@ public partial class NextflizContext : DbContext
             entity.Property(e => e.Password)
                 .HasMaxLength(255)
                 .HasColumnName("password");
+            entity.Property(e => e.Role)
+                .HasMaxLength(10)
+                .HasColumnName("role");
         });
 
         modelBuilder.Entity<Voucher>(entity =>
