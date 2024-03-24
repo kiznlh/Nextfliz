@@ -5,9 +5,9 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Nextfliz.Views.MainApp"
       mc:Ignorable="d" 
-      d:DesignHeight="500" d:DesignWidth="250"
-      Width="250"
-      Height="500"
+      d:DesignHeight="600" d:DesignWidth="400"
+      Width="400"
+      Height="600"
       Title="SignUpPage"
       >
     <Grid>
@@ -23,15 +23,15 @@
         <!-- Login UI -->
         <StackPanel Grid.Row="1">
             <Label Foreground="Red" FontSize="20">Tên Đăng Nhập</Label>
-            <TextBox  x:Name="txtUsername" Margin="0 0 0 0" FontSize="20" Text="{Binding Username}"/>
+            <TextBox  x:Name="txtUsername" Margin="0 0 0 0" FontSize="20" Text="{Binding UserName}"/>
         </StackPanel>
         <StackPanel Grid.Row="2">
             <Label Foreground="Red" FontSize="20">Mật Khẩu</Label>
-            <PasswordBox x:Name="txtPassword" Margin="0 0 0 0" FontSize="20" />
+            <PasswordBox x:Name="txtPassword" Margin="0 0 0 0" FontSize="20" PasswordChanged="PasswordBox_PasswordChanged"/>
         </StackPanel>
        
-        <Button x:Name="loginButton" Grid.Row="3" Content="Đăng nhập" Command="LoginCommand" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Red" Background="Transparent" FontWeight="Bold" BorderBrush="Red" BorderThickness="2"/>
-        <Button x:Name="signUpButton" Grid.Row="4" Content="Chưa có tài khoản? Đăng kí!" Command="SignUpCommand" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Red" Background="Transparent"/>
+        <Button x:Name="loginButton" Grid.Row="3" Content="Đăng nhập" Command="{Binding LoginCommand}" Width="auto" Height="auto" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Red" Background="Transparent" FontWeight="Bold" BorderBrush="Red"/>
+        <Button x:Name="signUpButton" Grid.Row="4" Content="Chưa có tài khoản? Đăng kí!" Command="{Binding SignUpCommand}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Red" Background="Transparent"/>
 
     </Grid>
 </Page>

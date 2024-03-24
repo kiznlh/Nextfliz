@@ -20,7 +20,7 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Image Source="/Resources/Images/avatar.png" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-            <TextBlock x:Name="userName" Text="{Binding username}" Foreground="BlanchedAlmond" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20,0,0,0"/>
+            <TextBlock x:Name="userName" Text="{Binding Username}" Foreground="BlanchedAlmond" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20,0,0,0"/>
         </StackPanel>
 
         
@@ -31,7 +31,7 @@
                 <DockPanel>
                     <StackPanel Orientation="Vertical">
                         <Label Foreground="BlanchedAlmond" FontSize="15" Padding="15">Ngày sinh</Label>
-                        <DatePicker DockPanel.Dock="Left" SelectedDate="{Binding birthday}" Width="300"></DatePicker>
+                        <DatePicker DockPanel.Dock="Left" SelectedDate="{Binding Birthday}" Width="300"></DatePicker>
                     </StackPanel>
                     <StackPanel>
                         <Label Foreground="BlanchedAlmond" FontSize="15" Padding="15">Giới tính</Label>

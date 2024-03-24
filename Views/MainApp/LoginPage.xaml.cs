@@ -29,8 +29,16 @@ namespace Nextfliz.Views.MainApp
             viewModel = new LoginPageVM();
 
             DataContext = viewModel;
+
         }
 
+        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (this.DataContext is LoginPageVM viewModel)
+            {
+                viewModel.SecurePassword = ((PasswordBox)sender).SecurePassword;
+            }
+        }
 
 
 
