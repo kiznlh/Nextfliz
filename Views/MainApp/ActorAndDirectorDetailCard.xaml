@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Nextfliz.Views.MainApp.ActorDetailCard"
+﻿<UserControl x:Class="Nextfliz.Views.MainApp.ActorAndDirectorDetailCard"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -19,7 +19,7 @@
         <Image Grid.Row="0" Source="{Binding ImageSource, ElementName=Card}" Stretch="UniformToFill" />
 
         <!-- Description -->
-        <TextBlock Grid.Row="1" Text="{Binding Text1,ElementName=Card}" TextWrapping="Wrap" FontSize="30" Foreground="White"/>
-        <TextBlock Grid.Row="2" Text="{Binding Text2,ElementName=Card}" TextWrapping="Wrap" Foreground="White"/>
+        <TextBlock Grid.Row="1" Text="{Binding HoTen,ElementName=Card}" TextWrapping="Wrap" FontSize="30" Foreground="White"/>
+        <TextBlock Grid.Row="2" Text="{Binding TieuSu,ElementName=Card}" TextWrapping="Wrap" Foreground="White"/>
     </Grid>
 </UserControl>
