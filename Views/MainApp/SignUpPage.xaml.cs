@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Nextfliz.ViewModels.MainApp;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,48 +21,28 @@ namespace Nextfliz.Views.MainApp
     /// </summary>
     public partial class SignUpPage : Page
     {
+        SignUpPageVM viewModel;
         public SignUpPage()
         {
             InitializeComponent();
+
+            viewModel = new SignUpPageVM();
+
+            DataContext = viewModel;
         }
 
-        private void Login_Click(object sender, RoutedEventArgs e)
+      
+        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            // Handle login logic here
-            // For example:
-            // string username = txtUsername.Text;
-            // string password = txtPassword.Password;
-            // Validate credentials and perform authentication
-
-            if (Application.Current.MainWindow is WindowUserMainWindow mainWindow)
-            {
-                mainWindow.goToLogin();
-            }
+            if (this.DataContext != null)
+            { ((dynamic)this.DataContext).SecurePassword = ((PasswordBox)sender).SecurePassword; }
         }
 
-        private void SignUp_Click(object sender, RoutedEventArgs e)
+        private void ConfirmPasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            // Navigate to the sign-up page
-            // For example:
-            // SignUpPage signUpPage = new SignUpPage();
-            // NavigationService.Navigate(signUpPage);
-
-            if (Application.Current.MainWindow is WindowUserMainWindow mainWindow)
-            {
-                //Update to database then move to login
-                mainWindow.goToLogin();
-            }
+            if (this.DataContext != null)
+            { ((dynamic)this.DataContext).ConfirmPassword = ((PasswordBox)sender).SecurePassword; }
         }
-
-
-        //private void Button_Click(object sender, RoutedEventArgs e)
-        //{
-        //    if (Application.Current.MainWindow is WindowUserMainWindow mainWindow)
-        //    {
-        //        mainWindow.TestNavi();
-        //    }
-        //}
     }
-
 
 }
