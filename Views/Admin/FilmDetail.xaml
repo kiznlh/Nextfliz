@@ -7,15 +7,14 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Nextfliz.Views.Admin"
       mc:Ignorable="d" 
-      d:DesignHeight="750" d:DesignWidth="800"
+      d:DesignHeight="1400" d:DesignWidth="800"
       Title="FilmDetail">
 
-    <StackPanel
-Margin="20,0,20,0">
+    <StackPanel Margin="20,0,20,0">
 
         <Border Grid.Column="1" Background="white" Margin="0,20,0,20" CornerRadius="5">
             <DockPanel LastChildFill="True" Margin="10">
-                <Rectangle DockPanel.Dock="Left" RadiusX="5" RadiusY="5" Width="250" Height="300">
+                <Rectangle DockPanel.Dock="Left" RadiusX="5" RadiusY="5" Width="250" Height="170">
                     <Rectangle.Fill>
                         <ImageBrush ImageSource="{Binding Image}"/>
                     </Rectangle.Fill>
@@ -190,7 +189,7 @@ Margin="20,0,20,0">
                         <Label FontSize="15" Content="Doanh thu &amp; lợi nhuận"/>
                         <WrapPanel HorizontalAlignment="Right" Margin="0,0,15,0">
                             <Label FontSize="14" Foreground="#6c6a6e">Hiển thị theo:</Label>
-                            <ComboBox x:Name="SalesCombobox" Width="100" Height="30" Style="{StaticResource CustomComboBoxStyle}">
+                            <ComboBox x:Name="SalesCombobox" Width="100" Height="30" Style="{StaticResource CustomComboBoxStyle}" SelectedIndex="{Binding totalChartType}" SelectionChanged="SalesCombobox_SelectionChanged">
                                 <ComboBoxItem Content="Ngày"/>
                                 <ComboBoxItem Content="Tuần"/>
                                 <ComboBoxItem Content="Tháng"/>
@@ -198,19 +197,50 @@ Margin="20,0,20,0">
                             </ComboBox>
                         </WrapPanel>
                     </Grid>
-                    <lvc:CartesianChart Height="200" Series="{Binding SeriesCollection}" LegendLocation="Bottom" >
+                    <lvc:CartesianChart Height="200" Series="{Binding totalChartSeries}" LegendLocation="Bottom" >
                         <lvc:CartesianChart.AxisY>
                             <lvc:Axis LabelFormatter="{Binding YFormatter}"></lvc:Axis>
                         </lvc:CartesianChart.AxisY>
                         <lvc:CartesianChart.AxisX>
-                            <lvc:Axis Labels="{Binding Labels}"></lvc:Axis>
+                            <lvc:Axis Labels="{Binding totalLabels}"></lvc:Axis>
                         </lvc:CartesianChart.AxisX>
                     </lvc:CartesianChart>
                 </StackPanel>
             </Border>
         </Grid>
-
-
-
+        <Border Background="white" CornerRadius="5" Margin="0,0,0,20">
+            <StackPanel Orientation="Vertical" Margin="10">
+                <Grid Margin="0,0,0,10">
+                    <Label FontSize="15" Content="Doanh thu &amp; lợi nhuận theo suất chiếu"/>
+                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,15,0">
+                        <ComboBox Width="170" Height="30" Margin="0,0,10,0" Style="{StaticResource CustomComboBoxStyle}" ItemsSource="{Binding suatChieuList}" SelectedItem="{Binding selectedComboboxItem}" SelectionChanged="ComboBox_SelectionChanged">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                        <TextBlock Text="{Binding date}" Margin="0,0,5,0" VerticalAlignment="Center"/>
+                                        <TextBlock Text="{Binding time}" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <Label FontSize="14" Foreground="#6c6a6e">Hiển thị theo:</Label>
+                        <ComboBox Width="100" Height="30" Style="{StaticResource CustomComboBoxStyle}" SelectedIndex="{Binding shChartType}" SelectionChanged="ComboBox_SelectionChanged">
+                            <ComboBoxItem Content="Ngày"/>
+                            <ComboBoxItem Content="Tuần"/>
+                            <ComboBoxItem Content="Tháng"/>
+                            <ComboBoxItem Content="Năm"/>
+                        </ComboBox>
+                    </WrapPanel>
+                </Grid>
+                <lvc:CartesianChart Height="200"  Series="{Binding shChartSeries}"  LegendLocation="Bottom" >
+                    <lvc:CartesianChart.AxisY>
+                        <lvc:Axis LabelFormatter="{Binding YFormatter}"></lvc:Axis>
+                    </lvc:CartesianChart.AxisY>
+                    <lvc:CartesianChart.AxisX>
+                        <lvc:Axis Labels="{Binding shLabels}"></lvc:Axis>
+                    </lvc:CartesianChart.AxisX>
+                </lvc:CartesianChart>
+            </StackPanel>
+        </Border>
     </StackPanel>
 </Page>

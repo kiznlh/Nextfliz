@@ -21,6 +21,7 @@ namespace Nextfliz
         public RelayCommand showAddPanel { get; set; }
         public RelayCommand deleteItemCommand { get; set; }
         public RelayCommand editItemCommand { get; set; }
+        public RelayCommand searchCharacterCommand { get; set; }
         public ObservableCollection<Object> showingList { get; set; } = new ObservableCollection<Object>();
         private int listSize;
         public int listType { get; set; }
@@ -51,16 +52,31 @@ namespace Nextfliz
                 }
             }
         }
+        private string searchText { get; set; }
+        public string SearchText
+        {
+            get { return searchText; }
+            set
+            {
+                if (searchText != value)
+                {
+                    searchText = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SearchText"));
+                }
+            }
+        }
 
         public const int numPerPage = 10;
         public CharacterManagementVM(int listType)
         {
             this.listType = listType;
+            searchText = "";
             toNextPage = new RelayCommand(nextPage, canPerform);
             toPreviousPage = new RelayCommand(previousPage, canPerform);
             showAddPanel = new RelayCommand(showAdd, canPerform);
             deleteItemCommand = new RelayCommand(deleteItem, canPerform);
             editItemCommand = new RelayCommand(editItem, canPerform);
+            searchCharacterCommand = new RelayCommand(searchFilm, canPerform);
 
             updateList();
         }
@@ -206,6 +222,52 @@ namespace Nextfliz
                 addPanel.ShowDialog();
             }
             updateList();
+        }
+
+        private void searchFilm(object value)
+        {
+            if (searchText.Length == 0)
+                return;
+
+            showingList.Clear();
+            using (var context = new NextflizContext())
+            {
+                if (listType == 0)
+                {
+                    var items = context.Actors.Where(e => e.HoTen.Contains(searchText)).ToList();
+                    listSize = items.Count();
+
+                    foreach (var item in items)
+                    {
+                        showingList.Add(item);
+                    }
+
+                    totalPage = "/ " + Math.Ceiling(items.Count() * 1.0 / numPerPage);
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("TotalPage"));
+
+                    currentPage = listSize != 0 ? 1 : 0;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CurrentPage"));
+                }
+                else
+                {
+                    var items = context.Directors.Where(e => e.HoTen.Contains(searchText)).ToList();
+                    listSize = items.Count();
+
+                    foreach (var item in items)
+                    {
+                        showingList.Add(item);
+                    }
+
+                    totalPage = "/ " + Math.Ceiling(items.Count() * 1.0 / numPerPage);
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("TotalPage"));
+
+                    currentPage = listSize != 0 ? 1 : 0;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CurrentPage"));
+                }
+                
+            }
+
+            currentPage = listSize != 0 ? 1 : 0;
         }
 
         private bool canPerform(object value)

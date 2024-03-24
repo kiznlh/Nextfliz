@@ -20,10 +20,17 @@ namespace Nextfliz.Views.Admin
     /// </summary>
     public partial class AdminDashboard : Page
     {
+        private AdminDashboardVM viewModel;
         public AdminDashboard()
         {
             InitializeComponent();
-            DataContext = new AdminDashboardVM();
+            viewModel = new AdminDashboardVM();
+            this.DataContext = viewModel;
+        }
+
+        private void SalesCombobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            viewModel.loadChartData();
         }
     }
 }

@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Nextfliz
@@ -187,13 +188,11 @@ namespace Nextfliz
             {
                 using (var dbContext = new NextflizContext())
                 {
-                    var suatChieuToDelete = dbContext.SuatChieus.Where(x => x.MovieId == movieToDelete.MovieId);
-                    dbContext.SuatChieus.RemoveRange(suatChieuToDelete);
-                    dbContext.SaveChanges();
-
-                    var rowsToDelete = dbContext.FilmCasts.Where(x => x.MovieId == movieToDelete.MovieId);
-                    dbContext.FilmCasts.RemoveRange(rowsToDelete);
-                    dbContext.Movies.Remove(movieToDelete);
+                    MessageBoxResult result = MessageBox.Show("Bạn có chắc chắn muốn tiếp tục? \n Lưu ý: xoá phim sẽ xóa luôn vé của khách hàng đã đặt ở phim này", "Xác nhận", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        Movie.DeleteMovie(movieToDelete.MovieId);
+                    }
 
                     dbContext.SaveChanges();
                 }

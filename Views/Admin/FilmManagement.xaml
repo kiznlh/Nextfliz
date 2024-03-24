@@ -67,6 +67,23 @@
                     RowStyle="{DynamicResource FilmListRow}"
                     CellStyle="{DynamicResource TopFilmCell}">
                         <DataGrid.Columns>
+                            <DataGridTemplateColumn
+                                    Header="Hình ảnh"
+                                    IsReadOnly="True"
+                                    Width="*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Rectangle Width="100" Height="68">
+                                                <Rectangle.Fill>
+                                                    <ImageBrush ImageSource="{Binding HinhAnh}"/>
+                                                </Rectangle.Fill>
+                                            </Rectangle>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
                             <DataGridTextColumn
                             Binding="{Binding TenPhim}"
                             FontWeight="SemiBold"
@@ -74,14 +91,7 @@
                             IsReadOnly="True"
                             Width="2*">
                             </DataGridTextColumn>
-                            <DataGridTextColumn
-                            Binding="{Binding director}"
-                            Header="Đạo diễn"
-                            IsReadOnly="True"
-                            Width="*">
 
-                            </DataGridTextColumn>
-                            
                             <DataGridTemplateColumn
                                 Header="Thao tác"
                                 IsReadOnly="True"
