@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 
 namespace Nextfliz.Views.MainApp
 {
@@ -37,25 +38,44 @@ namespace Nextfliz.Views.MainApp
                     voucherCard.PropertyChanged += VoucherCard_PropertyChanged;
                 }
             }
+
+            seatLayout.SeatClicked += SeatsLayoutControl_SeatClicked;
         }
+
+        private void SeatsLayoutControl_SeatClicked(object sender, string e)
+        {
+            string seatId = e;
+            viewModel.Seat = seatId;
+        }
+
+
         private void VoucherCard_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "VoucherChecked")
-            {
-                var card = sender as VoucherCard;
+            viewModel.voucherTotalPercent = 0;
+            viewModel.VoucherTotalValue = 0;
+            foreach (var card in viewModel.Vouchers)
+            {  
                 if (card.VoucherChecked)
                 {
-                    viewModel.VoucherTotalValue += card.VoucherValue;
+
+                    viewModel.voucherTotalPercent += card.VoucherValue;
+                    viewModel.VoucherTotalValue = -(viewModel.OriginalPrice * viewModel.voucherTotalPercent / 100);
+                    viewModel.FinalPrice = viewModel.OriginalPrice + viewModel.VoucherTotalValue;
                 }
             }
+
+
         }
         void setSeats()
         {
             seatLayout.reset();
             foreach (var seat in viewModel.BookedSeatList)
             {
+                viewModel.Seat = null;
                 seatLayout.SetSeatOccupied(seat);
             }
+            viewModel.setOriginalPrice();
+            viewModel.FinalPrice = viewModel.OriginalPrice;
         }
 
         private void timeStampComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -64,5 +84,5 @@ namespace Nextfliz.Views.MainApp
         }
     }
 
-    
+
 }

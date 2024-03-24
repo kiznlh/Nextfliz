@@ -130,6 +130,7 @@ namespace Nextfliz.ViewModels.MainApp
             set
             {
                 _seat = value;
+              
                 OnPropertyChanged(nameof(Seat));
             }
         }
@@ -137,10 +138,15 @@ namespace Nextfliz.ViewModels.MainApp
         private double _originalPrice;
         public double OriginalPrice
         {
-            get { return _originalPrice; }
+            get {
+               
+                return _originalPrice; 
+            }
             set
             {
+
                 _originalPrice = value;
+        
                 OnPropertyChanged(nameof(OriginalPrice));
             }
         }
@@ -148,30 +154,42 @@ namespace Nextfliz.ViewModels.MainApp
         private double _voucherValue;
         public double VoucherTotalValue
         {
-            get { return _voucherValue; }
+            get {
+                
+                return _voucherValue; 
+            }
             set
             {
                 _voucherValue = value;
+
+              
                 OnPropertyChanged(nameof(VoucherTotalValue));
             }
         }
+        public double voucherTotalPercent { set; get; }
 
         private double _finalPrice;
         public double FinalPrice
         {
-            get { return _finalPrice; } 
+            get {
+               
+                return _finalPrice; 
+            } 
             set
             {
                 _finalPrice = value;
+                
                 OnPropertyChanged(nameof(FinalPrice));
             }
         }
 
         public ObservableCollection<VoucherCard> Vouchers { get; set; }
+
+        public RelayCommand ConfirmCommand;
         public OrderTicketWindowVM(string movieID)
         {
             BookedSeatList = new ObservableCollection<string>();
-
+            
             Vouchers = new ObservableCollection<VoucherCard>();
             SuatChieu = new ObservableCollection<SuatChieu>();
 
@@ -203,10 +221,20 @@ namespace Nextfliz.ViewModels.MainApp
                 }
 
                 SelectedSuatChieuIndex = 0;
-
+                
                
             }
             getVouchers();
+
+            ConfirmCommand = new RelayCommand(confirm, canConfirm);
+        }
+        public bool canConfirm(object value)
+        {
+            return true;
+        }
+        public void confirm(object value)
+        {
+
         }
         public void getVouchers()
         {
@@ -216,7 +244,7 @@ namespace Nextfliz.ViewModels.MainApp
             using (var context = new NextflizContext())
             {
                 var voucherList = context.Vouchers.ToList();
-                
+               
                 foreach (var voucher in voucherList)
                 {
                     VoucherCard voucherCard = new VoucherCard()
@@ -246,6 +274,10 @@ namespace Nextfliz.ViewModels.MainApp
                 }
             }
 
+        }
+        public void setOriginalPrice()
+        {
+            OriginalPrice = (double)(SuatChieu[SelectedSuatChieuIndex].GiaVe ?? 0);
         }
     }
 }

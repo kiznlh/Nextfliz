@@ -89,13 +89,13 @@
             <TextBlock Foreground="Wheat" x:Name="seatName" FontSize="16" Text="{Binding Seat}" HorizontalAlignment="Right"/>
 
             <Label Foreground="Wheat" FontSize="16" Content="Giá gốc:"/>
-            <TextBlock Foreground="Wheat" x:Name="ogPrice" FontSize="16" Text="{Binding OriginalPrice}" HorizontalAlignment="Right"/>
+            <TextBlock Foreground="Wheat" x:Name="ogPrice" FontSize="16" Text="{Binding OriginalPrice, StringFormat={}{0}đ}" HorizontalAlignment="Right"/>
 
             <Label Foreground="Wheat" FontSize="16" Content="Giảm từ voucher:"/>
-            <TextBlock Foreground="Wheat" x:Name="voucherPrice" FontSize="16" Text="{Binding VoucherTotalValue}" HorizontalAlignment="Right"/>
+            <TextBlock Foreground="Wheat" x:Name="voucherPrice" FontSize="16" Text="{Binding VoucherTotalValue, StringFormat={}{0}đ}" HorizontalAlignment="Right"/>
 
             <Label Foreground="Wheat" FontSize="16" Content="Thành tiền:"/>
-            <TextBlock Foreground="Wheat" x:Name="finalPrice" FontSize="16" Text="{Binding FinalPrice}" HorizontalAlignment="Right"/>
+            <TextBlock Foreground="Wheat" x:Name="finalPrice" FontSize="16" Text="{Binding FinalPrice, StringFormat={}{0}đ}" HorizontalAlignment="Right"/>
         </UniformGrid>
 
         <Button x:Name="orderButton" Content="Xác nhận đặt vé" Grid.Row="4" Height="50" Width="400" Background="Transparent" FontSize="30" Foreground="LawnGreen" Margin="20"/>

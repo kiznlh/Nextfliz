@@ -23,22 +23,42 @@ namespace Nextfliz.Views.MainApp
             get { return (bool)GetValue(IsReadOnlyProperty); }
             set { SetValue(IsReadOnlyProperty, value); }
         }
+        private Grid lastClickedSeat = null;
 
         private void Seat_Click(object sender, MouseButtonEventArgs e)
         {
             Grid grid = sender as Grid;
             if (grid != null && grid.Background != Brushes.DarkRed && !IsReadOnly)
             {
-                grid.Background = grid.Background == Brushes.DarkGreen ? Brushes.DarkGoldenrod : Brushes.DarkGreen;
+           
+                if (lastClickedSeat != null)
+                {
+                    lastClickedSeat.Background = Brushes.DarkGoldenrod;
 
-                //get seatID
+                   
+                    if (grid == lastClickedSeat)
+                    {
+                        lastClickedSeat = null;
+                        SeatClicked?.Invoke(this, "");
+                        return;
+                    }
+                }
+
+ 
+                grid.Background = Brushes.DarkGreen;
+
+              
+                lastClickedSeat = grid;
+
+               
                 string seatId = grid.Name.Substring(0, 2);
 
-                string seatValue = grid.Tag as string;
-
-                SeatClicked?.Invoke(this, $"{seatId}");
+                // Invoke the SeatClicked event with the seatID
+                SeatClicked?.Invoke(this, seatId);
             }
         }
+
+
 
         public void SetSeatOccupied(string seatId)
         {

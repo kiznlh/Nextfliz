@@ -16,16 +16,16 @@
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
+            <!--<ColumnDefinition Width="1*"/>-->
         </Grid.ColumnDefinitions>
         <Image x:Name="voucherImage" Source="{Binding VoucherImage, ElementName=Voucher}" Stretch="Uniform" Grid.Column="0" HorizontalAlignment="Center"/>
         <TextBlock x:Name="voucherName" Text="{Binding VoucherName, ElementName=Voucher}" Grid.Column="1" FontSize="30" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <StackPanel Orientation="Horizontal" Grid.Column="2">
+        <!--<StackPanel Orientation="Horizontal" Grid.Column="2">
             <TextBlock Foreground="White" FontSize="16" TextWrapping="Wrap">Số lần sử dụng còn lại</TextBlock>
             <TextBlock x:Name="voucherNumber" Text="{Binding VoucherNumberOfUse, ElementName=Voucher}" Grid.Column="1" FontSize="30" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        </StackPanel>
+        </StackPanel>-->
         
-        <CheckBox x:Name="voucherCheckbox" IsChecked="{Binding VoucherChecked, ElementName=Voucher, Mode=TwoWay}" Checked="VoucherCheckbox_Checked" Grid.Column="3" Foreground="White" HorizontalAlignment="Center"  VerticalAlignment="Center">
+        <CheckBox x:Name="voucherCheckbox" IsChecked="{Binding VoucherChecked, ElementName=Voucher, Mode=TwoWay}" Checked="VoucherCheckbox_Checked" Grid.Column="2" Foreground="White" HorizontalAlignment="Center"  VerticalAlignment="Center">
             <CheckBox.LayoutTransform>
                 <ScaleTransform ScaleX="2" ScaleY="2" />
             </CheckBox.LayoutTransform>
