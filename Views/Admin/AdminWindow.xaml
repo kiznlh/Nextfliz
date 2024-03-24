@@ -75,15 +75,14 @@
                 DockPanel.Dock="Top"
                 BorderThickness="0,0,0,1"
                 BorderBrush="#f2f2f2">
-                <Grid
+                <Grid   
+                    Height="50"
                     Background="White"
                     VerticalAlignment="Center">
-                    
-                    <Ellipse HorizontalAlignment="Right" Width="30" Height="30" Margin="0,15,15,15">
-                        <Ellipse.Fill>
-                            <ImageBrush  ImageSource="https://cdn-icons-png.flaticon.com/512/9131/9131529.png"/>
-                        </Ellipse.Fill>
-                    </Ellipse>
+
+                    <Button BorderThickness="0" Background="Transparent" Width="40" Height="40" Margin="0,0,10,0" HorizontalAlignment="Right">
+                        <Icon:PackIconMaterial Kind="Logout"/>
+                    </Button>
                 </Grid>
                 <Border.Effect>
                     <DropShadowEffect Color="Gray" Direction="100" ShadowDepth="1" Opacity="0.5"/>

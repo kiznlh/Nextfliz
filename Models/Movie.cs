@@ -37,14 +37,12 @@ public partial class Movie
             {
                 SuatChieu.DeleteSuatChieu(suatChieu.SuatChieuId);
             }
-            dbContext.SaveChanges();
 
             var filmCasts = dbContext.FilmCasts.Where(f => f.MovieId == id);
             foreach (FilmCast filmCast in filmCasts)
             {
                 dbContext.FilmCasts.Remove(filmCast);
             }
-            dbContext.SaveChanges();
 
             var itemToDelete = dbContext.Movies.FirstOrDefault(a => a.MovieId == id);
             dbContext.Movies.Remove(itemToDelete);

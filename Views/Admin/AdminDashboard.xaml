@@ -43,13 +43,13 @@
                             Số phim đang bán vé
                         </TextBlock>
                         <TextBlock
+                            Text="{Binding sellingFilms}"
                         TextAlignment="Center"
                         DockPanel.Dock="Bottom"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Center"
                         FontSize="30"
                         FontWeight="Bold">
-                            32
                         </TextBlock>
                     </DockPanel>
                 </DockPanel>
@@ -79,13 +79,13 @@
                             Suất chiếu trong ngày
                         </TextBlock>
                         <TextBlock
+                            Text="{Binding sellingFilmsInDay}"
                         TextAlignment="Center"
                         DockPanel.Dock="Bottom"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Center"
                         FontSize="30"
                         FontWeight="Bold">
-                            108
                         </TextBlock>
                     </DockPanel>
                 </DockPanel>
@@ -116,13 +116,13 @@
                             Suất chiếu trong tuần
                         </TextBlock>
                         <TextBlock
+                            Text="{Binding sellingFilmsInWeek}"
                             TextAlignment="Center"
                             DockPanel.Dock="Bottom"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center"
                             FontSize="30"
                             FontWeight="Bold">
-                            864
                         </TextBlock>
                     </DockPanel>
                 </DockPanel>
@@ -152,13 +152,13 @@
                             Suất chiếu trong tháng
                         </TextBlock>
                         <TextBlock
+                            Text="{Binding sellingFilmsInMonth}"
                             TextAlignment="Center"
                             DockPanel.Dock="Bottom"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center"
                             FontSize="30"
                             FontWeight="Bold">
-                            3390
                         </TextBlock>
                     </DockPanel>
                 </DockPanel>
@@ -172,7 +172,7 @@
                     <Label FontSize="15" Foreground="#6c6a6e" Content="Doanh thu &amp; lợi nhuận"/>
                     <WrapPanel HorizontalAlignment="Right" Margin="0,0,15,0">
                         <Label FontSize="14" Foreground="#6c6a6e">Hiển thị theo:</Label>
-                        <ComboBox x:Name="SalesCombobox" Width="100" Height="30" Style="{StaticResource CustomComboBoxStyle}">
+                        <ComboBox x:Name="SalesCombobox" Width="100" Height="30" Style="{StaticResource CustomComboBoxStyle}" SelectedIndex="{Binding chartType}" SelectionChanged="SalesCombobox_SelectionChanged">
                             <ComboBoxItem Content="Ngày"/>
                             <ComboBoxItem Content="Tuần"/>
                             <ComboBoxItem Content="Tháng"/>
@@ -180,12 +180,12 @@
                         </ComboBox>
                     </WrapPanel>
                 </Grid>
-                <lvc:CartesianChart Height="200" Series="{Binding SeriesCollection}" LegendLocation="Bottom" >
+                <lvc:CartesianChart Height="200" Series="{Binding chartSeries}" LegendLocation="Bottom" >
                     <lvc:CartesianChart.AxisY>
                         <lvc:Axis LabelFormatter="{Binding YFormatter}"></lvc:Axis>
                     </lvc:CartesianChart.AxisY>
                     <lvc:CartesianChart.AxisX>
-                        <lvc:Axis Labels="{Binding Labels}"></lvc:Axis>
+                        <lvc:Axis Labels="{Binding labels}"></lvc:Axis>
                     </lvc:CartesianChart.AxisX>
                 </lvc:CartesianChart>
             </StackPanel>
@@ -212,7 +212,7 @@
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                        <Image Height="50" Source="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcThq0GNDOwqP8p58fBFIBQoaxqg2MwHHSQ0aVebJ0z5PkgQ-_Hg"/>
+                                        <Image Height="50" Source="{Binding image}"/>
                                     </StackPanel>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
@@ -232,23 +232,16 @@
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                        <Ellipse Stroke="Black" StrokeThickness="0.3" HorizontalAlignment="Right" Width="30" Height="30" Margin="0,0,5,0">
+                                        <Ellipse HorizontalAlignment="Right" Width="30" Height="30" Margin="0,0,5,0">
                                             <Ellipse.Fill>
-                                                <ImageBrush Stretch="UniformToFill" ImageSource="https://variety.com/wp-content/uploads/2022/01/jon-watts.jpg"/>
+                                                <ImageBrush Stretch="UniformToFill" ImageSource="{Binding directorImage}"/>
                                             </Ellipse.Fill>
                                         </Ellipse>
-                                        <TextBlock VerticalAlignment="Center" Text="{Binding director}"/>
+                                        <TextBlock VerticalAlignment="Center" Text="{Binding directorName}"/>
                                     </StackPanel>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-                        <DataGridTextColumn
-                            Binding="{Binding date}"
-                            Header="Ngày chiếu"
-                            IsReadOnly="True"
-                            Width="*">
-
-                        </DataGridTextColumn>
                         <DataGridTextColumn
                             Binding="{Binding sell}"
                             Header="Vé bán"

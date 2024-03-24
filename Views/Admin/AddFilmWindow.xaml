@@ -165,53 +165,67 @@
                     <Grid Margin="0,0,10,10">
                         <Label VerticalAlignment="Center" FontWeight="SemiBold">Danh sách diễn viên:</Label>
                     </Grid>
-                    <WrapPanel Margin="10,0,10,0">
-                        <DataGrid
-                            ItemsSource="{Binding actorList}"
-                            Style="{StaticResource FilmListStyle}"
-                            ColumnHeaderStyle="{DynamicResource FilmListHeader}"
-                            RowStyle="{DynamicResource FilmListRow}"
-                            CellStyle="{DynamicResource TopFilmCell}">
-                            <DataGrid.Columns>
-                                <DataGridTemplateColumn
-                                    Header="Hình ảnh"
-                                    IsReadOnly="True"
-                                    Width="*">
-                                    <DataGridTemplateColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Image Height="70" Source="{Binding HinhAnh}"/>
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </DataGridTemplateColumn.CellTemplate>
-                                </DataGridTemplateColumn>
-                                <DataGridTextColumn
-                                    Binding="{Binding HoTen}"
-                                    FontWeight="SemiBold"
-                                    Header="Họ tên"
-                                    IsReadOnly="True"
-                                    Width="2*">
-                                </DataGridTextColumn>
-                                <DataGridTemplateColumn
-                                    Header="Thao tác"
-                                    IsReadOnly="True"
-                                    Width="*">
-                                    <DataGridTemplateColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Button Style="{StaticResource EditFilmButton}" Command="{Binding DataContext.addActorCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}">
-                                                    <Icon:PackIconMaterial Kind="Plus"/>
-                                                </Button>
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </DataGridTemplateColumn.CellTemplate>
-                                </DataGridTemplateColumn>
-                            </DataGrid.Columns>
-                        </DataGrid>
-                    </WrapPanel>
+                    <StackPanel
+                        HorizontalAlignment="Center"
+                        Margin="0,0,0,10"
+                        Orientation="Horizontal">
+                        <Label VerticalAlignment="Center" FontSize="16">Tìm kiếm theo tên:</Label>
+                        <Border BorderThickness="1" BorderBrush="Gray" Padding="5,0,5,0">
+                            <TextBox Width="300" BorderThickness="0" VerticalAlignment="Center" Text="{Binding SearchText}"/>
+                        </Border>
+                        <Button Margin="5,0,0,0" Style="{StaticResource SearchFilmButton}"  Command="{Binding searchCharacterCommand}">
+                            <Icon:PackIconMaterial Kind="Magnify" Foreground="Black"/>
+                        </Button>
+                    </StackPanel>
+                    <ScrollViewer Height="300">
+                        <WrapPanel Margin="10,0,10,0">
+                            <DataGrid
+                                ItemsSource="{Binding actorList}"
+                                Style="{StaticResource FilmListStyle}"
+                                ColumnHeaderStyle="{DynamicResource FilmListHeader}"
+                                RowStyle="{DynamicResource FilmListRow}"
+                                CellStyle="{DynamicResource TopFilmCell}">
+                                <DataGrid.Columns>
+                                    <DataGridTemplateColumn
+                                        Header="Hình ảnh"
+                                        IsReadOnly="True"
+                                        Width="*">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Image Height="70" Source="{Binding HinhAnh}"/>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTextColumn
+                                        Binding="{Binding HoTen}"
+                                        FontWeight="SemiBold"
+                                        Header="Họ tên"
+                                        IsReadOnly="True"
+                                        Width="2*">
+                                    </DataGridTextColumn>
+                                    <DataGridTemplateColumn
+                                        Header="Thao tác"
+                                        IsReadOnly="True"
+                                        Width="*">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Button Style="{StaticResource EditFilmButton}" Command="{Binding DataContext.addActorCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}">
+                                                        <Icon:PackIconMaterial Kind="Plus"/>
+                                                    </Button>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </WrapPanel>
+                    </ScrollViewer>
                 </WrapPanel>
 
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,10">
                     <Button HorizontalAlignment="Right" Width="100" Height="38" Style="{StaticResource AddFilmButton}" Command="{Binding addFilmCommand}">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock>Lưu</TextBlock>

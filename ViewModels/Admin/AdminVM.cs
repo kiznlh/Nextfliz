@@ -183,7 +183,7 @@ namespace Nextfliz
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
             string text = (string)value;
-            string pattern = @"^[1-9]\d*$";
+            string pattern = @"^[0-9]\d*$";
             if (text == null || text.Length == 0)
             {
                 return new ValidationResult(false, "Nội dung này không được để trống");

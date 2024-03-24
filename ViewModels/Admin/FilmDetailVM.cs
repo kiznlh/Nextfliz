@@ -177,8 +177,17 @@ namespace Nextfliz
                 }
             }
         }
-        public SeriesCollection SeriesCollection { get; set; }
-        public string[] Labels { get; set; }
+        public int totalChartType { get; set; } = 0;
+        public SeriesCollection totalChartSeries { get; set; }
+        public LineSeries totalDoanhThu { get; set; }
+        public LineSeries totalLoiNhuan { get; set; }
+        public ObservableCollection<string> totalLabels { get; set; }
+        public SuatChieuItem selectedComboboxItem {  get; set; }
+        public int shChartType { get; set; } = 0;
+        public SeriesCollection shChartSeries { get; set; }
+        public ColumnSeries shDoanhThu { get; set; }
+        public ColumnSeries shLoiNhuan { get; set; }
+        public ObservableCollection<string> shLabels { get; set; }
         public Func<double, string> YFormatter { get; set; }
         public RelayCommand editFilmCommand { get; set; }
         public RelayCommand addSuatChieuCommand { get; set; }
@@ -196,22 +205,42 @@ namespace Nextfliz
             editSuatChieuCommand = new RelayCommand(editSuatChieu, canPerform);
             deleteSuatChieuCommand = new RelayCommand(deleteSuatChieu, canPerform);
 
-            SeriesCollection = new SeriesCollection
+            totalChartSeries = new SeriesCollection();
+            totalLabels = new ObservableCollection<string>();
+            totalDoanhThu = new LineSeries
             {
-                new LineSeries
-                {
-                    Title = "Doanh thu",
-                    Values = new ChartValues<double> { 100432424, 60342424, 50234234, 2024230 ,4124242 }
-                },
-                new LineSeries
-                {
-                    Title = "Lợi nhuận",
-                    Values = new ChartValues<double> { 232424, 50342424, 30234234, 1024230 ,524242 }
-                }
+                Title = "Doanh thu",
+                Values = new ChartValues<double>()
+            };
+            totalLoiNhuan = new LineSeries
+            {
+                Title = "Lợi nhuận",
+                Values = new ChartValues<double>()
             };
 
+            totalChartSeries.Add(totalDoanhThu);
+            totalChartSeries.Add(totalLoiNhuan);
+            loadTotalChartData();
+
+            shChartSeries = new SeriesCollection();
+            shLabels = new ObservableCollection<string>();
+            shDoanhThu = new ColumnSeries
+            {
+                Title = "Doanh thu",
+                Values = new ChartValues<double>()
+            };
+            shLoiNhuan = new ColumnSeries
+            {
+                Title = "Lợi nhuận",
+                Values = new ChartValues<double>()
+            };
+
+            shChartSeries.Add(shDoanhThu);
+            shChartSeries.Add(shLoiNhuan);
+            selectedComboboxItem = suatChieuList[0];
+            loadSHChartData();
+
             YFormatter = value => value.ToString("C");
-            Labels = new[] { "Jan", "Feb", "Mar", "Apr", "May" };
             this.filmId = filmId;
         }
 
@@ -339,6 +368,240 @@ namespace Nextfliz
         private bool canPerform(object value)
         {
             return true;
+        }
+
+        public void loadTotalChartData()
+        {
+            totalDoanhThu.Values.Clear();
+            totalLoiNhuan.Values.Clear();
+            totalLabels.Clear();
+            using (var context = new NextflizContext())
+            {
+                if (totalChartType == 0)
+                {
+                    var query = context.SuatChieus
+                                    .Where(x => x.MovieId == filmId)
+                                    .Join(
+                                        context.Tickets,
+                                        suatChieu => suatChieu.SuatChieuId,
+                                        ticket => ticket.SuatChieuId,
+                                        (suatChieu, ticket) => new { SuatChieu = suatChieu, Ticket = ticket }
+                                    )
+                                    .GroupBy(
+                                        x => x.Ticket.NgayDatVe.HasValue ? x.Ticket.NgayDatVe.Value.Date : DateTime.MinValue
+                                    )
+                                    .Select(group => new
+                                    {
+                                        NgayDatVe = group.Key,
+                                        TongGiaVeSuatChieu = group.Sum(x => x.SuatChieu.GiaVe),
+                                        TongGiaVeTicket = group.Sum(x => x.Ticket.GiaVe)
+                                    })
+                                    .ToList();
+                    foreach (var item in query)
+                    {
+                        totalDoanhThu.Values.Add((double)item.TongGiaVeSuatChieu);
+                        totalLoiNhuan.Values.Add((double)item.TongGiaVeTicket);
+                        totalLabels.Add(item.NgayDatVe.Date.ToString().Split(" ")[0]);
+                    }
+                }
+                else if (totalChartType == 1)
+                {
+                    var query = context.SuatChieus
+                                .Where(x => x.MovieId == filmId)
+                               .Join(
+                                   context.Tickets,
+                                   suatChieu => suatChieu.SuatChieuId,
+                                   ticket => ticket.SuatChieuId,
+                                   (suatChieu, ticket) => new { SuatChieu = suatChieu, Ticket = ticket }
+                               )
+                               .AsEnumerable()
+                               .GroupBy(ti => ti.Ticket.NgayDatVe.HasValue ? GetStartOfWeek(ti.Ticket.NgayDatVe.Value) : DateTime.MinValue)
+                               .Select(group => new
+                               {
+                                   NgayDauTuan = group.Key,
+                                   NgayCuoiTuan = group.Key.AddDays(6),
+                                   TongGiaVeSuatChieu = group.Sum(x => x.SuatChieu.GiaVe),
+                                   TongGiaVeTicket = group.Sum(x => x.Ticket.GiaVe)
+                               })
+                               .ToList();
+                    foreach (var item in query)
+                    {
+                        totalDoanhThu.Values.Add((double)item.TongGiaVeSuatChieu);
+                        totalLoiNhuan.Values.Add((double)item.TongGiaVeTicket);
+                        totalLabels.Add(item.NgayDauTuan.Day.ToString() + "/" + item.NgayDauTuan.Month.ToString() + "/" + item.NgayDauTuan.Year.ToString() + "-" + item.NgayCuoiTuan.Day.ToString() + "/" + item.NgayCuoiTuan.Month.ToString() + "/" + item.NgayCuoiTuan.Year.ToString());
+                    }
+                }
+                else if (totalChartType == 2)
+                {
+                    var query = from ticket in context.Tickets
+                                join suatChieu in context.SuatChieus
+                                on ticket.SuatChieuId equals suatChieu.SuatChieuId
+                                where ticket.NgayDatVe.HasValue && ticket.MovieId == filmId
+                                group new { ticket, suatChieu } by new
+                                {
+                                    Year = ticket.NgayDatVe.Value.Year,
+                                    Month = ticket.NgayDatVe.Value.Month
+                                } into grouped
+                                orderby grouped.Key.Year, grouped.Key.Month
+                                select new
+                                {
+                                    Year = grouped.Key.Year,
+                                    Month = grouped.Key.Month,
+                                    TongGiaVeTicket = grouped.Sum(x => x.ticket.GiaVe),
+                                    TongGiaVeSuatChieu = grouped.Sum(x => x.suatChieu.GiaVe)
+                                };
+                    foreach (var item in query)
+                    {
+                        totalDoanhThu.Values.Add((double)item.TongGiaVeSuatChieu);
+                        totalLoiNhuan.Values.Add((double)item.TongGiaVeTicket);
+                        totalLabels.Add(item.Month.ToString() + "/" + item.Year.ToString());
+                    }
+                }
+                else if (totalChartType == 3)
+                {
+                    var query = from ticket in context.Tickets
+                                join suatChieu in context.SuatChieus
+                                on ticket.SuatChieuId equals suatChieu.SuatChieuId
+                                where ticket.NgayDatVe.HasValue && ticket.MovieId == filmId
+                                group new { ticket, suatChieu } by new
+                                {
+                                    Year = ticket.NgayDatVe.Value.Year
+                                } into grouped
+                                orderby grouped.Key.Year
+                                select new
+                                {
+                                    Year = grouped.Key.Year,
+                                    TongGiaVeTicket = grouped.Sum(x => x.ticket.GiaVe),
+                                    TongGiaVeSuatChieu = grouped.Sum(x => x.suatChieu.GiaVe)
+                                };
+                    foreach (var item in query)
+                    {
+                        totalDoanhThu.Values.Add((double)item.TongGiaVeSuatChieu);
+                        totalLoiNhuan.Values.Add((double)item.TongGiaVeTicket);
+                        totalLabels.Add(item.Year.ToString());
+
+                    }
+                }
+            }
+        }
+        public void loadSHChartData()
+        {
+            shDoanhThu.Values.Clear();
+            shLoiNhuan.Values.Clear();
+            shLabels.Clear();
+            using (var context = new NextflizContext())
+            {
+                if (shChartType == 0)
+                {
+                    var query = context.SuatChieus
+                                    .Where(x => x.MovieId == filmId && x.SuatChieuId == selectedComboboxItem.id)
+                                    .Join(
+                                        context.Tickets,
+                                        suatChieu => suatChieu.SuatChieuId,
+                                        ticket => ticket.SuatChieuId,
+                                        (suatChieu, ticket) => new { SuatChieu = suatChieu, Ticket = ticket }
+                                    )
+                                    .GroupBy(
+                                        x => x.Ticket.NgayDatVe.HasValue ? x.Ticket.NgayDatVe.Value.Date : DateTime.MinValue
+                                    )
+                                    .Select(group => new
+                                    {
+                                        NgayDatVe = group.Key,
+                                        TongGiaVeSuatChieu = group.Sum(x => x.SuatChieu.GiaVe),
+                                        TongGiaVeTicket = group.Sum(x => x.Ticket.GiaVe)
+                                    })
+                                    .ToList();
+                    foreach (var item in query)
+                    {
+                        shDoanhThu.Values.Add((double)item.TongGiaVeSuatChieu);
+                        shLoiNhuan.Values.Add((double)item.TongGiaVeTicket);
+                        shLabels.Add(item.NgayDatVe.Date.ToString().Split(" ")[0]);
+                    }
+                }
+                else if (shChartType == 1)
+                {
+                    var query = context.SuatChieus
+                                .Where(x => x.MovieId == filmId && x.SuatChieuId == selectedComboboxItem.id)
+                                .Join(
+                                    context.Tickets,
+                                    suatChieu => suatChieu.SuatChieuId,
+                                    ticket => ticket.SuatChieuId,
+                                    (suatChieu, ticket) => new { SuatChieu = suatChieu, Ticket = ticket }
+                                )
+                                .AsEnumerable()
+                                .GroupBy(ti => ti.Ticket.NgayDatVe.HasValue ? GetStartOfWeek(ti.Ticket.NgayDatVe.Value) : DateTime.MinValue)
+                                .Select(group => new
+                                {
+                                    NgayDauTuan = group.Key,
+                                    NgayCuoiTuan = group.Key.AddDays(6),
+                                    TongGiaVeSuatChieu = group.Sum(x => x.SuatChieu.GiaVe),
+                                    TongGiaVeTicket = group.Sum(x => x.Ticket.GiaVe)
+                                })
+                                .ToList();
+                    foreach (var item in query)
+                    {
+                        shDoanhThu.Values.Add((double)item.TongGiaVeSuatChieu);
+                        shLoiNhuan.Values.Add((double)item.TongGiaVeTicket);
+                        shLabels.Add(item.NgayDauTuan.Day.ToString() + "/" + item.NgayDauTuan.Month.ToString() + "/" + item.NgayDauTuan.Year.ToString() + "-" + item.NgayCuoiTuan.Day.ToString() + "/" + item.NgayCuoiTuan.Month.ToString() + "/" + item.NgayCuoiTuan.Year.ToString());
+                    }
+                }
+                else if (shChartType == 2)
+                {
+                    var query = from ticket in context.Tickets
+                                join suatChieu in context.SuatChieus
+                                on ticket.SuatChieuId equals suatChieu.SuatChieuId
+                                where ticket.NgayDatVe.HasValue && ticket.MovieId == filmId && ticket.SuatChieuId == selectedComboboxItem.id
+                                group new { ticket, suatChieu } by new
+                                {
+                                    Year = ticket.NgayDatVe.Value.Year,
+                                    Month = ticket.NgayDatVe.Value.Month
+                                } into grouped
+                                orderby grouped.Key.Year, grouped.Key.Month
+                                select new
+                                {
+                                    Year = grouped.Key.Year,
+                                    Month = grouped.Key.Month,
+                                    TongGiaVeTicket = grouped.Sum(x => x.ticket.GiaVe),
+                                    TongGiaVeSuatChieu = grouped.Sum(x => x.suatChieu.GiaVe)
+                                };
+                    foreach (var item in query)
+                    {
+                        shDoanhThu.Values.Add((double)item.TongGiaVeSuatChieu);
+                        shLoiNhuan.Values.Add((double)item.TongGiaVeTicket);
+                        shLabels.Add(item.Month.ToString() + "/" + item.Year.ToString());
+                    }
+                }
+                else if (shChartType == 3)
+                {
+                    var query = from ticket in context.Tickets
+                                join suatChieu in context.SuatChieus
+                                on ticket.SuatChieuId equals suatChieu.SuatChieuId
+                                where ticket.NgayDatVe.HasValue && ticket.MovieId == filmId && ticket.SuatChieuId == selectedComboboxItem.id
+                                group new { ticket, suatChieu } by new
+                                {
+                                    Year = ticket.NgayDatVe.Value.Year
+                                } into grouped
+                                orderby grouped.Key.Year
+                                select new
+                                {
+                                    Year = grouped.Key.Year,
+                                    TongGiaVeTicket = grouped.Sum(x => x.ticket.GiaVe),
+                                    TongGiaVeSuatChieu = grouped.Sum(x => x.suatChieu.GiaVe)
+                                };
+                    foreach (var item in query)
+                    {
+                        shDoanhThu.Values.Add((double)item.TongGiaVeSuatChieu);
+                        shLoiNhuan.Values.Add((double)item.TongGiaVeTicket);
+                        shLabels.Add(item.Year.ToString());
+                    }
+                }
+            }
+        }
+
+        public DateTime GetStartOfWeek(DateTime date)
+        {
+            int diff = (7 + (date.DayOfWeek - DayOfWeek.Monday)) % 7;
+            return date.AddDays(-1 * diff).Date;
         }
     }
 }

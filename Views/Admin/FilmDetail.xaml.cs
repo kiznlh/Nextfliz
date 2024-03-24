@@ -20,10 +20,22 @@ namespace Nextfliz.Views.Admin
     /// </summary>
     public partial class FilmDetail : Page
     {
+        FilmDetailVM viewModel;
         public FilmDetail(string filmId)
         {
             InitializeComponent();
-            DataContext = new FilmDetailVM(filmId);
+            viewModel = new FilmDetailVM(filmId);
+            this.DataContext = viewModel;
+        }
+
+        private void SalesCombobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            viewModel.loadTotalChartData();
+        }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            viewModel.loadSHChartData();
         }
     }
 }

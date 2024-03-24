@@ -136,11 +136,24 @@ namespace Nextfliz
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ChosenDirector"));
             }
         }
-
+        private string searchText { get; set; }
+        public string SearchText
+        {
+            get { return searchText; }
+            set
+            {
+                if (searchText != value)
+                {
+                    searchText = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SearchText"));
+                }
+            }
+        }
         public ObservableCollection<Actor> actorList { get; set; } = new ObservableCollection<Actor>();
         public ObservableCollection<Actor> chosenActors { get; set; } = new ObservableCollection<Actor>();
         public RelayCommand addActorCommand { get; set; }
         public RelayCommand removeActorCommand { get; set; }
+        public RelayCommand searchCharacterCommand { get; set; }
         public RelayCommand addFilmCommand { get; set; }
         private AddFilmWindow window;
         public AddFilmVM(AddFilmWindow window, string id)
@@ -155,8 +168,9 @@ namespace Nextfliz
             this.id = id;
             addActorCommand = new RelayCommand(chooseActor, canPerform);
             removeActorCommand = new RelayCommand(removeActor, canPerform);
-            
-            
+            searchCharacterCommand = new RelayCommand(searchFilm, canPerform);
+
+
             if (id.Length != 0)
             {
                 loadDataToEdit(id);
@@ -273,6 +287,23 @@ namespace Nextfliz
                 actorList.Remove(actorToAdd);
                 chosenActors.Add(actorToAdd);
             }
+            using (var context = new NextflizContext())
+            {
+                var filmCastsToRemove = context.FilmCasts
+                                                .Where(fc => fc.MovieId == id)
+                                                .ToList();
+
+                context.FilmCasts.RemoveRange(filmCastsToRemove);
+                context.SaveChanges();
+
+                foreach (Actor actor in chosenActors)
+                {
+                    FilmCast newItem = new FilmCast();
+                    newItem.ActorId = actor.ActorId;
+                    newItem.MovieId = id;
+                    context.FilmCasts.Add(newItem);
+                }
+            }
         }
 
         private void removeActor(object obj)
@@ -281,6 +312,23 @@ namespace Nextfliz
             {
                 chosenActors.Remove(actorToRemove);
                 actorList.Add(actorToRemove);
+            }
+            using (var context = new NextflizContext())
+            {
+                var filmCastsToRemove = context.FilmCasts
+                                                .Where(fc => fc.MovieId == id)
+                                                .ToList();
+
+                context.FilmCasts.RemoveRange(filmCastsToRemove);
+                context.SaveChanges();
+
+                foreach (Actor actor in chosenActors)
+                {
+                    FilmCast newItem = new FilmCast();
+                    newItem.ActorId = actor.ActorId;
+                    newItem.MovieId = id;
+                    context.FilmCasts.Add(newItem);
+                }
             }
         }
 
@@ -358,6 +406,23 @@ namespace Nextfliz
             window.Close();
         }
 
+        private void searchFilm(object value)
+        {
+            if (searchText.Length == 0)
+                return;
+
+            actorList.Clear();
+            using (var context = new NextflizContext())
+            {
+                var items = context.Actors.Where(actor => !context.FilmCasts.Any(fc => fc.MovieId == id && fc.ActorId == actor.ActorId)).Where(e => e.HoTen.Contains(searchText)).ToList();
+
+                foreach (var item in items)
+                {
+                    actorList.Add(item);
+                }
+
+            }
+        }
         private bool canPerform(object value)
         {
             return true;
