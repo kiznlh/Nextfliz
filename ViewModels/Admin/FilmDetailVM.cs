@@ -237,7 +237,7 @@ namespace Nextfliz
 
             shChartSeries.Add(shDoanhThu);
             shChartSeries.Add(shLoiNhuan);
-            selectedComboboxItem = suatChieuList[0];
+            selectedComboboxItem = suatChieuList.Count > 0? suatChieuList[0] : null;
             loadSHChartData();
 
             YFormatter = value => value.ToString("C");
@@ -486,6 +486,8 @@ namespace Nextfliz
         }
         public void loadSHChartData()
         {
+            if (selectedComboboxItem == null)
+                return;
             shDoanhThu.Values.Clear();
             shLoiNhuan.Values.Clear();
             shLabels.Clear();
