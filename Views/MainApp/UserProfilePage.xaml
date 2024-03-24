@@ -5,9 +5,9 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Nextfliz.Views.MainApp"
       mc:Ignorable="d" 
-      d:DesignHeight="700" d:DesignWidth="600"
+      d:DesignHeight="800" d:DesignWidth="700"
       
-      Width="600"
+      Width="700" Height="800"
       Title="UserProfilePage">
 
     <Grid>
@@ -20,7 +20,7 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Image Source="/Resources/Images/avatar.png" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-            <TextBlock x:Name="userName" Text="{Binding Username}" Foreground="BlanchedAlmond" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20,0,0,0"/>
+            <TextBox x:Name="userName" Text="{Binding HoTen}" Foreground="BlanchedAlmond" Background="Transparent" BorderThickness="0" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20,0,0,0"/>
         </StackPanel>
 
         
@@ -33,15 +33,15 @@
                         <Label Foreground="BlanchedAlmond" FontSize="15" Padding="15">Ngày sinh</Label>
                         <DatePicker DockPanel.Dock="Left" SelectedDate="{Binding Birthday}" Width="300"></DatePicker>
                     </StackPanel>
-                    <StackPanel>
+                    <StackPanel Margin="30,0,0,0">
                         <Label Foreground="BlanchedAlmond" FontSize="15" Padding="15">Giới tính</Label>
-                        <ComboBox DockPanel.Dock="Right" SelectedItem="{Binding Gender}" Width="50">
-                            <ComboBoxItem Content="Nam" Foreground="BlanchedAlmond"/>
-                            <ComboBoxItem Content="Nữ" Foreground="BlanchedAlmond"/>
+                        <ComboBox DockPanel.Dock="Right" SelectedIndex="{Binding Gender}" Width="100" Height="auto">
+                            <ComboBoxItem Content="Nam" Foreground="Black"/>
+                            <ComboBoxItem Content="Nữ" Foreground="Black"/>
                         </ComboBox>
                     </StackPanel>
                 </DockPanel>
-                <Button Padding="15" x:Name="saveInforButton" Content="Lưu" Width="auto" Height="auto" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="BlanchedAlmond" Background="Transparent" BorderThickness="1" FontSize="20"></Button>
+                <Button Padding="15" x:Name="saveInforButton" Command="{Binding SaveInformation}" Content="Lưu" Width="auto" Height="auto" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="BlanchedAlmond" Background="Transparent" BorderThickness="1" FontSize="20"></Button>
             </StackPanel>
         </Grid>
 
@@ -49,12 +49,12 @@
         <Grid Grid.Row="2">
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
                 <Label Foreground="BlanchedAlmond" FontSize="20">Password cũ</Label>
-                <PasswordBox x:Name="oldPassword" Width="200"></PasswordBox>
+                <PasswordBox x:Name="oldPassword" Width="200" PasswordChanged="oldPasswordBox_PasswordChanged"></PasswordBox>
                 <Label Foreground="BlanchedAlmond" FontSize="20">Password mới</Label>
-                <PasswordBox x:Name="newPassword" Width="200"></PasswordBox>
+                <PasswordBox x:Name="newPassword" Width="200" PasswordChanged="newPasswordBox_PasswordChanged"></PasswordBox>
                 <Label Foreground="BlanchedAlmond" FontSize="20">Xác nhận password mới</Label>
-                <PasswordBox x:Name="confirmNewPassword" Width="200"></PasswordBox>
-                <Button Padding="15" x:Name="changePassword" Content="Lưu" Width="auto" Height="auto" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="BlanchedAlmond" Background="Transparent" BorderThickness="1" FontSize="20"></Button>
+                <PasswordBox x:Name="confirmNewPassword" Width="200" PasswordChanged="confirmPasswordBox_PasswordChanged"></PasswordBox>
+                <Button Padding="15" x:Name="changePassword" Command="{Binding SavePassword}" Content="Lưu" Width="auto" Height="auto" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="BlanchedAlmond" Background="Transparent" BorderThickness="1" FontSize="20"></Button>
             </StackPanel>
         </Grid>
 
@@ -63,7 +63,7 @@
             <Button Padding="15" x:Name="bookHistory" Content="Lịch sử đặt vé" Width="auto" Height="auto" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="BlanchedAlmond" Background="Transparent" BorderThickness="1" FontSize="20"></Button>
         </Grid>
         <Grid Grid.Row="4">
-            <Button Padding="15" x:Name="logoutButton" Content="Đăng xuất" Width="auto" Height="auto" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="BlanchedAlmond" Background="Transparent" BorderThickness="1" FontSize="20"/>
+            <Button Padding="15" x:Name="logoutButton" Command="{Binding LogoutCommand}" Content="Đăng xuất" Width="auto" Height="auto" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="BlanchedAlmond" Background="Transparent" BorderThickness="1" FontSize="20"/>
         </Grid>
     </Grid>
 </Page>
