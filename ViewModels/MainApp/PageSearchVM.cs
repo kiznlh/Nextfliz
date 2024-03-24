@@ -238,10 +238,10 @@ namespace Nextfliz.ViewModels.MainApp
                     var searchData = new SearchData
                     {
                         ID = movie.MovieId,
-                        Name = movie.TenPhim,
-                        Year = (int)movie.NamPhatHanh,
-                        Image = movie.HinhAnh,
-                        Rating = (double)movie.DiemDanhGia
+                        Name = movie.TenPhim ?? "null",
+                        Year = movie.NamPhatHanh ?? 2000,
+                        Image = movie.HinhAnh ?? "null",
+                        Rating = movie.DiemDanhGia ?? 0
                     };
 
                     if (!YearFilter.Contains(movie.NamPhatHanh.ToString()))

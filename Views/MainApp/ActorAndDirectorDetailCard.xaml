@@ -7,6 +7,7 @@
              mc:Ignorable="d" 
              Name="Card"
              Background="Transparent"
+             Margin="50,10,50,10"
              d:DesignHeight="400" d:DesignWidth="300">
     <Grid>
         <Grid.RowDefinitions>
@@ -16,10 +17,10 @@
         </Grid.RowDefinitions>
 
         <!-- Image -->
-        <Image Grid.Row="0" Source="{Binding ImageSource, ElementName=Card}" Stretch="UniformToFill" />
+        <Image Grid.Row="0" Source="{Binding ImageSource, ElementName=Card}" Stretch="UniformToFill" Width="100" Height="100" />
 
         <!-- Description -->
-        <TextBlock Grid.Row="1" Text="{Binding HoTen,ElementName=Card}" TextWrapping="Wrap" FontSize="30" Foreground="White"/>
-        <TextBlock Grid.Row="2" Text="{Binding TieuSu,ElementName=Card}" TextWrapping="Wrap" Foreground="White"/>
+        <TextBlock Grid.Row="1" Text="{Binding HoTen,ElementName=Card}" TextWrapping="Wrap" FontSize="16" Foreground="White" HorizontalAlignment="Center"/>
+        <TextBlock Grid.Row="2" Text="{Binding TieuSu,ElementName=Card}" TextWrapping="Wrap" FontSize="13" Foreground="White" HorizontalAlignment="Center"/>
     </Grid>
 </UserControl>

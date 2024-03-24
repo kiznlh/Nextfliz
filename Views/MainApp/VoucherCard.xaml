@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="Nextfliz.Views.MainApp.VoucherCard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Nextfliz.Views.MainApp"
+             x:Name="Voucher"
+             mc:Ignorable="d" 
+             d:DesignHeight="80" d:DesignWidth="500"
+             Height="80" Width="500"
+             BorderThickness="1"
+             BorderBrush="White"
+             Margin="10">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Image x:Name="voucherImage" Source="{Binding VoucherImage, ElementName=Voucher}" Stretch="Uniform" Grid.Column="0" HorizontalAlignment="Center"/>
+        <TextBlock x:Name="voucherName" Text="{Binding VoucherName, ElementName=Voucher}" Grid.Column="1" FontSize="30" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <StackPanel Orientation="Horizontal" Grid.Column="2">
+            <TextBlock Foreground="White" FontSize="16" TextWrapping="Wrap">Số lần sử dụng còn lại</TextBlock>
+            <TextBlock x:Name="voucherNumber" Text="{Binding VoucherNumberOfUse, ElementName=Voucher}" Grid.Column="1" FontSize="30" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </StackPanel>
+        
+        <CheckBox x:Name="voucherCheckbox" IsChecked="{Binding VoucherChecked, ElementName=Voucher, Mode=TwoWay}" Checked="VoucherCheckbox_Checked" Grid.Column="3" Foreground="White" HorizontalAlignment="Center"  VerticalAlignment="Center">
+            <CheckBox.LayoutTransform>
+                <ScaleTransform ScaleX="2" ScaleY="2" />
+            </CheckBox.LayoutTransform>
+        </CheckBox>
+    </Grid>
+</UserControl>

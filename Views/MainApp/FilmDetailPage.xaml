@@ -59,7 +59,7 @@
                 <StackPanel Orientation="Vertical">
                     <Label Foreground="BlanchedAlmond" FontSize="16">Diễn viên</Label>
                     <ScrollViewer x:Name="actorsScrollViewer" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-                        <ItemsControl ItemsSource="{Binding Actors}">
+                        <ItemsControl ItemsSource="{Binding Actors}" Margin="30">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <StackPanel Orientation="Horizontal" x:Name="actorsPanel"></StackPanel>
@@ -67,16 +67,16 @@
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <local:ActorAndDirectorDetailCard DataContext="{Binding}"/>
+                                    <local:ActorAndDirectorDetailCard DataContext="{Binding}" Height="200" Width="200"/>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
                     </ScrollViewer>
                 </StackPanel>
 
-                <StackPanel Orientation="Vertical">
-                    <Label Foreground="BlanchedAlmond" FontSize="16">Đạo diễn</Label>
-                    <local:ActorAndDirectorDetailCard x:Name="directorCard"></local:ActorAndDirectorDetailCard>
+                <StackPanel Orientation="Horizontal">
+                    <Label Foreground="BlanchedAlmond" FontSize="16" VerticalAlignment="Center">Đạo diễn</Label>
+                    <local:ActorAndDirectorDetailCard x:Name="directorCard" Padding="30" Height="auto" Width="auto" ></local:ActorAndDirectorDetailCard>
                 </StackPanel>
 
             </StackPanel>
@@ -102,7 +102,7 @@
 
             <!-- Border around the button -->
             <Border Grid.Row="3" BorderBrush="Cyan" BorderThickness="1" Margin="0,50,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="10">
-                <Button Content="Đặt vé" FontSize="50" Foreground="Cyan" Background="Transparent"/>
+                <Button Content="Đặt vé" FontSize="50" Foreground="Cyan" Background="Transparent" Command="{Binding OrderCommand}" BorderThickness="0"/>
             </Border>
         </Grid>
     </ScrollViewer>

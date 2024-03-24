@@ -56,7 +56,7 @@ namespace Nextfliz.ViewModels.MainApp
                         ImageBG = saidMovie.HinhAnh,
                         TenPhim = saidMovie.TenPhim,
                         Certification = saidMovie.Certification,
-                        ThoiLuong = saidMovie.ThoiLuong != null ? (int)saidMovie.ThoiLuong : 0,
+                        ThoiLuong = saidMovie.ThoiLuong != null ? saidMovie.ThoiLuong.ToString() : "0",
                     };
 
                     hotMovies.Add(filmCard);
@@ -90,7 +90,7 @@ namespace Nextfliz.ViewModels.MainApp
                             ImageBG = saidMovie.HinhAnh,
                             TenPhim = saidMovie.TenPhim,
                             Certification = saidMovie.Certification,
-                            ThoiLuong = saidMovie.ThoiLuong ?? 0,
+                            ThoiLuong = saidMovie.ThoiLuong != null ? saidMovie.ThoiLuong.ToString() : "0",
                         };
 
                         randomMovies.Add(filmCard);

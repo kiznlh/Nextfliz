@@ -37,12 +37,9 @@ namespace Nextfliz.Views.MainApp
         // Event handler for the SeatClicked event
         private void SeatsLayoutControl_SeatClicked(object sender, string e)
         {
-            // Extract the seat identifier and value from the event arguments
+            
             string[] parts = e.Split(':');
             string seatId = parts[0].Trim();
-            
-
-            // Now you have the seat identifier and its value, you can use them as needed
             MessageBox.Show($"Clicked Seat: {seatId}");
         }
 

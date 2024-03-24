@@ -51,13 +51,10 @@ namespace Nextfliz.Views.MainApp
 
         public void reset()
         {
-          
             foreach (UIElement child in seatsGrid.Children)
             {
-            
                 if (child is Grid grid)
                 {
-                 
                     grid.Background = Brushes.DarkGoldenrod;
                 }
             }
