@@ -66,6 +66,7 @@ CREATE TABLE Ticket (
     suat_chieu_id CHAR(5) FOREIGN KEY REFERENCES SuatChieu(suat_chieu_id),
 	gia_ve DECIMAL(10, 2),/*gia ve sau cung(da ap dung voucher)*/
     vi_tri_ghe NVARCHAR(5),
+	voucher_sinh_nhat BIT
 );
 
 CREATE TABLE Voucher (
