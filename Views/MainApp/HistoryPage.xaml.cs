@@ -28,5 +28,15 @@ namespace Nextfliz.Views.MainApp
             historyPageVM = new HistoryPageVM();
             DataContext = historyPageVM;
         }
+
+        private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (sender is ListViewItem listViewItem && listViewItem.DataContext is History history)
+            {
+                string ticketId = history.TicketID;
+                HistoryDetailWindow historyDetailWindow = new HistoryDetailWindow(ticketId);
+                historyDetailWindow.ShowDialog();
+            }
+        }
     }
 }

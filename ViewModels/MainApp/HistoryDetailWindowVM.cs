@@ -96,30 +96,16 @@ namespace Nextfliz.ViewModels.MainApp
             }
         }
 
-        private int _selectedSuatChieuIndex;
-        public int SelectedSuatChieuIndex
+        private string _suatChieu;
+        public string SuatChieu
         {
-            get { return _selectedSuatChieuIndex; }
+            get { return _suatChieu; }
             set
             {
-                _selectedSuatChieuIndex = value;
-                getBookedSeats();
-                OnPropertyChanged(nameof(SelectedSuatChieuIndex));
-
+                _suatChieu = value;
+                OnPropertyChanged(nameof(_suatChieu));
             }
         }
-        private ObservableCollection<string> _bookedSeatList;
-        public ObservableCollection<string> BookedSeatList
-        {
-            get { return _bookedSeatList; }
-            set
-            {
-                _bookedSeatList = value;
-                OnPropertyChanged(nameof(BookedSeatList));
-            }
-        }
-
-        public ObservableCollection<SuatChieu> SuatChieu { get; set; }
 
         private string _seat;
         public string Seat
@@ -184,93 +170,48 @@ namespace Nextfliz.ViewModels.MainApp
             }
         }
 
-        public ObservableCollection<VoucherCard> Vouchers { get; set; }
-
-     
-        public event EventHandler OnRequestClose;
         private string _ticketID;
+
         public HistoryDetailWindowVM(string ticketID)
         {
-            BookedSeatList = new ObservableCollection<string>();
+           
             _ticketID = ticketID;
-            Vouchers = new ObservableCollection<VoucherCard>();
-            SuatChieu = new ObservableCollection<SuatChieu>();
 
-
-            getVouchers();
-
-        }
-
-        private void close()
-        {
-            OnRequestClose(this, new EventArgs());
-        }
-        
-
-        public void getVouchers()
-        {
-            Vouchers.Clear();
-            var currentSuatChieu = SuatChieu[SelectedSuatChieuIndex];
 
             using (var context = new NextflizContext())
             {
-                var voucherList = context.Vouchers.ToList();
+                var selectedTicket = context.Tickets.Where(ticket => ticket.TicketId == _ticketID).FirstOrDefault();
+                var selectedMovie = context.Movies.Where(movie => movie.MovieId == selectedTicket.MovieId).FirstOrDefault();
 
-                var findUser = context.Users.Where(user => user.Username == UserSession.username).FirstOrDefault();
-                if (findUser != null)
-                {
-                    DateOnly userBirthday = findUser.NgaySinh ?? DateOnly.FromDateTime(DateTime.Now);
-                    if (userBirthday.Month == DateTime.Now.Month)
-                    {
-                        VoucherCard voucherCard = new VoucherCard()
-                        {
-                            VoucherImage = "../../../Resources/Icons/voucher_birthday.png",
-                            VoucherName = "Voucher Sinh Nhật",
-                            VoucherValue = 20,
-                            VoucherChecked = false,
-                            VoucherID = "sinhnhat",
-                        };
-                        Vouchers.Add(voucherCard);
-                    }
+                MovieBG = selectedMovie.HinhAnh;
+                Name = selectedMovie.TenPhim;
 
-                }
-                foreach (var voucher in voucherList)
-                {
-                    if (voucher.SoLuong > 0)
-                    {
-                        VoucherCard voucherCard = new VoucherCard()
-                        {
-                            VoucherImage = "../../../Resources/Icons/voucher_normal.png",
-                            VoucherName = voucher.TenVoucher ?? "",
-                            VoucherValue = voucher.TiLeGiam ?? 0,
-                            VoucherChecked = false,
-                            VoucherID = voucher.VoucherId,
-                        };
-                        Vouchers.Add(voucherCard);
-                    }
+                var genreName = context.Genres.Where(g => g.GenreId == selectedMovie.GenreId).FirstOrDefault();
+                Genre = genreName.TenTheLoai;
 
-                }
+                Duration = selectedMovie.ThoiLuong.ToString() ?? "0";
+
+                ReleaseDate = selectedMovie.NamPhatHanh ?? 0;
+
+                Rating = selectedMovie.DiemDanhGia ?? 0;
+
+                Certification = selectedMovie.Certification;
+
+                var suatChieuValue = context.SuatChieus.Where(suatchieu => suatchieu.SuatChieuId == selectedTicket.SuatChieuId).FirstOrDefault();
+                SuatChieu = String.Format("{0:G}",(DateTime)suatChieuValue.NgayGioChieu);
+
+                Seat = selectedTicket.ViTriGhe;
+
+                OriginalPrice = (double)suatChieuValue.GiaVe;
+
+                FinalPrice = (double)selectedTicket.GiaVe;
+
+                VoucherTotalValue = (FinalPrice - OriginalPrice);
             }
-        }
-        public void getBookedSeats()
-        {
-            BookedSeatList.Clear();
-            var currentSuatChieu = SuatChieu[SelectedSuatChieuIndex];
-
-            using (var context = new NextflizContext())
-            {
-                var ticketList = context.Tickets.Where(ticket => ticket.SuatChieuId == currentSuatChieu.SuatChieuId).ToList();
-
-                foreach (var ticket in ticketList)
-                {
-                    BookedSeatList.Add(ticket.ViTriGhe);
-                }
-            }
+          
 
         }
-        public void setOriginalPrice()
-        {
-            OriginalPrice = (double)(SuatChieu[SelectedSuatChieuIndex].GiaVe ?? 0);
-        }
+
+
     }
 }

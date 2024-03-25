@@ -6,20 +6,17 @@
         xmlns:local="clr-namespace:Nextfliz.Views.MainApp"
         mc:Ignorable="d"
         Background="Transparent"
-        Title="HistoryDetailWindow" Height="1100" Width="1000">
+        Title="HistoryDetailWindow" Height="800" Width="800">
     <Window.Resources>
         <local:DateTimeToStringConverter x:Key="DateTimeConverter"/>
         <DataTemplate x:Key="DateTimeTemplate">
             <TextBlock Text="{Binding Converter={StaticResource DateTimeConverter}}"/>
         </DataTemplate>
     </Window.Resources>
-    <Grid IsHitTestVisible="False">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="2*"/>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-           
         </Grid.RowDefinitions>
         <StackPanel Orientation="Vertical" Grid.Row="0">
             <Image Source="{Binding MovieBG}" Stretch="Uniform" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,0,0,0" Width="500"/>
@@ -50,41 +47,11 @@
             </StackPanel>
         </StackPanel>
 
-        <DockPanel Grid.Row="1" Height="auto" Margin="0,20,0,20">
-            <StackPanel Orientation="Vertical" DockPanel.Dock="Left" VerticalAlignment="Center">
-                <Label Foreground="White" FontSize="50" Content="Suất chiếu:" Padding="10" HorizontalAlignment="Center"></Label>
-                <ComboBox x:Name="timeStampComboBox" Height="50" Width="auto" ItemsSource="{Binding SuatChieu}" 
-                 SelectedValuePath="NgayGioChieu" SelectedIndex="{Binding SelectedSuatChieuIndex}">
-                    <ComboBox.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding NgayGioChieu, Converter={StaticResource DateTimeConverter}}" FontSize="25" HorizontalAlignment="Center"/>
-                        </DataTemplate>
-                    </ComboBox.ItemTemplate>
-                </ComboBox>
-
-                <TextBlock  Text="Màu đỏ là đã có người đặt. Ô màu xanh dương là vé của bạn" Foreground="White" FontSize="15" FontStyle="Italic" Padding="5"/>
-            </StackPanel>
-
-            <local:SeatsLayoutControl x:Name="seatLayout" DockPanel.Dock="Right" Width="auto" Height="auto"/>
-        </DockPanel>
-
-        <ScrollViewer Grid.Row="2" x:Name="voucherScrollViewer" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-            <ItemsControl x:Name="voucherList" ItemsSource="{Binding Vouchers}" Margin="30">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation="Horizontal" x:Name="voucherPanel"></StackPanel>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <local:VoucherCard DataContext="{Binding}"></local:VoucherCard>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </ScrollViewer>
-
-        <UniformGrid Grid.Row="3" x:Name="PriceGrid" Columns="2">
-            <Label Foreground="Wheat" FontSize="16" Content="Ghế đã chọn chọn:"/>
+        <UniformGrid Grid.Row="1" x:Name="PriceGrid" Columns="2">
+            <Label Foreground="Wheat" FontSize="16" Content="Suất chiếu:"/>
+            <TextBlock Foreground="Wheat" x:Name="suatChieu" FontSize="16" Text="{Binding SuatChieu}" HorizontalAlignment="Right"/>
+            
+            <Label Foreground="Wheat" FontSize="16" Content="Ghế đã chọn:"/>
             <TextBlock Foreground="Wheat" x:Name="seatName" FontSize="16" Text="{Binding Seat}" HorizontalAlignment="Right"/>
 
             <Label Foreground="Wheat" FontSize="16" Content="Giá gốc:"/>
@@ -97,6 +64,5 @@
             <TextBlock Foreground="Wheat" x:Name="finalPrice" FontSize="16" Text="{Binding FinalPrice, StringFormat={}{0}đ}" HorizontalAlignment="Right"/>
         </UniformGrid>
 
-       
     </Grid>
 </Window>
