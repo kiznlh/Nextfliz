@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Documents;
 
 namespace Nextfliz.ViewModels.MainApp
 {
@@ -24,6 +25,7 @@ namespace Nextfliz.ViewModels.MainApp
     public class HistoryPageVM : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
+        public RelayCommand onViewDetailClick { get; set; }
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -34,6 +36,7 @@ namespace Nextfliz.ViewModels.MainApp
         public HistoryPageVM()
         {
             PurchaseHistory = new ObservableCollection<History>();
+            onViewDetailClick = new RelayCommand(viewDetailClick, canPerform);
             using (var context = new NextflizContext())
             {
                 var username = UserSession.username;
@@ -57,6 +60,21 @@ namespace Nextfliz.ViewModels.MainApp
                 }
             }
            
+        }
+
+        private void viewDetailClick(object sender)
+        {
+            if (sender is History history)
+            {
+                string ticketId = history.TicketID;
+                HistoryDetailWindow historyDetailWindow = new HistoryDetailWindow(ticketId);
+                historyDetailWindow.ShowDialog();
+            }
+        }
+
+        private bool canPerform (object value)
+        {
+            return true;
         }
        
     }

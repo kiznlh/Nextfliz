@@ -8,20 +8,56 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="HistoryPage">
 
-    <Grid>
-        <ListView ItemsSource="{Binding PurchaseHistory}">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Movie" Width="120" DisplayMemberBinding="{Binding MovieName}"/>
-                    <GridViewColumn Header="Ngày đặt vé" Width="120" DisplayMemberBinding="{Binding NgayDat, StringFormat={}{0:dd/MM/yyyy}}"/>
-                    <GridViewColumn Header="Vị trí ghế" Width="120" DisplayMemberBinding="{Binding Seat}"/>
-                </GridView>
-            </ListView.View>
-            <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
-                    <EventSetter Event="MouseDoubleClick" Handler="ListViewItem_MouseDoubleClick" />
-                </Style>
-            </ListView.ItemContainerStyle>
-        </ListView>
+    <Grid Margin="10">
+        <DataGrid
+            VerticalAlignment="Top"
+                ItemsSource="{Binding PurchaseHistory}"
+                x:Name="TopFilmDataGrid"
+                Style="{StaticResource SearchResultStyle}"
+                ColumnHeaderStyle="{DynamicResource SearchResultHeader}"
+                RowStyle="{DynamicResource SearchResultRow}"
+                CellStyle="{DynamicResource SearchResultCell}">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn
+                    Header="Tên phim"
+                    IsReadOnly="True"
+                    Width="2*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <TextBlock Width="380" TextTrimming="WordEllipsis" TextAlignment="Center" VerticalAlignment="Center" Text="{Binding MovieName}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn
+                    Binding="{Binding NgayDat}"
+                    Header="Ngày đặt"
+                    IsReadOnly="True"
+                    Width="*">
+
+                </DataGridTextColumn>
+                <DataGridTextColumn
+                    Binding="{Binding Seat}"
+                    Header="Vị trí ghế"
+                    IsReadOnly="True"
+                    Width="*">
+
+                </DataGridTextColumn>
+                <DataGridTemplateColumn
+                    IsReadOnly="True"
+                    Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Style="{StaticResource DeleteFilmButton}" Command="{Binding DataContext.onViewDetailClick, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}">
+                                    Xem chi tiết
+                                </Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Page>
