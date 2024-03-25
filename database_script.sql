@@ -85,9 +85,7 @@ CREATE TABLE FilmCast (
 );
 
 CREATE TABLE VoucherUsage (
-    voucher_id CHAR(5),
-	ticket_id NVARCHAR(20),
-	PRIMARY KEY (voucher_id, ticket_id),
-	FOREIGN KEY (voucher_id) REFERENCES Voucher(voucher_id),
-	FOREIGN KEY (ticket_id) REFERENCES Ticket(ticket_id),
+    voucher_id CHAR(5) REFERENCES Voucher(voucher_id),
+	ticket_id NVARCHAR(20)  REFERENCES Ticket(ticket_id),
+    usage_id CHAR(20) PRIMARY KEY
 );
