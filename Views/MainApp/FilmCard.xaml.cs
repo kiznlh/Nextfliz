@@ -64,6 +64,11 @@ namespace Nextfliz.Views.MainApp
         public static readonly DependencyProperty ThoiLuongProperty = DependencyProperty.Register(
             "ThoiLuong", typeof(string), typeof(FilmCardControl), new PropertyMetadata(null));
 
+        public static readonly DependencyProperty NamPhatHanhProperty = DependencyProperty.Register(
+            "NamPhatHanh", typeof(string), typeof(FilmCardControl), new PropertyMetadata(null));
+
+        public static readonly DependencyProperty RatingProperty = DependencyProperty.Register(
+            "Rating", typeof(string), typeof(FilmCardControl), new PropertyMetadata(null));
         private string _movieID;
 
         public string MovieID
@@ -96,6 +101,16 @@ namespace Nextfliz.Views.MainApp
             set { SetValue(ThoiLuongProperty, value + " phút"); }
         }
 
+        public string NamPhatHanh
+        {
+            get { return (string)GetValue(NamPhatHanhProperty); }
+            set { SetValue(NamPhatHanhProperty, value); }
+        }
+        public string Rating
+        {
+            get { return (string)GetValue(RatingProperty); }
+            set { SetValue(RatingProperty, value); }
+        }
         public FilmCardControl()
         {
             InitializeComponent();
