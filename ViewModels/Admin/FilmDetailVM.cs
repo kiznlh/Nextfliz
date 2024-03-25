@@ -252,7 +252,8 @@ namespace Nextfliz
                 var suatChieus = dbContext.SuatChieus.Where(s => s.MovieId == filmId);
                 foreach (SuatChieu sc in suatChieus)
                 {
-                    suatChieuList.Add(new SuatChieuItem(sc.SuatChieuId, sc.NgayGioChieu.GetValueOrDefault().Day + "/" + sc.NgayGioChieu.GetValueOrDefault().Month + "/" + sc.NgayGioChieu.GetValueOrDefault().Year, sc.NgayGioChieu.GetValueOrDefault().Hour + ":" + sc.NgayGioChieu.GetValueOrDefault().Minute));
+                    string minute = sc.NgayGioChieu.GetValueOrDefault().Minute < 10 ? "0" + sc.NgayGioChieu.GetValueOrDefault().Minute : sc.NgayGioChieu.GetValueOrDefault().Minute.ToString();
+                    suatChieuList.Add(new SuatChieuItem(sc.SuatChieuId, sc.NgayGioChieu.GetValueOrDefault().Day + "/" + sc.NgayGioChieu.GetValueOrDefault().Month + "/" + sc.NgayGioChieu.GetValueOrDefault().Year, sc.NgayGioChieu.GetValueOrDefault().Hour + ":" + minute));
                 }
             }
         }

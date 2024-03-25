@@ -1,10 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace Nextfliz;
 
 public partial class Ticket
 {
+    private string GenerateDirectorId()
+    {
+        const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        Random random = new Random();
+        return new string(Enumerable.Repeat(chars, 20).Select(s => s[random.Next(s.Length)]).ToArray());
+    }
+
+    public Ticket()
+    {
+        do
+        {
+            TicketId = GenerateDirectorId();
+        } while (CheckDuplicateId(TicketId));
+    }
+
+    private bool CheckDuplicateId(string TicketId)
+    {
+        using (var dbContext = new NextflizContext())
+        {
+            return dbContext.Tickets.Any(d => d.TicketId == TicketId);
+        }
+    }
     public string TicketId { get; set; } = null!;
 
     public string? Username { get; set; }
