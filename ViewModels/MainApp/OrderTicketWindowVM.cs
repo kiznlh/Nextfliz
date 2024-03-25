@@ -236,6 +236,10 @@ namespace Nextfliz.ViewModels.MainApp
         private void close()
         {
             OnRequestClose(this, new EventArgs());
+            if (Application.Current.MainWindow is WindowUserMainWindow mainWindow) 
+            {
+                mainWindow.navigateToHome();
+            }
         }
         public bool canConfirm(object value)
         {
