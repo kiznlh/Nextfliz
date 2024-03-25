@@ -37,7 +37,7 @@ namespace Nextfliz.ViewModels.MainApp
                 OnPropertyChanged(nameof(SearchText));
             }
         }
-        public const int numPerPage = 1; //6
+        public const int numPerPage = 5; //5
         private int listSize;
         private int currentPage { get; set; } = 0;
         public int CurrentPage
@@ -142,11 +142,13 @@ namespace Nextfliz.ViewModels.MainApp
         }
 
         public RelayCommand SearchCommand { get; set; }
+        public RelayCommand ToBuyTicket { get; set; }
 
         public PageSearchVM()
         {
             toNextPage = new RelayCommand(nextPage, canSearch);
             toPreviousPage = new RelayCommand(previousPage, canSearch);
+            ToBuyTicket = new RelayCommand(toBuyTicket, canSearch);
 
             ComboBoxItems = new ObservableCollection<ComboBoxItem>();
             ComboBoxItems.Add(new ComboBoxItem() { Content = "Tên Phim" });
@@ -585,7 +587,11 @@ namespace Nextfliz.ViewModels.MainApp
         {
             if (obj is SearchData movieToBuy)
             {
-                FilmDetailPage movie = new FilmDetailPage(movieToBuy.ID);
+                FilmDetailPage filmDetailPage = new FilmDetailPage(movieToBuy.ID);
+                if (Application.Current.MainWindow is WindowUserMainWindow mainWindow)
+                {
+                    mainWindow.navigateToAPage(filmDetailPage);
+                }
             }
         }
     }
