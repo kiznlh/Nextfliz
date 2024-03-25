@@ -32,12 +32,6 @@ public partial class SuatChieu
     {
         using (var dbContext = new NextflizContext())
         {
-            var seats = dbContext.Seats.Where(s => s.SuatChieuId == id);
-            foreach (var seat in seats)
-            {
-                dbContext.Seats.Remove(seat);
-            }
-            dbContext.SaveChanges();
 
             var tickets = dbContext.Tickets.Where(s => s.SuatChieuId == id);
             foreach (var ticket in tickets)

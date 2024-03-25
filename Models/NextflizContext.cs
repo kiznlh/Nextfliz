@@ -36,6 +36,7 @@ public partial class NextflizContext : DbContext
     public virtual DbSet<User> Users { get; set; }
 
     public virtual DbSet<Voucher> Vouchers { get; set; }
+    public virtual DbSet<VoucherUsage> VoucherUsages { get; set; }
 
     private string connectionString = ConfigurationManager.ConnectionStrings["NextlizContext-phat"].ConnectionString;
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
