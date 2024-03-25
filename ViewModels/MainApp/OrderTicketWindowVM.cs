@@ -1,4 +1,6 @@
-﻿using Nextfliz.Views.MainApp;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Conventions;
+using Nextfliz.Models;
+using Nextfliz.Views.MainApp;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -243,9 +245,27 @@ namespace Nextfliz.ViewModels.MainApp
             using (var context = new NextflizContext())
             {
                 var voucherList = context.Vouchers.ToList();
-               
+            
+                var findUser = context.Users.Where(user => user.Username == UserSession.username).FirstOrDefault();
+                if (findUser != null)
+                {
+                    DateOnly userBirthday = findUser.NgaySinh ?? DateOnly.FromDateTime(DateTime.Now);
+                    if (userBirthday.Month == DateTime.Now.Month)
+                    {
+                        VoucherCard voucherCard = new VoucherCard()
+                        {
+                            VoucherImage = "../../../Resources/Icons/voucher_birthday.png",
+                            VoucherName = "Voucher Sinh Nhật",
+                            VoucherValue = 20,
+                            VoucherChecked = true,
+                        };
+                        Vouchers.Add(voucherCard);
+                    }
+                    
+                }
                 foreach (var voucher in voucherList)
                 {
+                  
                     VoucherCard voucherCard = new VoucherCard()
                     {
                         VoucherImage = "../../../Resources/Icons/voucher_normal.png",
