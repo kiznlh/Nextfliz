@@ -227,7 +227,10 @@ namespace Nextfliz
         private void searchFilm(object value)
         {
             if (searchText.Length == 0)
+            {
+                updateList();
                 return;
+            }
 
             showingList.Clear();
             using (var context = new NextflizContext())
