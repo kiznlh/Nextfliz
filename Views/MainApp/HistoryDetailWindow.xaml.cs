@@ -1,5 +1,4 @@
-﻿using Nextfliz.ViewModels.MainApp;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,22 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Nextfliz.Views.MainApp
 {
     /// <summary>
-    /// Interaction logic for HistoryPage.xaml
+    /// Interaction logic for HistoryDetailWindow.xaml
     /// </summary>
-    public partial class HistoryPage : Page
+    public partial class HistoryDetailWindow : Window
     {
-        public HistoryPageVM historyPageVM;
-        public HistoryPage()
+        public HistoryDetailWindow()
         {
             InitializeComponent();
-            historyPageVM = new HistoryPageVM();
-            DataContext = historyPageVM;
         }
     }
 }

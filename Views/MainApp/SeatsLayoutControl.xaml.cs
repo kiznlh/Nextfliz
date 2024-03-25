@@ -68,7 +68,14 @@ namespace Nextfliz.Views.MainApp
                 grid.Background = Brushes.DarkRed;
             }
         }
-
+        public void SetSeatUser(string seatId)
+        {
+            Grid grid = FindName(seatId + "Grid") as Grid;
+            if (grid != null)
+            {
+                grid.Background = Brushes.Blue;
+            }
+        }
         public void reset()
         {
             foreach (UIElement child in seatsGrid.Children)

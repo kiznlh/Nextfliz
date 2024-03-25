@@ -232,6 +232,7 @@ namespace Nextfliz.ViewModels.MainApp
             ConfirmCommand = new RelayCommand(confirm, canConfirm);
            
         }
+
         private void close()
         {
             OnRequestClose(this, new EventArgs());
@@ -281,7 +282,7 @@ namespace Nextfliz.ViewModels.MainApp
                             {
                                 TicketId = newTicket.TicketId,
                                 VoucherId = usedVoucher.VoucherId,
-                               
+                                
                             };
 
                             context.VoucherUsages.Add(newVoucerUsage);

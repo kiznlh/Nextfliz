@@ -9,6 +9,19 @@
       Title="HistoryPage">
 
     <Grid>
-        
+        <ListView ItemsSource="{Binding PurchaseHistory}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Movie" Width="120" DisplayMemberBinding="{Binding MovieName}"/>
+                    <GridViewColumn Header="Ngày đặt vé" Width="120" DisplayMemberBinding="{Binding NgayDat, StringFormat={}{0:dd/MM/yyyy}}"/>
+                    <GridViewColumn Header="Vị trí ghế" Width="120" DisplayMemberBinding="{Binding Seat}"/>
+                </GridView>
+            </ListView.View>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <EventSetter Event="MouseDoubleClick" Handler="{Binding ItemClickCommand, Mode=OneWay}" />
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
     </Grid>
 </Page>

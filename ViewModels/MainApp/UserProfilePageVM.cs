@@ -106,7 +106,7 @@ namespace Nextfliz.ViewModels.MainApp
             UserName = username;
             SaveInformation = new RelayCommand(saveInfor,canSaveInfor);
             SavePassword = new RelayCommand(savePass,canSavePass);
-            
+            PurchaseHistory = new RelayCommand(showHistory, canShowHistory);
             LogoutCommand = new RelayCommand(logout,canLogout);
 
             using (var context = new NextflizContext()) 
@@ -124,7 +124,18 @@ namespace Nextfliz.ViewModels.MainApp
 
             }
         }
-
+        public bool canShowHistory(object value)
+        {
+            return true;
+        }
+        public void showHistory(object value)
+        {
+            HistoryPage historyPage = new HistoryPage();
+            if (Application.Current.MainWindow is WindowUserMainWindow mainWindow)
+            {
+                mainWindow.navigateToAPage(historyPage);
+            }
+        }
         public bool canSaveInfor (object value)
         {
             return true;

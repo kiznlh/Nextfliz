@@ -1,0 +1,97 @@
+﻿<Window x:Class="Nextfliz.Views.MainApp.HistoryDetailWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Nextfliz.Views.MainApp"
+        mc:Ignorable="d"
+        Background="Transparent"
+        Title="HistoryDetailWindow" Height="1100" Width="1000">
+    <Grid IsHitTestVisible="False">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+           
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Vertical" Grid.Row="0">
+            <Image Source="{Binding MovieBG}" Stretch="Uniform" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,0,0,0" Width="500"/>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Tên Phim: " FontSize="24" FontWeight="Bold" Foreground="White"/>
+                <TextBlock Text="{Binding Name}" FontSize="24" FontWeight="Bold" Foreground="BlanchedAlmond"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Thể loại: " FontSize="16" Foreground="White"/>
+                <TextBlock Text="{Binding Genre}" FontSize="16" Foreground="BlanchedAlmond"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Thời lượng: " FontSize="16" Foreground="White" />
+                <TextBlock Text="{Binding Duration}" FontSize="16" Foreground="BlanchedAlmond"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Ngày phát hành: " FontSize="16" Foreground="White"/>
+                <TextBlock Text="{Binding ReleaseDate}" FontSize="16" Foreground="BlanchedAlmond"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Điểm đánh giá: " FontSize="16" Foreground="White"/>
+                <TextBlock Text="{Binding Rating}" FontSize="16" Foreground="BlanchedAlmond"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Phân loại độ tuổi: " FontSize="16" Margin="0,0,0,0" Foreground="White"/>
+                <TextBlock Text="{Binding Certification}" FontSize="16" Margin="0,0,0,0" Foreground="BlanchedAlmond"/>
+            </StackPanel>
+        </StackPanel>
+
+        <DockPanel Grid.Row="1" Height="auto" Margin="0,20,0,20">
+            <StackPanel Orientation="Vertical" DockPanel.Dock="Left" VerticalAlignment="Center">
+                <Label Foreground="White" FontSize="50" Content="Suất chiếu:" Padding="10" HorizontalAlignment="Center"></Label>
+                <ComboBox x:Name="timeStampComboBox" Height="50" Width="auto" ItemsSource="{Binding SuatChieu}" 
+                 SelectedValuePath="NgayGioChieu" SelectedIndex="{Binding SelectedSuatChieuIndex} "
+               SelectionChanged="timeStampComboBox_SelectionChanged">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding NgayGioChieu, Converter={StaticResource DateTimeConverter}}" FontSize="25" HorizontalAlignment="Center"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+
+                <TextBlock  Text="Màu đỏ là đã có người đặt. Ô màu xanh dương là vé của bạn" Foreground="White" FontSize="15" FontStyle="Italic" Padding="5"/>
+            </StackPanel>
+
+            <local:SeatsLayoutControl x:Name="seatLayout" DockPanel.Dock="Right" Width="auto" Height="auto"/>
+        </DockPanel>
+
+        <ScrollViewer Grid.Row="2" x:Name="voucherScrollViewer" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <ItemsControl x:Name="voucherList" ItemsSource="{Binding Vouchers}" Margin="30">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" x:Name="voucherPanel"></StackPanel>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <local:VoucherCard DataContext="{Binding}"></local:VoucherCard>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+
+        <UniformGrid Grid.Row="3" x:Name="PriceGrid" Columns="2">
+            <Label Foreground="Wheat" FontSize="16" Content="Ghế đã chọn chọn:"/>
+            <TextBlock Foreground="Wheat" x:Name="seatName" FontSize="16" Text="{Binding Seat}" HorizontalAlignment="Right"/>
+
+            <Label Foreground="Wheat" FontSize="16" Content="Giá gốc:"/>
+            <TextBlock Foreground="Wheat" x:Name="ogPrice" FontSize="16" Text="{Binding OriginalPrice, StringFormat={}{0}đ}" HorizontalAlignment="Right"/>
+
+            <Label Foreground="Wheat" FontSize="16" Content="Giảm từ voucher:"/>
+            <TextBlock Foreground="Wheat" x:Name="voucherPrice" FontSize="16" Text="{Binding VoucherTotalValue, StringFormat={}{0}đ}" HorizontalAlignment="Right"/>
+
+            <Label Foreground="Wheat" FontSize="16" Content="Thành tiền:"/>
+            <TextBlock Foreground="Wheat" x:Name="finalPrice" FontSize="16" Text="{Binding FinalPrice, StringFormat={}{0}đ}" HorizontalAlignment="Right"/>
+        </UniformGrid>
+
+       
+    </Grid>
+</Window>
