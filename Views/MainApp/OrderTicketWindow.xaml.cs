@@ -29,7 +29,10 @@ namespace Nextfliz.Views.MainApp
         {
             InitializeComponent();
             viewModel = new OrderTicketWindowVM(movieID);
+          
             DataContext = viewModel;
+
+            viewModel.OnRequestClose += (s, e) => this.Close();
 
             foreach (var item in viewModel.Vouchers)
             {
@@ -40,8 +43,24 @@ namespace Nextfliz.Views.MainApp
             }
 
             seatLayout.SeatClicked += SeatsLayoutControl_SeatClicked;
+
+            Loaded += Window_Loaded;
+
         }
 
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            foreach (var item in viewModel.Vouchers)
+            {
+
+                if (item.VoucherID == "sinhnhat")
+                {
+                    item.VoucherChecked = true;
+                    break;
+                }
+
+            }
+        }
         private void SeatsLayoutControl_SeatClicked(object sender, string e)
         {
             string seatId = e;
@@ -58,10 +77,15 @@ namespace Nextfliz.Views.MainApp
 
         private void VoucherCard_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
+            checkPrice();
+        }
+        void checkPrice()
+        {
             viewModel.voucherTotalPercent = 0;
             viewModel.VoucherTotalValue = 0;
+            viewModel.FinalPrice = viewModel.OriginalPrice;
             foreach (var card in viewModel.Vouchers)
-            {  
+            {
                 if (card.VoucherChecked)
                 {
 
@@ -70,8 +94,6 @@ namespace Nextfliz.Views.MainApp
                     viewModel.FinalPrice = viewModel.OriginalPrice + viewModel.VoucherTotalValue;
                 }
             }
-
-
         }
         void setSeats()
         {
@@ -83,12 +105,25 @@ namespace Nextfliz.Views.MainApp
             }
             viewModel.setOriginalPrice();
             viewModel.FinalPrice = viewModel.OriginalPrice;
+            foreach (var item in viewModel.Vouchers)
+            {
+
+                if (item.VoucherID == "sinhnhat")
+                {
+                    item.VoucherChecked = false;
+                    item.VoucherChecked = true;
+                    break;
+                }
+
+            }
         }
 
         private void timeStampComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             setSeats();
         }
+
+    
     }
 
 

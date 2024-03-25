@@ -6,9 +6,7 @@ using System.Threading.Tasks;
 
 namespace Nextfliz.ViewModels.MainApp
 {
-    public class PurchaseHistoryWindowVM
+    class HistoryPageVM
     {
-
-        public PurchaseHistoryWindowVM() { }
     }
 }

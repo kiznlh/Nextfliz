@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Conventions;
-using Nextfliz.Models;
 using Nextfliz.Views.MainApp;
 using System;
 using System.Collections.Generic;
@@ -9,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Nextfliz.ViewModels.MainApp
@@ -183,14 +183,16 @@ namespace Nextfliz.ViewModels.MainApp
                 OnPropertyChanged(nameof(FinalPrice));
             }
         }
-
+   
         public ObservableCollection<VoucherCard> Vouchers { get; set; }
 
-        public RelayCommand ConfirmCommand;
+        public RelayCommand ConfirmCommand { get; set; }
+        public event EventHandler OnRequestClose;
+        private string _movieID;
         public OrderTicketWindowVM(string movieID)
         {
             BookedSeatList = new ObservableCollection<string>();
-            
+            _movieID = movieID;
             Vouchers = new ObservableCollection<VoucherCard>();
             SuatChieu = new ObservableCollection<SuatChieu>();
 
@@ -228,6 +230,11 @@ namespace Nextfliz.ViewModels.MainApp
             getVouchers();
 
             ConfirmCommand = new RelayCommand(confirm, canConfirm);
+           
+        }
+        private void close()
+        {
+            OnRequestClose(this, new EventArgs());
         }
         public bool canConfirm(object value)
         {
@@ -235,8 +242,63 @@ namespace Nextfliz.ViewModels.MainApp
         }
         public void confirm(object value)
         {
+            if (string.IsNullOrEmpty(Seat))
+            {
+                MessageBox.Show("Hãy chọn 1 ghế trống!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            using (var context = new NextflizContext())
+            {
+                bool checkSinhNhat = false;
+                var newTicket = new Ticket()
+                {
+                    MovieId = _movieID,
+                    Username = UserSession.username,
+                    NgayDatVe = DateTime.Now,
+                    SuatChieuId = SuatChieu[SelectedSuatChieuIndex].SuatChieuId,
+                    GiaVe = (decimal?)FinalPrice ?? 0,
+                    VoucherSinhNhat = checkSinhNhat,
+                    ViTriGhe = Seat,
+                    TicketId = UserSession.username + "_" + _movieID + "_" + Seat,
+                };
+                context.Tickets.Add(newTicket);
+                foreach (var card in Vouchers)
+                {
+                    if (card.VoucherChecked)
+                    {
+                        if (card.VoucherID == "sinhnhat")
+                        {
+                            checkSinhNhat = true;
+                        }
+                        else 
+                        {
+                            var usedVoucher = context.Vouchers.Where(voucher => voucher.VoucherId == card.VoucherID).FirstOrDefault();
+                            int numberLeft = (int)(usedVoucher.SoLuong - 1);
+                            usedVoucher.SoLuong = numberLeft;
+                            
 
+                            var newVoucerUsage = new VoucherUsage()
+                            {
+                                TicketId = newTicket.TicketId,
+                                VoucherId = usedVoucher.VoucherId,
+                               
+                            };
+
+                            context.VoucherUsages.Add(newVoucerUsage);
+
+                        }
+                    }
+
+                }
+                
+                
+                context.SaveChanges();
+            }
+            MessageBox.Show("Đặt vé thành công!", "Thành công", MessageBoxButton.OK, MessageBoxImage.Information);
+
+            close();
         }
+       
         public void getVouchers()
         {
             Vouchers.Clear();
@@ -257,7 +319,8 @@ namespace Nextfliz.ViewModels.MainApp
                             VoucherImage = "../../../Resources/Icons/voucher_birthday.png",
                             VoucherName = "Voucher Sinh Nhật",
                             VoucherValue = 20,
-                            VoucherChecked = true,
+                            VoucherChecked = false,
+                            VoucherID = "sinhnhat",
                         };
                         Vouchers.Add(voucherCard);
                     }
@@ -265,16 +328,19 @@ namespace Nextfliz.ViewModels.MainApp
                 }
                 foreach (var voucher in voucherList)
                 {
-                  
-                    VoucherCard voucherCard = new VoucherCard()
+                    if (voucher.SoLuong > 0)
                     {
-                        VoucherImage = "../../../Resources/Icons/voucher_normal.png",
-                        VoucherName = voucher.TenVoucher ?? "",
-                        VoucherValue = voucher.TiLeGiam ?? 0,
-                        
-                        VoucherChecked = false,
-                    };
-                    Vouchers.Add(voucherCard);
+                        VoucherCard voucherCard = new VoucherCard()
+                        {
+                            VoucherImage = "../../../Resources/Icons/voucher_normal.png",
+                            VoucherName = voucher.TenVoucher ?? "",
+                            VoucherValue = voucher.TiLeGiam ?? 0,
+                            VoucherChecked = false,
+                            VoucherID = voucher.VoucherId,
+                        };
+                        Vouchers.Add(voucherCard);
+                    }
+                    
                 }
             }
         }

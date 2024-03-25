@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Nextfliz.Views.MainApp
 {
     /// <summary>
-    /// Interaction logic for PurchaseHistoryWindow.xaml
+    /// Interaction logic for HistoryPage.xaml
     /// </summary>
-    public partial class PurchaseHistoryWindow : Window
+    public partial class HistoryPage : Page
     {
-        public PurchaseHistoryWindow()
+        public HistoryPage()
         {
             InitializeComponent();
         }
