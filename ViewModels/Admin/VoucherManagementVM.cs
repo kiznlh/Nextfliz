@@ -101,7 +101,7 @@ namespace Nextfliz
             }
         }
 
-        public const int numPerTicketPage = 1;
+        public const int numPerTicketPage = 10;
         public VoucherManagementVM() {
             toNextPage = new RelayCommand(nextPage, canPerform);
             toPreviousPage = new RelayCommand(previousPage, canPerform);

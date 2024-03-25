@@ -67,7 +67,7 @@ namespace Nextfliz
             }
         }
 
-        public const int numPerPage = 2;
+        public const int numPerPage = 10;
 
         public FilmManagementVM(Frame contentFrame)
         {
