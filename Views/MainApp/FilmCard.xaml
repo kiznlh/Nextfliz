@@ -27,18 +27,19 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
+        
         <!-- name -->
-        <WrapPanel Grid.Row="4" Grid.RowSpan="2" Background="Black" Opacity="0.5">
+        <WrapPanel  x:Name="normalShadow" Grid.Row="4" Grid.RowSpan="2" Background="Black" Opacity="0.5">
             <WrapPanel.Effect>
                 <DropShadowEffect Color="Black" Direction="270" ShadowDepth="50" BlurRadius="50"/>
             </WrapPanel.Effect>
         </WrapPanel>
-        <TextBlock Grid.Row="4" Text="{Binding TenPhim, ElementName=Card}" TextTrimming="WordEllipsis" FontSize="15" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,10">
+        <TextBlock x:Name="normalName" Grid.Row="4" Text="{Binding TenPhim, ElementName=Card}" TextTrimming="WordEllipsis" FontSize="15" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,10">
             <TextBlock.Effect>
                 <DropShadowEffect Color="Black" Direction="1" ShadowDepth="2" BlurRadius="2"/>
             </TextBlock.Effect>
         </TextBlock>
-        <StackPanel Grid.Row="5" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0">
+        <StackPanel x:Name="normalDetail" Grid.Row="5" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0">
             <Border BorderBrush="White" BorderThickness="1" CornerRadius="2" Padding="2">
                 <!-- certification -->
                 <TextBlock Text="{Binding Certification, ElementName=Card}" Foreground="White" FontSize="14">
@@ -48,7 +49,47 @@
                 </TextBlock>
             </Border>
             <!-- Duration -->
-            <TextBlock Text="{Binding ThoiLuong, ElementName=Card}" Foreground="White" Margin="10,0,0,0" FontSize="15" HorizontalAlignment="Center">
+            <TextBlock Text="{Binding ThoiLuong, ElementName=Card}" Foreground="White" Margin="5,0,0,0" FontSize="13" HorizontalAlignment="Center">
+                <TextBlock.Effect>
+                    <DropShadowEffect Color="Black" Direction="1" ShadowDepth="2" BlurRadius="2"/>
+                </TextBlock.Effect>
+            </TextBlock>
+        </StackPanel>
+
+
+        <WrapPanel Visibility="Collapsed" x:Name="highlightShadow" Grid.Row="3" Grid.RowSpan="3" Background="Black" Opacity="0.5">
+            <WrapPanel.Effect>
+                <DropShadowEffect Color="Black" Direction="270" ShadowDepth="50" BlurRadius="50"/>
+            </WrapPanel.Effect>
+        </WrapPanel>
+        <TextBlock Visibility="Collapsed" x:Name="highlightName" Grid.Row="3" Text="{Binding TenPhim, ElementName=Card}" TextTrimming="WordEllipsis" FontSize="15" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,10">
+            <TextBlock.Effect>
+                <DropShadowEffect Color="Black" Direction="1" ShadowDepth="2" BlurRadius="2"/>
+            </TextBlock.Effect>
+        </TextBlock>
+        <StackPanel Visibility="Collapsed" x:Name="highlightDetail" Grid.Row="4" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0">
+            <Border BorderBrush="White" BorderThickness="1" CornerRadius="2" Padding="2">
+                <!-- certification -->
+                <TextBlock Text="{Binding Certification, ElementName=Card}" Foreground="White" FontSize="15">
+                    <TextBlock.Effect>
+                        <DropShadowEffect Color="Black" Direction="1" ShadowDepth="2" BlurRadius="2"/>
+                    </TextBlock.Effect>
+                </TextBlock>
+            </Border>
+            <!-- Duration -->
+            <TextBlock Text="{Binding ThoiLuong, ElementName=Card}" Foreground="White" Margin="5,0,0,0" FontSize="13" HorizontalAlignment="Center">
+                <TextBlock.Effect>
+                    <DropShadowEffect Color="Black" Direction="1" ShadowDepth="2" BlurRadius="2"/>
+                </TextBlock.Effect>
+            </TextBlock>
+        </StackPanel>
+        <StackPanel Visibility="Collapsed" x:Name="highlightMoreDetail" Grid.Row="4" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0">
+            <TextBlock Text="{Binding , ElementName=Card}" Foreground="White" FontSize="15">
+                <TextBlock.Effect>
+                        <DropShadowEffect Color="Black" Direction="1" ShadowDepth="2" BlurRadius="2"/>
+                </TextBlock.Effect>
+            </TextBlock>
+            <TextBlock Text="{Binding , ElementName=Card}" Foreground="White" Margin="5,0,0,0" FontSize="13" HorizontalAlignment="Center">
                 <TextBlock.Effect>
                     <DropShadowEffect Color="Black" Direction="1" ShadowDepth="2" BlurRadius="2"/>
                 </TextBlock.Effect>

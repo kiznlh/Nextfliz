@@ -123,6 +123,14 @@ namespace Nextfliz.Views.MainApp
         private void Container_MouseEnter(object sender, MouseEventArgs e)
         {
             ScaleControl(1.3);
+            normalShadow.Visibility = Visibility.Collapsed;
+            normalName.Visibility = Visibility.Collapsed;
+            normalDetail.Visibility = Visibility.Collapsed;
+
+            highlightShadow.Visibility = Visibility.Visible;
+            highlightName.Visibility = Visibility.Visible;
+            highlightDetail.Visibility = Visibility.Visible;
+            highlightMoreDetail.Visibility = Visibility.Visible;
             if (videoElement != null)
             {
                 videoElement.Play();
@@ -132,7 +140,15 @@ namespace Nextfliz.Views.MainApp
 
         private void Container_MouseLeave(object sender, MouseEventArgs e)
         {
-            ScaleControl(1.0); 
+            ScaleControl(1.0);
+            normalShadow.Visibility = Visibility.Visible;
+            normalName.Visibility = Visibility.Visible;
+            normalDetail.Visibility = Visibility.Visible;
+
+            highlightShadow.Visibility = Visibility.Collapsed;
+            highlightName.Visibility = Visibility.Collapsed;
+            highlightDetail.Visibility = Visibility.Collapsed;
+            highlightMoreDetail.Visibility = Visibility.Collapsed;
             if (videoElement != null)
             {
                 videoElement.Pause();
