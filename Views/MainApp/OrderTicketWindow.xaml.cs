@@ -45,7 +45,14 @@ namespace Nextfliz.Views.MainApp
         private void SeatsLayoutControl_SeatClicked(object sender, string e)
         {
             string seatId = e;
-            viewModel.Seat = seatId;
+            if (seatId != null)
+            {
+                viewModel.Seat = seatId;
+            }
+            else
+            {
+                viewModel.Seat = "";
+            }
         }
 
 

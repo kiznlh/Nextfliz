@@ -22,12 +22,23 @@ namespace Nextfliz.Views.MainApp
         public event PropertyChangedEventHandler PropertyChanged;
 
         private string _voucherNumberOfUse;
+        
         public string VoucherNumberOfUse
         {
             get { return _voucherNumberOfUse; }
             set { 
                 _voucherNumberOfUse = value;
                 OnPropertyChanged(nameof(VoucherNumberOfUse));
+            }
+        }
+        private string _voucherID;
+        public string VoucherID
+        {
+            get { return _voucherID; }
+            set
+            {
+                _voucherID = value;
+                OnPropertyChanged(nameof(VoucherID));
             }
         }
         private string _voucherImage;
