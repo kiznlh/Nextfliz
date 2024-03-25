@@ -84,13 +84,6 @@ CREATE TABLE FilmCast (
     FOREIGN KEY (actor_id) REFERENCES Actor(actor_id)
 );
 
-CREATE TABLE Seat (
-    suat_chieu_id CHAR(5),
-    vi_tri_ghe NVARCHAR(5),
-    PRIMARY KEY (suat_chieu_id, vi_tri_ghe),
-    FOREIGN KEY (suat_chieu_id) REFERENCES SuatChieu(suat_chieu_id)
-);
-
 CREATE TABLE VoucherUsage (
     voucher_id CHAR(5),
 	ticket_id NVARCHAR(20),

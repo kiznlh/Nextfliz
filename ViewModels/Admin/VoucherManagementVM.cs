@@ -1,5 +1,4 @@
-﻿using Nextfliz.Models;
-using Nextfliz.View.Admin;
+﻿using Nextfliz.View.Admin;
 using Nextfliz.Views.Admin;
 using System;
 using System.Collections.Generic;
@@ -123,13 +122,13 @@ namespace Nextfliz
             showingList.Clear();
             using (var context = new NextflizContext())
             {
-                var items = context.Vouchers.Take(numPerPage).ToList();
-                listSize = context.Vouchers.Count();
+                var items = context.Vouchers.Where(v => v.SoLuong > 0).Take(numPerPage).ToList();
+                listSize = context.Vouchers.Where(v => v.SoLuong > 0).Count();
                 foreach (var item in items)
                 {
                     showingList.Add(item);
                 }
-                totalPage = "/ " + Math.Ceiling(context.Vouchers.Count() * 1.0 / numPerPage);
+                totalPage = "/ " + Math.Ceiling(context.Vouchers.Where(v => v.SoLuong > 0).Count() * 1.0 / numPerPage);
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("TotalPage"));
 
                 currentPage = listSize != 0 ? 1 : 0;
@@ -191,7 +190,7 @@ namespace Nextfliz
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CurrentPage"));
             using (var context = new NextflizContext())
             {
-                var items = context.Vouchers.Skip(numPerPage * (currentPage - 1)).Take(numPerPage).ToList();
+                var items = context.Vouchers.Where(v => v.SoLuong > 0).Skip(numPerPage * (currentPage - 1)).Take(numPerPage).ToList();
                 foreach (var item in items)
                 {
                     showingList.Add(item);
@@ -248,7 +247,7 @@ namespace Nextfliz
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CurrentPage"));
             using (var context = new NextflizContext())
             {
-                var items = context.Vouchers.Skip(numPerPage * (currentPage - 1)).Take(numPerPage).ToList();
+                var items = context.Vouchers.Where(v => v.SoLuong > 0).Skip(numPerPage * (currentPage - 1)).Take(numPerPage).ToList();
                 foreach (var item in items)
                 {
                     showingList.Add(item);
@@ -301,7 +300,8 @@ namespace Nextfliz
             {
                 using (var dbContext = new NextflizContext())
                 {
-                    dbContext.Vouchers.Remove(itemToDelete);
+                    var item = dbContext.Vouchers.FirstOrDefault(x => x.VoucherId == itemToDelete.VoucherId);
+                    item.SoLuong = 0;
                     dbContext.SaveChanges();
                 }
             }
@@ -318,6 +318,9 @@ namespace Nextfliz
                     using (var dbContext = new NextflizContext())
                     {
                         var ticketToDelete = dbContext.Tickets.FirstOrDefault(t => t.TicketId == itemToDelete.id);
+                        var usage = dbContext.VoucherUsages.Where(s => s.TicketId == ticketToDelete.TicketId);
+                        dbContext.RemoveRange(usage);
+                        dbContext.SaveChanges();
                         dbContext.Tickets.Remove(ticketToDelete);
                         dbContext.SaveChanges();
                     }

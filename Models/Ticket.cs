@@ -21,11 +21,11 @@ public partial class Ticket
 
     public bool? VoucherSinhNhat { get; set; }
 
-    public virtual ICollection<VoucherUsage> VoucherUsages { get; set; } = new List<VoucherUsage>();
-
     public virtual Movie? Movie { get; set; }
 
     public virtual SuatChieu? SuatChieu { get; set; }
 
     public virtual User? UsernameNavigation { get; set; }
+
+    public virtual ICollection<VoucherUsage> VoucherUsages { get; set; } = new List<VoucherUsage>();
 }
