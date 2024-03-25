@@ -84,12 +84,12 @@
             </TextBlock>
         </StackPanel>
         <StackPanel Visibility="Collapsed" x:Name="highlightMoreDetail" Grid.Row="4" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0">
-            <TextBlock Text="{Binding , ElementName=Card}" Foreground="White" FontSize="15">
+            <TextBlock Text="{Binding ThoiLuong, ElementName=Card}" Foreground="White" FontSize="15">
                 <TextBlock.Effect>
                         <DropShadowEffect Color="Black" Direction="1" ShadowDepth="2" BlurRadius="2"/>
                 </TextBlock.Effect>
             </TextBlock>
-            <TextBlock Text="{Binding , ElementName=Card}" Foreground="White" Margin="5,0,0,0" FontSize="13" HorizontalAlignment="Center">
+            <TextBlock Text="{Binding ThoiLuong, ElementName=Card}" Foreground="White" Margin="5,0,0,0" FontSize="13" HorizontalAlignment="Center">
                 <TextBlock.Effect>
                     <DropShadowEffect Color="Black" Direction="1" ShadowDepth="2" BlurRadius="2"/>
                 </TextBlock.Effect>
