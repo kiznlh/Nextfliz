@@ -59,7 +59,5 @@ public partial class SuatChieu
 
     public virtual Movie? Movie { get; set; }
 
-    public virtual ICollection<Seat> Seats { get; set; } = new List<Seat>();
-
     public virtual ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();
 }
