@@ -96,6 +96,10 @@ namespace Nextfliz
         {
             if (date.Length == 0 || hour.Length == 0 || minute.Length == 0 || price.Length == 0)
                 return;
+            if (date.Contains("/"))
+            {
+                return;
+            }
 
             if (suatChieuId != null)
                 using (var dbContext = new NextflizContext())

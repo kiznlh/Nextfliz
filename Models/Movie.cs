@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace Nextfliz;
 
@@ -30,6 +32,7 @@ public partial class Movie
 
     public static void DeleteMovie(string id)
     {
+        ObservableCollection<string> ids = new ObservableCollection<string>();
         using (var dbContext = new NextflizContext())
         {
             var suatChieus = dbContext.SuatChieus.Where(s => s.MovieId == id);
@@ -37,7 +40,9 @@ public partial class Movie
             {
                 SuatChieu.DeleteSuatChieu(suatChieu.SuatChieuId);
             }
-
+        }
+        using (var dbContext = new NextflizContext())
+        {
             var filmCasts = dbContext.FilmCasts.Where(f => f.MovieId == id);
             foreach (FilmCast filmCast in filmCasts)
             {
@@ -46,6 +51,7 @@ public partial class Movie
 
             var itemToDelete = dbContext.Movies.FirstOrDefault(a => a.MovieId == id);
             dbContext.Movies.Remove(itemToDelete);
+
             dbContext.SaveChanges();
         }
     }

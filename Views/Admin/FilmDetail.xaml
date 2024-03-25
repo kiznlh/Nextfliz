@@ -34,7 +34,7 @@
                             </WrapPanel>
                             <WrapPanel Orientation="Horizontal">
                                 <Icon:PackIconMaterial Kind="ClockOutline" VerticalAlignment="Center" Margin="0,0,5,0"/>
-                                <TextBlock TextWrapping="Wrap" FontSize="15">Thời lượng:</TextBlock>
+                                <TextBlock TextWrapping="Wrap" FontSize="15">Thời lượng(phút):</TextBlock>
                                 <TextBlock TextWrapping="Wrap" FontSize="15" Text="{Binding Time}" Margin="5,0,0,0"/>
                             </WrapPanel>
                             <WrapPanel Orientation="Horizontal">
