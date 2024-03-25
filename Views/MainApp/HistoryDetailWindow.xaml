@@ -7,6 +7,12 @@
         mc:Ignorable="d"
         Background="Transparent"
         Title="HistoryDetailWindow" Height="1100" Width="1000">
+    <Window.Resources>
+        <local:DateTimeToStringConverter x:Key="DateTimeConverter"/>
+        <DataTemplate x:Key="DateTimeTemplate">
+            <TextBlock Text="{Binding Converter={StaticResource DateTimeConverter}}"/>
+        </DataTemplate>
+    </Window.Resources>
     <Grid IsHitTestVisible="False">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -48,8 +54,7 @@
             <StackPanel Orientation="Vertical" DockPanel.Dock="Left" VerticalAlignment="Center">
                 <Label Foreground="White" FontSize="50" Content="Suất chiếu:" Padding="10" HorizontalAlignment="Center"></Label>
                 <ComboBox x:Name="timeStampComboBox" Height="50" Width="auto" ItemsSource="{Binding SuatChieu}" 
-                 SelectedValuePath="NgayGioChieu" SelectedIndex="{Binding SelectedSuatChieuIndex} "
-               SelectionChanged="timeStampComboBox_SelectionChanged">
+                 SelectedValuePath="NgayGioChieu" SelectedIndex="{Binding SelectedSuatChieuIndex}">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding NgayGioChieu, Converter={StaticResource DateTimeConverter}}" FontSize="25" HorizontalAlignment="Center"/>

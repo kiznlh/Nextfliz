@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Nextfliz.ViewModels.MainApp;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,13 @@ namespace Nextfliz.Views.MainApp
     /// </summary>
     public partial class HistoryDetailWindow : Window
     {
-        public HistoryDetailWindow()
+        HistoryDetailWindowVM viewModel;
+        public HistoryDetailWindow(string ticketID)
         {
             InitializeComponent();
+            viewModel = new HistoryDetailWindowVM(ticketID);
+            DataContext = viewModel;
+
         }
     }
 }
