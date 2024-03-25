@@ -10,30 +10,35 @@
       Height="600"
       Title="SignUpPage"
       >
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-
-        <!-- Login UI -->
-        <StackPanel Grid.Row="1">
-            <Label Foreground="Red" FontSize="20">Tên Đăng Nhập</Label>
-            <TextBox  x:Name="txtUsername" Margin="0 0 0 0" FontSize="20" Text="{Binding UserName}"/>
-        </StackPanel>
-        <StackPanel Grid.Row="2">
-            <Label Foreground="Red" FontSize="20">Mật Khẩu</Label>
-            <PasswordBox x:Name="txtPassword" Margin="0 0 0 0" FontSize="20" PasswordChanged="PasswordBox_PasswordChanged"/>
-        </StackPanel>
+    <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="10">
+        <Grid Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" FontSize="25" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="red">Đăng nhập tài khoản</Label>
+            
+            <!-- Login UI -->
+            <StackPanel Grid.Row="1">
+                <Label Foreground="Red" FontSize="20">Tên Đăng Nhập</Label>
+                <TextBox  x:Name="txtUsername" Margin="0 0 0 0" FontSize="20" Text="{Binding UserName}"/>
+            </StackPanel>
+            <StackPanel Grid.Row="2">
+                <Label Foreground="Red" FontSize="20">Mật Khẩu</Label>
+                <PasswordBox x:Name="txtPassword" Margin="0 0 0 0" FontSize="20" PasswordChanged="PasswordBox_PasswordChanged"/>
+            </StackPanel>
        
-        <Button x:Name="loginButton" Grid.Row="3" Content="Đăng nhập" Command="{Binding LoginCommand}" Width="auto" Height="auto" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" BorderBrush="Red" Style="{StaticResource loginButton}"/>
-        <StackPanel Grid.Row="4" Orientation="Vertical">
-            <Button x:Name="signUpButton" Content="Chưa có tài khoản? Đăng kí!" Command="{Binding SignUpCommand}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Red" Background="Transparent" BorderThickness="0"/>
-        </StackPanel>
+            <Button x:Name="loginButton" Grid.Row="3" Content="Đăng nhập" Command="{Binding LoginCommand}" Width="auto" Height="auto" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" BorderBrush="Red" Style="{StaticResource loginButton}"/>
+            <StackPanel Grid.Row="4" Orientation="Vertical">
+                <Button x:Name="signUpButton" Content="Chưa có tài khoản? Đăng kí!" Command="{Binding SignUpCommand}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Red" Background="Transparent" BorderThickness="0">
+                    
+                </Button>
+            </StackPanel>
 
-    </Grid>
+        </Grid>
+    </Border>
 </Page>

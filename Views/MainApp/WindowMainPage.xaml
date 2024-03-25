@@ -24,7 +24,7 @@
                 </local:HotMovieSliderControl>
             </StackPanel>
             
-            <StackPanel Grid.Row="1" Orientation="Vertical" MaxWidth="1000" Margin="0,30,0,100">
+            <StackPanel Grid.Row="1" Orientation="Vertical" MaxWidth="1000" Margin="0,30,0,50">
                 <TextBlock Text="Có thể bạn sẽ thích" Foreground="#AC1110" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <local:SliderControl x:Name="randomMovieSlider" MaxHeight="300" MaxWidth="1000" MinHeight="300" MinWidth="1000">
                 </local:SliderControl>

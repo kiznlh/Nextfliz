@@ -2,7 +2,10 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="WindowUserMainWindow" Height="900" Width="1200"
-        Background="#030303">
+        Background="#030303" 
+        WindowState="Maximized"
+        ResizeMode="CanMinimize"
+        WindowStartupLocation="CenterScreen">
     <DockPanel>
         <DockPanel DockPanel.Dock="Top" MaxHeight="100">
             <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
