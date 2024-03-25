@@ -78,24 +78,26 @@
                 </TextBlock>
             </Border>
             <!-- Duration -->
-            <TextBlock Text="{Binding ThoiLuong, ElementName=Card}" Foreground="White" Margin="5,0,0,0" FontSize="13" HorizontalAlignment="Center">
+            <TextBlock Text="{Binding ThoiLuong, ElementName=Card}" VerticalAlignment="Center" Foreground="White" Margin="5,0,0,0" FontSize="13" HorizontalAlignment="Center">
                 <TextBlock.Effect>
                     <DropShadowEffect Color="Black" Direction="1" ShadowDepth="2" BlurRadius="2"/>
                 </TextBlock.Effect>
             </TextBlock>
         </StackPanel>
-        <StackPanel Visibility="Collapsed" x:Name="highlightMoreDetail" Grid.Row="5" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0">
-            <TextBlock Text="{Binding NamPhatHanh, ElementName=Card}" Foreground="White" FontSize="13" Margin="0,0,5,0">
+        <Grid Visibility="Collapsed" x:Name="highlightMoreDetail" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0">
+            <TextBlock Text="{Binding NamPhatHanh, ElementName=Card}" HorizontalAlignment="Left" Foreground="White" FontSize="13" Margin="0,0,50,0">
                 <TextBlock.Effect>
                         <DropShadowEffect Color="Black" Direction="1" ShadowDepth="2" BlurRadius="2"/>
                 </TextBlock.Effect>
             </TextBlock>
-            <Icon:PackIconMaterial VerticalAlignment="Center" Width="10" Foreground="Gold" Kind="Star"/>
-            <TextBlock Text="{Binding Rating, ElementName=Card}" Foreground="White" FontSize="13" HorizontalAlignment="Center">
-                <TextBlock.Effect>
-                    <DropShadowEffect Color="Black" Direction="1" ShadowDepth="2" BlurRadius="2"/>
-                </TextBlock.Effect>
-            </TextBlock>
-        </StackPanel>
+            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Icon:PackIconMaterial VerticalAlignment="Center" Width="10" Foreground="Gold" Kind="Star"/>
+                <TextBlock Text="{Binding Rating, ElementName=Card}" Foreground="White" FontSize="13" HorizontalAlignment="Center">
+                    <TextBlock.Effect>
+                        <DropShadowEffect Color="Black" Direction="1" ShadowDepth="2" BlurRadius="2"/>
+                    </TextBlock.Effect>
+                </TextBlock>
+            </WrapPanel>
+        </Grid>
     </Grid>
 </UserControl>
