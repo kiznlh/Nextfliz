@@ -51,7 +51,7 @@
             </ComboBox>
         </StackPanel>
         <Button Grid.Row="6" Content="Đăng Kí" FontSize="20" VerticalAlignment="Center" Command="{Binding SignUpCommand}" HorizontalAlignment="Center" Foreground="Red" Background="Transparent" FontWeight="Bold" BorderBrush="Red" BorderThickness="2"/>
-        <Button Grid.Row="7" Content="Đã có tài khoản? Đăng nhập!" VerticalAlignment="Center" Command="{Binding LoginCommand}" HorizontalAlignment="Center" Foreground="Red" Background="Transparent"/>
+        <Button Grid.Row="7" Content="Đã có tài khoản? Đăng nhập!" BorderThickness="0" VerticalAlignment="Center" Command="{Binding LoginCommand}" HorizontalAlignment="Center" Foreground="Red" Background="Transparent"/>
 
     </Grid>
 </Page>
