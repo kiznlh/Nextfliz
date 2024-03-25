@@ -13,7 +13,7 @@
             <TextBlock Text="{Binding Converter={StaticResource DateTimeConverter}}"/>
         </DataTemplate>
     </Page.Resources>
-    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalAlignment="Center">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
@@ -29,80 +29,100 @@
             <!-- Movie Details -->
             <StackPanel Margin="20,20,20,20" Grid.Row="1" VerticalAlignment="Center" >
                 <!--Need Binding{}-->
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Tên Phim: " FontSize="24" FontWeight="Bold" Foreground="White"/>
-                    <TextBlock Text="{Binding Name}" FontSize="24" FontWeight="Bold" Foreground="BlanchedAlmond"/>
-                </StackPanel>
+                <Border BorderThickness="1" BorderBrush="Gray" Padding="10">
+                    <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Name}" FontSize="24" FontWeight="Bold" Foreground="BlanchedAlmond"/>
+                    </StackPanel>
 
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Thể loại: " FontSize="16" Foreground="White"/>
-                    <TextBlock Text="{Binding Genre}" FontSize="16" Foreground="BlanchedAlmond"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Thể loại: " FontSize="16" Foreground="White"/>
+                        <TextBlock Text="{Binding Genre}" FontSize="16" Foreground="BlanchedAlmond"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Thời lượng: " FontSize="16" Foreground="White" />
+                        <TextBlock Text="{Binding Duration}" FontSize="16" Foreground="BlanchedAlmond"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Ngày phát hành: " FontSize="16" Foreground="White"/>
+                        <TextBlock Text="{Binding ReleaseDate}" FontSize="16" Foreground="BlanchedAlmond"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Điểm đánh giá: " FontSize="16" Foreground="White"/>
+                        <TextBlock Text="{Binding Rating}" FontSize="16" Foreground="BlanchedAlmond"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Phân loại độ tuổi: " FontSize="16" Margin="0,0,0,0" Foreground="White"/>
+                        <TextBlock Text="{Binding Certification}" FontSize="16" Margin="0,0,0,0" Foreground="BlanchedAlmond"/>
+                    </StackPanel>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Thời lượng: " FontSize="16" Foreground="White" />
-                    <TextBlock Text="{Binding Duration}" FontSize="16" Foreground="BlanchedAlmond"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Ngày phát hành: " FontSize="16" Foreground="White"/>
-                    <TextBlock Text="{Binding ReleaseDate}" FontSize="16" Foreground="BlanchedAlmond"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Điểm đánh giá: " FontSize="16" Foreground="White"/>
-                    <TextBlock Text="{Binding Rating}" FontSize="16" Foreground="BlanchedAlmond"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Phân loại độ tuổi: " FontSize="16" Margin="0,0,0,0" Foreground="White"/>
-                    <TextBlock Text="{Binding Certification}" FontSize="16" Margin="0,0,0,0" Foreground="BlanchedAlmond"/>
-                </StackPanel>
+                </Border>
 
-                <!-- Actor and Director Section -->
-                <StackPanel Orientation="Vertical">
-                    <Label Foreground="BlanchedAlmond" FontSize="16">Diễn viên</Label>
-                    <ScrollViewer x:Name="actorsScrollViewer" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-                        <ItemsControl ItemsSource="{Binding Actors}" Margin="30">
-                            <ItemsControl.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <StackPanel Orientation="Horizontal" x:Name="actorsPanel"></StackPanel>
-                                </ItemsPanelTemplate>
-                            </ItemsControl.ItemsPanel>
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <local:ActorAndDirectorDetailCard DataContext="{Binding}" Height="200" Width="200"/>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    </ScrollViewer>
-                </StackPanel>
+                <Grid Margin="0,10,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30*"/>
+                        <ColumnDefinition Width="70*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border Grid.Column="0" BorderBrush="Gray" BorderThickness="1" Margin="0,0,10,0">
+                    <StackPanel Orientation="Vertical">
+                        <Label Foreground="BlanchedAlmond" FontSize="16" VerticalAlignment="Center">Đạo diễn</Label>
+                        <local:ActorAndDirectorDetailCard x:Name="directorCard" Padding="30" HorizontalAlignment="Center" ></local:ActorAndDirectorDetailCard>
+                    </StackPanel>
+                        
+                    </Border>
 
-                <StackPanel Orientation="Horizontal">
-                    <Label Foreground="BlanchedAlmond" FontSize="16" VerticalAlignment="Center">Đạo diễn</Label>
-                    <local:ActorAndDirectorDetailCard x:Name="directorCard" Padding="30" Height="auto" Width="auto" ></local:ActorAndDirectorDetailCard>
-                </StackPanel>
+
+                    <!-- Actor and Director Section -->
+                    <Border Grid.Column="1" BorderBrush="Gray" BorderThickness="1">
+                        <StackPanel Orientation="Vertical">
+                        <Label Foreground="BlanchedAlmond" FontSize="16">Diễn viên</Label>
+                        <ScrollViewer x:Name="actorsScrollViewer" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Margin="10,0,10,0">
+                            <ItemsControl ItemsSource="{Binding Actors}" Margin="30">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Horizontal" x:Name="actorsPanel"></StackPanel>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <local:ActorAndDirectorDetailCard DataContext="{Binding}" Height="200" Width="200"/>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+                    </StackPanel>
+                    </Border>
+                </Grid>
+                
 
             </StackPanel>
             <!--Booking seats (View Only), Need biding-->
             <DockPanel Grid.Row="2" Height="auto" Margin="0,50,0,0">
-                <StackPanel Orientation="Vertical" DockPanel.Dock="Left" VerticalAlignment="Center">
-                    <Label Foreground="White" FontSize="50" Content="Suất chiếu:" Padding="10" HorizontalAlignment="Center"></Label>
-                    <ComboBox x:Name="timeStampComboBox" Height="50" Width="auto" ItemsSource="{Binding SuatChieu}" 
-                                SelectedValuePath="NgayGioChieu" SelectedIndex="{Binding SelectedSuatChieuIndex}"
-                              SelectionChanged="timeStampComboBox_SelectionChanged">
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding NgayGioChieu, Converter={StaticResource DateTimeConverter}}" FontSize="25" HorizontalAlignment="Center"/>
-                            </DataTemplate>
-                        </ComboBox.ItemTemplate>
-                    </ComboBox>
+                <StackPanel Orientation="Vertical" DockPanel.Dock="Top" VerticalAlignment="Center">
+                    <WrapPanel Orientation="Horizontal">
+                        <Label Foreground="White" FontSize="20" Content="Suất chiếu:" Padding="10" HorizontalAlignment="Center"></Label>
+                        <ComboBox x:Name="timeStampComboBox" Height="30" Width="Auto" ItemsSource="{Binding SuatChieu}" 
+                            SelectedValuePath="NgayGioChieu" SelectedIndex="{Binding SelectedSuatChieuIndex}"
+                            SelectionChanged="timeStampComboBox_SelectionChanged">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding NgayGioChieu, Converter={StaticResource DateTimeConverter}}" FontSize="16" HorizontalAlignment="Center"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </WrapPanel>
 
                     <TextBlock Text="Màu vàng là còn trống. Màu đỏ là đã có người đặt." Foreground="White" FontSize="15" FontStyle="Italic" Padding="5"/>
                 </StackPanel>
 
-                <local:SeatsLayoutControl x:Name="seatLayout" IsReadOnly="True" DockPanel.Dock="Right" Width="auto" Height="auto"/>
+                <WrapPanel DockPanel.Dock="Bottom" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <local:SeatsLayoutControl x:Name="seatLayout" IsReadOnly="True" Width="auto" Height="auto"/>
+                </WrapPanel>
             </DockPanel>
 
             <!-- Border around the button -->
-            <Border Grid.Row="3" BorderBrush="Cyan" BorderThickness="1" Margin="0,50,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="10">
-                <Button Content="Đặt vé" FontSize="50" Foreground="Cyan" Background="Transparent" Command="{Binding OrderCommand}" BorderThickness="0"/>
+            <Border Grid.Row="3" BorderBrush="Red" BorderThickness="1" Margin="0,50,0,50" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="10">
+                <Button Content="Đặt vé" FontSize="50" Foreground="Red" Background="Transparent" Command="{Binding OrderCommand}" BorderThickness="0"/>
             </Border>
         </Grid>
     </ScrollViewer>

@@ -27,7 +27,10 @@
             </Grid.ColumnDefinitions>
 
             <!-- Search TextBox -->
-            <TextBox x:Name="searchField" Grid.Column="0" Margin="0,0,5,0" VerticalAlignment="Center" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"/>
+            <Border Background="Transparent" Height="30" BorderBrush="Gray" BorderThickness="1" VerticalAlignment="Center">
+                <TextBox Background="Transparent" BorderThickness="0" CaretBrush="White" Foreground="White" x:Name="searchField" Grid.Column="0" Margin="5,0,5,0" VerticalAlignment="Center" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"/>
+            </Border>
+                
 
             <!-- ComboBox for Options -->
             <ComboBox x:Name="searchOptions" ItemsSource="{Binding ComboBoxItems}" Grid.Column="1" Margin="5,0,0,0" VerticalAlignment="Center" SelectedItem="{Binding SelectedItem}" Style="{StaticResource CustomComboBoxStyle}">
@@ -91,14 +94,18 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn
-                    Binding="{Binding Name}"
-                    FontWeight="SemiBold"
+                <DataGridTemplateColumn
                     Header="Tên phim"
                     IsReadOnly="True"
                     Width="2*">
-
-                </DataGridTextColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <TextBlock Width="380" TextTrimming="WordEllipsis" VerticalAlignment="Center" Text="{Binding Name}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
                 <DataGridTemplateColumn
                     Header="Đạo diễn"
                     IsReadOnly="True"

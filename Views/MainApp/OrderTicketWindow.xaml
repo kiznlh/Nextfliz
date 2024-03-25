@@ -13,7 +13,8 @@
             <TextBlock Text="{Binding Converter={StaticResource DateTimeConverter}}"/>
         </DataTemplate>
     </Window.Resources>
-    <Grid>
+    <ScrollViewer>
+        <Grid Margin="10,0,10,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="2*"/> 
@@ -23,9 +24,8 @@
         </Grid.RowDefinitions>
         <StackPanel Orientation="Vertical" Grid.Row="0">
             <Image Source="{Binding MovieBG}" Stretch="Uniform" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,0,0,0" Width="500"/>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Tên Phim: " FontSize="24" FontWeight="Bold" Foreground="White"/>
-                <TextBlock Text="{Binding Name}" FontSize="24" FontWeight="Bold" Foreground="BlanchedAlmond"/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding Name}" FontSize="24" FontWeight="Bold" Foreground="BlanchedAlmond"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal">
@@ -51,22 +51,24 @@
         </StackPanel>
 
         <DockPanel Grid.Row="1" Height="auto" Margin="0,20,0,20">
-            <StackPanel Orientation="Vertical" DockPanel.Dock="Left" VerticalAlignment="Center">
-                <Label Foreground="White" FontSize="50" Content="Suất chiếu:" Padding="10" HorizontalAlignment="Center"></Label>
-                <ComboBox x:Name="timeStampComboBox" Height="50" Width="auto" ItemsSource="{Binding SuatChieu}" 
-                    SelectedValuePath="NgayGioChieu" SelectedIndex="{Binding SelectedSuatChieuIndex}"
-                  SelectionChanged="timeStampComboBox_SelectionChanged">
-                    <ComboBox.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding NgayGioChieu, Converter={StaticResource DateTimeConverter}}" FontSize="25" HorizontalAlignment="Center"/>
-                        </DataTemplate>
-                    </ComboBox.ItemTemplate>
-                </ComboBox>
+            <StackPanel Orientation="Vertical" DockPanel.Dock="Top" VerticalAlignment="Center">
+                    <WrapPanel Orientation="Horizontal">
+                        <Label Foreground="White" FontSize="20" Content="Suất chiếu:" Padding="10" HorizontalAlignment="Center"></Label>
+                            <ComboBox x:Name="timeStampComboBox" Height="30" Width="Auto" ItemsSource="{Binding SuatChieu}" 
+                                SelectedValuePath="NgayGioChieu" SelectedIndex="{Binding SelectedSuatChieuIndex}"
+                                SelectionChanged="timeStampComboBox_SelectionChanged">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding NgayGioChieu, Converter={StaticResource DateTimeConverter}}" FontSize="16" HorizontalAlignment="Center"/>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                    </WrapPanel>
 
                 <TextBlock  Text="Màu đỏ là đã có người đặt. Chọn vào ô màu vàng để đặt vé" Foreground="White" FontSize="15" FontStyle="Italic" Padding="5"/>
             </StackPanel>
 
-            <local:SeatsLayoutControl x:Name="seatLayout" DockPanel.Dock="Right" Width="auto" Height="auto"/>
+            <local:SeatsLayoutControl x:Name="seatLayout" DockPanel.Dock="Bottom" Width="auto" Height="auto"/>
         </DockPanel>
 
         <ScrollViewer Grid.Row="2" x:Name="voucherScrollViewer" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
@@ -98,6 +100,7 @@
             <TextBlock Foreground="Wheat" x:Name="finalPrice" FontSize="16" Text="{Binding FinalPrice, StringFormat={}{0}đ}" HorizontalAlignment="Right"/>
         </UniformGrid>
 
-        <Button x:Name="orderButton" Command="{Binding ConfirmCommand}" Content="Xác nhận đặt vé" Grid.Row="4" Height="50" Width="400" Background="Transparent" FontSize="30" Foreground="LawnGreen" Margin="20"/>
+        <Button BorderBrush="red" x:Name="orderButton" Command="{Binding ConfirmCommand}" Content="Xác nhận đặt vé" Grid.Row="4" Height="50" Width="400" Background="Transparent" FontSize="30" Foreground="red" Margin="40"/>
     </Grid>
+    </ScrollViewer>
 </Window>
