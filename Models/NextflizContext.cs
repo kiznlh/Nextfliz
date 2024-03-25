@@ -225,7 +225,7 @@ public partial class NextflizContext : DbContext
 
         modelBuilder.Entity<Ticket>(entity =>
         {
-            entity.HasKey(e => e.TicketId).HasName("PK__Ticket__D596F96B29AC535E");
+            entity.HasKey(e => e.TicketId).HasName("PK__Ticket__D596F96BE3BA15EC");
 
             entity.ToTable("Ticket");
 
@@ -254,18 +254,7 @@ public partial class NextflizContext : DbContext
             entity.Property(e => e.ViTriGhe)
                 .HasMaxLength(5)
                 .HasColumnName("vi_tri_ghe");
-
-            entity.HasOne(d => d.Movie).WithMany(p => p.Tickets)
-                .HasForeignKey(d => d.MovieId)
-                .HasConstraintName("FK__Ticket__movie_id__46E78A0C");
-
-            entity.HasOne(d => d.SuatChieu).WithMany(p => p.Tickets)
-                .HasForeignKey(d => d.SuatChieuId)
-                .HasConstraintName("FK__Ticket__suat_chi__47DBAE45");
-
-            entity.HasOne(d => d.UsernameNavigation).WithMany(p => p.Tickets)
-                .HasForeignKey(d => d.Username)
-                .HasConstraintName("FK__Ticket__username__45F365D3");
+            entity.Property(e => e.VoucherSinhNhat).HasColumnName("voucher_sinh_nhat");
         });
 
         modelBuilder.Entity<User>(entity =>
@@ -312,18 +301,28 @@ public partial class NextflizContext : DbContext
 
         modelBuilder.Entity<VoucherUsage>(entity =>
         {
-            entity.HasKey(e => new { e.VoucherId, e.TicketId }).HasName("PK__VoucherU__2DEF903E58B1CF9C");
+            entity.HasKey(e => e.UsageId);
 
             entity.ToTable("VoucherUsage");
 
+            entity.Property(e => e.UsageId)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .IsFixedLength()
+                .HasColumnName("usage_id");
+            entity.Property(e => e.TicketId)
+                .HasMaxLength(20)
+                .HasColumnName("ticket_id");
             entity.Property(e => e.VoucherId)
                 .HasMaxLength(5)
                 .IsUnicode(false)
                 .IsFixedLength()
                 .HasColumnName("voucher_id");
-            entity.Property(e => e.TicketId)
-                .HasMaxLength(20)
-                .HasColumnName("ticket_id");
+
+            entity.HasOne(d => d.Ticket).WithMany(p => p.VoucherUsages)
+                .HasForeignKey(d => d.TicketId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__VoucherUs__ticke__5441852A");
         });
 
         OnModelCreatingPartial(modelBuilder);

@@ -19,6 +19,10 @@ public partial class Ticket
 
     public string? ViTriGhe { get; set; }
 
+    public bool? VoucherSinhNhat { get; set; }
+
+    public virtual ICollection<VoucherUsage> VoucherUsages { get; set; } = new List<VoucherUsage>();
+
     public virtual Movie? Movie { get; set; }
 
     public virtual SuatChieu? SuatChieu { get; set; }
