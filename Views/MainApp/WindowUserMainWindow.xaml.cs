@@ -86,6 +86,7 @@ namespace Nextfliz.Views.MainApp
         
         public void navigateToHome()
         {
+            mainPage = new WindowMainPage();
             contentFrame.Navigate(mainPage);
         }
         public void navigateToAPage(Page page)
