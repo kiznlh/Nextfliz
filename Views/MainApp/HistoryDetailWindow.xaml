@@ -6,20 +6,21 @@
         xmlns:local="clr-namespace:Nextfliz.Views.MainApp"
         mc:Ignorable="d"
         Background="Transparent"
-        Title="HistoryDetailWindow" Height="800" Width="800">
+        Title="HistoryDetailWindow" Height="600" Width="400" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <local:DateTimeToStringConverter x:Key="DateTimeConverter"/>
         <DataTemplate x:Key="DateTimeTemplate">
             <TextBlock Text="{Binding Converter={StaticResource DateTimeConverter}}"/>
         </DataTemplate>
     </Window.Resources>
-    <Grid>
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Vertical" Grid.Row="0">
-            <Image Source="{Binding MovieBG}" Stretch="Uniform" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,0,0,0" Width="500"/>
+            <Image Source="{Binding MovieBG}" Stretch="Uniform" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,0,0,0" Width="300"/>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Tên Phim: " FontSize="24" FontWeight="Bold" Foreground="White"/>
                 <TextBlock Text="{Binding Name}" FontSize="24" FontWeight="Bold" Foreground="BlanchedAlmond"/>
@@ -65,4 +66,5 @@
         </UniformGrid>
 
     </Grid>
+    </ScrollViewer>
 </Window>
