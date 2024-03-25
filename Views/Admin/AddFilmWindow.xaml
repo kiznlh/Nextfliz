@@ -7,11 +7,10 @@
         xmlns:local="clr-namespace:Nextfliz.Views.Admin"
         xmlns:total="clr-namespace:Nextfliz"
         mc:Ignorable="d"
-        Height="650" Width="800" WindowStartupLocation="CenterScreen">
+        Height="650" Width="800" WindowStartupLocation="CenterScreen" WindowStyle="None">
     <Grid>
         <ScrollViewer>
             <StackPanel Orientation="Vertical">
-                <Label HorizontalAlignment="Center" FontWeight="bold" FontSize="20">Thêm mới phim</Label>
                 <Label FontWeight="SemiBold">Tên phim:</Label>
                 <TextBox Margin="10,0,10,0" Validation.ErrorTemplate="{StaticResource validationTemplate}" Style="{StaticResource textboxInError}">
                     <TextBox.Text>
