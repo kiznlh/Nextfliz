@@ -28,14 +28,31 @@
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <!-- name -->
-        <TextBlock Grid.Row="2" Text="{Binding TenPhim, ElementName=Card}" FontSize="20" Foreground="Red" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20,0,0,10"></TextBlock>
-        <StackPanel Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20,0,0,0">
-            <Border BorderBrush="Red" BorderThickness="1" CornerRadius="2" Padding="2">
+        <WrapPanel Grid.Row="4" Grid.RowSpan="2" Background="Black" Opacity="0.5">
+            <WrapPanel.Effect>
+                <DropShadowEffect Color="Black" Direction="270" ShadowDepth="50" BlurRadius="50"/>
+            </WrapPanel.Effect>
+        </WrapPanel>
+        <TextBlock Grid.Row="4" Text="{Binding TenPhim, ElementName=Card}" TextTrimming="WordEllipsis" FontSize="15" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,10">
+            <TextBlock.Effect>
+                <DropShadowEffect Color="Black" Direction="1" ShadowDepth="2" BlurRadius="2"/>
+            </TextBlock.Effect>
+        </TextBlock>
+        <StackPanel Grid.Row="5" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0">
+            <Border BorderBrush="White" BorderThickness="1" CornerRadius="2" Padding="2">
                 <!-- certification -->
-                <TextBlock Text="{Binding Certification, ElementName=Card}" Foreground="Red" FontSize="15"/>
+                <TextBlock Text="{Binding Certification, ElementName=Card}" Foreground="White" FontSize="14">
+                    <TextBlock.Effect>
+                        <DropShadowEffect Color="Black" Direction="1" ShadowDepth="2" BlurRadius="2"/>
+                    </TextBlock.Effect>
+                </TextBlock>
             </Border>
             <!-- Duration -->
-            <TextBlock Text="{Binding ThoiLuong, ElementName=Card}" Foreground="Red" Margin="10,0,0,0" FontSize="15" HorizontalAlignment="Center"/>
+            <TextBlock Text="{Binding ThoiLuong, ElementName=Card}" Foreground="White" Margin="10,0,0,0" FontSize="15" HorizontalAlignment="Center">
+                <TextBlock.Effect>
+                    <DropShadowEffect Color="Black" Direction="1" ShadowDepth="2" BlurRadius="2"/>
+                </TextBlock.Effect>
+            </TextBlock>
         </StackPanel>
     </Grid>
 </UserControl>
