@@ -232,16 +232,19 @@ namespace Nextfliz.ViewModels.MainApp
         {
             BookedSeatList.Clear();
             var currentSuatChieu = SuatChieu[SelectedSuatChieuIndex];
-
-            using (var context = new NextflizContext())
+            if (currentSuatChieu != null)
             {
-                var ticketList = context.Tickets.Where(ticket => ticket.SuatChieuId == currentSuatChieu.SuatChieuId).ToList();
-
-                foreach (var ticket in ticketList)
+                using (var context = new NextflizContext())
                 {
-                    BookedSeatList.Add(ticket.ViTriGhe);
+                    var ticketList = context.Tickets.Where(ticket => ticket.SuatChieuId == currentSuatChieu.SuatChieuId).ToList();
+
+                    foreach (var ticket in ticketList)
+                    {
+                        BookedSeatList.Add(ticket.ViTriGhe);
+                    }
                 }
             }
+            
 
         }
     }
