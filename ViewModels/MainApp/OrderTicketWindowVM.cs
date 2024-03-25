@@ -284,7 +284,8 @@ namespace Nextfliz.ViewModels.MainApp
                                 VoucherId = usedVoucher.VoucherId,
                                 
                             };
-
+                            MessageBox.Show(newTicket.TicketId);
+                            MessageBox.Show(usedVoucher.VoucherId);
                             context.VoucherUsages.Add(newVoucerUsage);
 
                         }

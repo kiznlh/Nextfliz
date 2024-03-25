@@ -56,15 +56,8 @@ namespace Nextfliz.ViewModels.MainApp
                     PurchaseHistory.Add(history);
                 }
             }
-            ItemClickCommand = new RelayCommand(click,canClick);
+           
         }
-        public bool canClick(object value)
-        {
-            return true;
-        }
-        public void click(object value)
-        {
-
-        }
+       
     }
 }
