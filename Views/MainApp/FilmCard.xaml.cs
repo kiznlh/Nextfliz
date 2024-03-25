@@ -191,5 +191,7 @@ namespace Nextfliz.Views.MainApp
                 mainWindow.navigateToAPage(filmDetailPage);
             }
         }
+
+       
     }
 }

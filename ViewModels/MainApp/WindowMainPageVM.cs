@@ -57,6 +57,8 @@ namespace Nextfliz.ViewModels.MainApp
                         TenPhim = saidMovie.TenPhim,
                         Certification = saidMovie.Certification,
                         ThoiLuong = saidMovie.ThoiLuong != null ? saidMovie.ThoiLuong.ToString() : "0",
+                        NamPhatHanh = saidMovie.NamPhatHanh.ToString(),
+                        Rating = saidMovie.DiemDanhGia.ToString(),
                     };
 
                     hotMovies.Add(filmCard);
@@ -91,6 +93,8 @@ namespace Nextfliz.ViewModels.MainApp
                             TenPhim = saidMovie.TenPhim,
                             Certification = saidMovie.Certification,
                             ThoiLuong = saidMovie.ThoiLuong != null ? saidMovie.ThoiLuong.ToString() : "0",
+                            NamPhatHanh = saidMovie.NamPhatHanh.ToString(),
+                            Rating = saidMovie.DiemDanhGia.ToString(),
                         };
 
                         randomMovies.Add(filmCard);
