@@ -98,6 +98,6 @@
             <TextBlock Foreground="Wheat" x:Name="finalPrice" FontSize="16" Text="{Binding FinalPrice, StringFormat={}{0}đ}" HorizontalAlignment="Right"/>
         </UniformGrid>
 
-        <Button x:Name="orderButton" Content="Xác nhận đặt vé" Grid.Row="4" Height="50" Width="400" Background="Transparent" FontSize="30" Foreground="LawnGreen" Margin="20"/>
+        <Button x:Name="orderButton" Command="{Binding ConfirmCommand}" Content="Xác nhận đặt vé" Grid.Row="4" Height="50" Width="400" Background="Transparent" FontSize="30" Foreground="LawnGreen" Margin="20"/>
     </Grid>
 </Window>

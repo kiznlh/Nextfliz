@@ -39,7 +39,7 @@ namespace Nextfliz.Views.MainApp
                     if (grid == lastClickedSeat)
                     {
                         lastClickedSeat = null;
-                        SeatClicked?.Invoke(this, "");
+                        SeatClicked?.Invoke(this, "null");
                         return;
                     }
                 }
