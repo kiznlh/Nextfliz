@@ -195,6 +195,8 @@ namespace Nextfliz.ViewModels.MainApp
                 saidUser.HoTen = HoTen;
 
                 context.SaveChanges();
+
+                MessageBox.Show("Lưu thông tin thành công", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 

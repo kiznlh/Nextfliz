@@ -16,11 +16,10 @@
             <RowDefinition Height="2*"/>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Image Source="/Resources/Images/avatar.png" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-            <TextBox x:Name="userName" Text="{Binding HoTen, StringFormat={}{0}🖋️}" Foreground="BlanchedAlmond" Background="Transparent" BorderThickness="0" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20,0,0,0"/>
+            <TextBox CaretBrush="White" x:Name="userName" Text="{Binding HoTen, StringFormat={}{0}🖋️}" Foreground="BlanchedAlmond" Background="Transparent" BorderThickness="0" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20,0,0,0"/>
         </StackPanel>
 
         
@@ -41,7 +40,7 @@
                         </ComboBox>
                     </StackPanel>
                 </DockPanel>
-                <Button Padding="15" x:Name="saveInforButton" Command="{Binding SaveInformation}" Content="Lưu" Width="auto" Height="auto" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="BlanchedAlmond" Background="Transparent" BorderThickness="1" FontSize="20"></Button>
+                <Button Padding="15,10,15,10" Margin="0,10,0,0" x:Name="saveInforButton" Command="{Binding SaveInformation}" Content="Lưu" Width="auto" Height="auto" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="BlanchedAlmond" Background="Transparent" BorderThickness="1" FontSize="20"></Button>
             </StackPanel>
         </Grid>
 
@@ -54,16 +53,16 @@
                 <PasswordBox x:Name="newPassword" Width="200" PasswordChanged="newPasswordBox_PasswordChanged"></PasswordBox>
                 <Label Foreground="BlanchedAlmond" FontSize="20">Xác nhận password mới</Label>
                 <PasswordBox x:Name="confirmNewPassword" Width="200" PasswordChanged="confirmPasswordBox_PasswordChanged"></PasswordBox>
-                <Button Padding="15" x:Name="changePassword" Command="{Binding SavePassword}" Content="Lưu" Width="auto" Height="auto" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="BlanchedAlmond" Background="Transparent" BorderThickness="1" FontSize="20"></Button>
+                <Button Padding="15,10,15,10" Margin="0,10,0,0" x:Name="changePassword" Command="{Binding SavePassword}" Content="Lưu" Width="auto" Height="auto" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="BlanchedAlmond" Background="Transparent" BorderThickness="1" FontSize="20"></Button>
             </StackPanel>
         </Grid>
 
-      
+
         <Grid Grid.Row="3">
-            <Button Padding="15" x:Name="bookHistory" Command="{Binding PurchaseHistory}" Content="Lịch sử đặt vé" Width="auto" Height="auto" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="BlanchedAlmond" Background="Transparent" BorderThickness="1" FontSize="20"></Button>
-        </Grid>
-        <Grid Grid.Row="4">
-            <Button Padding="15" x:Name="logoutButton" Command="{Binding LogoutCommand}" Content="Đăng xuất" Width="auto" Height="auto" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="BlanchedAlmond" Background="Transparent" BorderThickness="1" FontSize="20"/>
+            <WrapPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Button Padding="15" x:Name="bookHistory" Command="{Binding PurchaseHistory}" Content="Lịch sử đặt vé" Width="auto" Height="auto" Foreground="BlanchedAlmond" Background="Transparent" BorderThickness="1" FontSize="20" Margin="0,0,10,0"></Button>
+            <Button Padding="15" x:Name="logoutButton" Command="{Binding LogoutCommand}" Content="Đăng xuất" Width="auto" Height="auto" Foreground="BlanchedAlmond" Background="Transparent" BorderThickness="1" FontSize="20"/>
+            </WrapPanel>
         </Grid>
     </Grid>
 </Page>
