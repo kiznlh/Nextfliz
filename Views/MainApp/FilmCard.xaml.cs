@@ -122,7 +122,7 @@ namespace Nextfliz.Views.MainApp
 
         private void Container_MouseEnter(object sender, MouseEventArgs e)
         {
-            ScaleControl(1.1);
+            ScaleControl(1.3);
             if (videoElement != null)
             {
                 videoElement.Play();

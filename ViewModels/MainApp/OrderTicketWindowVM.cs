@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Conventions;
-using Nextfliz.Models;
 using Nextfliz.Views.MainApp;
 using System;
 using System.Collections.Generic;
