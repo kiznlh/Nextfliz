@@ -21,7 +21,6 @@
     <None Remove="Resources\Icons\voucher_birthday.png" />
     <None Remove="Resources\Icons\voucher_normal.png" />
     <None Remove="Resources\Images\avatar.png" />
-    <None Remove="Resources\Images\bg_2.jpg" />
     <None Remove="Resources\Images\channels4_profile.jpg" />
     <None Remove="Resources\Images\film_bg.jpg" />
     <None Remove="Resources\Images\film_trailer.mp4" />
@@ -67,11 +66,7 @@
     <Resource Include="Resources\Icons\voucher_birthday.png" />
     <Resource Include="Resources\Icons\voucher_normal.png" />
     <Resource Include="Resources\Images\avatar.png" />
-    <Resource Include="Resources\Images\channels4_profile.jpg" />
-    <Resource Include="Resources\Images\bg_2.jpg" />
-    <Resource Include="Resources\Images\film_bg.jpg" />
     <Resource Include="Resources\Images\film_trailer.mp4" />
-    <Resource Include="Resources\Images\xD.jpg" />
   </ItemGroup>
 
   <ItemGroup>
