@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 using Nextfliz.View.Admin;
 using System.IO;
 
-namespace Nextfliz 
+namespace Nextfliz
 {
-    
+
     class CharacterManagementVM : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;

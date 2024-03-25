@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Nextfliz.Models;
+namespace Nextfliz;
 
 public partial class Voucher
 {
@@ -34,4 +34,6 @@ public partial class Voucher
     public int? SoLuong { get; set; }
 
     public double? TiLeGiam { get; set; }
+
+    public virtual ICollection<VoucherUsage> VoucherUsages { get; set; } = new List<VoucherUsage>();
 }

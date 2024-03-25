@@ -12,9 +12,10 @@ public partial class User
     public string? HoTen { get; set; }
 
     public DateOnly? NgaySinh { get; set; }
-    public string? Role { get; set; }
 
     public string? GioiTinh { get; set; }
+
+    public string? Role { get; set; }
 
     public virtual ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();
 }

@@ -1,5 +1,4 @@
-﻿using Nextfliz.Models;
-using Nextfliz.Views.Admin;
+﻿using Nextfliz.Views.Admin;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

@@ -36,6 +36,9 @@ public partial class SuatChieu
             var tickets = dbContext.Tickets.Where(s => s.SuatChieuId == id);
             foreach (var ticket in tickets)
             {
+                var usage = dbContext.VoucherUsages.Where(s => s.TicketId == ticket.TicketId);
+                dbContext.RemoveRange(usage);
+                dbContext.SaveChanges();
                 dbContext.Tickets.Remove(ticket);
             }
             dbContext.SaveChanges();

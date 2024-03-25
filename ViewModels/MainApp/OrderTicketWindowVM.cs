@@ -1,5 +1,4 @@
-﻿using Nextfliz.Models;
-using Nextfliz.Views.MainApp;
+﻿using Nextfliz.Views.MainApp;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,7 +7,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
 
 namespace Nextfliz.ViewModels.MainApp
@@ -186,11 +184,9 @@ namespace Nextfliz.ViewModels.MainApp
 
         public ObservableCollection<VoucherCard> Vouchers { get; set; }
 
-        public RelayCommand ConfirmCommand { get; set; }
-        private string _movieID;
+        public RelayCommand ConfirmCommand;
         public OrderTicketWindowVM(string movieID)
         {
-            _movieID = movieID;
             BookedSeatList = new ObservableCollection<string>();
             
             Vouchers = new ObservableCollection<VoucherCard>();
@@ -237,35 +233,7 @@ namespace Nextfliz.ViewModels.MainApp
         }
         public void confirm(object value)
         {
-            if (string.IsNullOrEmpty(Seat))
-            {
-                MessageBox.Show("Hãy chọn 1 ghế trống!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-            using (var context = new NextflizContext())
-            {
-                foreach (var card in Vouchers)
-                {
-                    if (card.VoucherChecked)
-                    {
-                        var usedVoucher = context.Vouchers.Where(voucher => voucher.VoucherId == card.VoucherID).FirstOrDefault();
-                        usedVoucher.SoLuong -= 1;
-                    }
-                }
-                var newTicket = new Ticket()
-                {
-                    MovieId = _movieID,
-                    Username = UserSession.username,
-                    NgayDatVe = DateTime.Now,
-                    SuatChieuId = SuatChieu[SelectedSuatChieuIndex].SuatChieuId,
-                    GiaVe = (decimal?)FinalPrice ?? 0,
-                    ViTriGhe = Seat,
-                };
-                context.Tickets.Add(newTicket);
-                context.SaveChanges();
-            }
-            MessageBox.Show("Hãy chọn 1 ghế trống!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
-            return;
+
         }
         public void getVouchers()
         {
@@ -283,7 +251,7 @@ namespace Nextfliz.ViewModels.MainApp
                         VoucherImage = "../../../Resources/Icons/voucher_normal.png",
                         VoucherName = voucher.TenVoucher ?? "",
                         VoucherValue = voucher.TiLeGiam ?? 0,
-                        VoucherID = voucher.VoucherId,
+                        
                         VoucherChecked = false,
                     };
                     Vouchers.Add(voucherCard);
