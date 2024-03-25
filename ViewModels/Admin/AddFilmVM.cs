@@ -416,11 +416,16 @@ namespace Nextfliz
             {
                 var items = context.Actors.Where(actor => !context.FilmCasts.Any(fc => fc.MovieId == id && fc.ActorId == actor.ActorId)).Where(e => e.HoTen.Contains(searchText)).ToList();
 
+                foreach (var actor in chosenActors)
+                {
+                    var chosen = items.FirstOrDefault(x => x.ActorId == actor.ActorId);
+                    items.Remove(chosen);
+                }
+
                 foreach (var item in items)
                 {
                     actorList.Add(item);
                 }
-
             }
         }
         private bool canPerform(object value)
