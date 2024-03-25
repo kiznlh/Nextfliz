@@ -36,7 +36,6 @@ namespace Nextfliz.Views.MainApp
     public partial class WindowUserMainWindow : Window
     {
         PageSearch pageSearch;
-        TestPageForNewControl testPage;
         WindowMainPage mainPage;
 
         LoginPage loginPage;
@@ -47,7 +46,6 @@ namespace Nextfliz.Views.MainApp
         {
             InitializeComponent();
             pageSearch = new PageSearch();
-            testPage = new TestPageForNewControl();
             mainPage = new WindowMainPage();
 
             loginPage = new LoginPage();
