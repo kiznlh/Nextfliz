@@ -149,9 +149,14 @@ namespace Nextfliz
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
             string text = (string)value;
+            string pattern = @"^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-\d{4}$";
             if (text == null || text.Length == 0)
             {
                 return new ValidationResult(false, "Nội dung này không được để trống");
+            }
+            if (!Regex.IsMatch(text, pattern))
+            {
+                return new ValidationResult(false, "Định dạng ngày tháng không hợp lệ, định dang phải là dd-MM-yyyy");
             }
             return ValidationResult.ValidResult;
         }

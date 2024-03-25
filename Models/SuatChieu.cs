@@ -36,12 +36,15 @@ public partial class SuatChieu
             var tickets = dbContext.Tickets.Where(s => s.SuatChieuId == id);
             foreach (var ticket in tickets)
             {
-                var usage = dbContext.VoucherUsages.Where(s => s.TicketId == ticket.TicketId);
-                dbContext.RemoveRange(usage);
-                dbContext.SaveChanges();
+                using (var context2 = new NextflizContext())
+                {
+                    var usage = context2.VoucherUsages.Where(s => s.TicketId == ticket.TicketId);
+                    context2.VoucherUsages.RemoveRange(usage);
+                    context2.SaveChanges();
+                }
+                
                 dbContext.Tickets.Remove(ticket);
             }
-            dbContext.SaveChanges();
 
             var itemToDelete = dbContext.SuatChieus.FirstOrDefault(s => s.SuatChieuId == id);
             dbContext.SuatChieus.Remove(itemToDelete);
@@ -58,8 +61,6 @@ public partial class SuatChieu
     public decimal? GiaVe { get; set; }
 
     public virtual Movie? Movie { get; set; }
-
-    public virtual ICollection<Seat> Seats { get; set; } = new List<Seat>();
 
     public virtual ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();
 }

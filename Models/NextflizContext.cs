@@ -25,8 +25,6 @@ public partial class NextflizContext : DbContext
 
     public virtual DbSet<Movie> Movies { get; set; }
 
-    public virtual DbSet<Seat> Seats { get; set; }
-
     public virtual DbSet<SuatChieu> SuatChieus { get; set; }
 
     public virtual DbSet<Ticket> Tickets { get; set; }
@@ -175,27 +173,7 @@ public partial class NextflizContext : DbContext
                 .HasConstraintName("FK__Movie__genre_id__3F466844");
         });
 
-        modelBuilder.Entity<Seat>(entity =>
-        {
-            entity.HasKey(e => new { e.SuatChieuId, e.ViTriGhe }).HasName("PK__Seat__D37C11B1D476C8FB");
-
-            entity.ToTable("Seat");
-
-            entity.Property(e => e.SuatChieuId)
-                .HasMaxLength(5)
-                .IsUnicode(false)
-                .IsFixedLength()
-                .HasColumnName("suat_chieu_id");
-            entity.Property(e => e.ViTriGhe)
-                .HasMaxLength(5)
-                .HasColumnName("vi_tri_ghe");
-
-            entity.HasOne(d => d.SuatChieu).WithMany(p => p.Seats)
-                .HasForeignKey(d => d.SuatChieuId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Seat__suat_chieu__5070F446");
-        });
-
+        
         modelBuilder.Entity<SuatChieu>(entity =>
         {
             entity.HasKey(e => e.SuatChieuId).HasName("PK__SuatChie__8BDAEB5B32B506FB");
