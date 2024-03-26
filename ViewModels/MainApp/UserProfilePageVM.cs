@@ -6,6 +6,7 @@ using System.Linq;
 using System.Security;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
@@ -14,14 +15,17 @@ namespace Nextfliz.ViewModels.MainApp
 {
     public class UserProfilePageVM : INotifyPropertyChanged
     {
+      
         public event PropertyChangedEventHandler PropertyChanged;
 
         private string _userName;
+
         public string UserName
         {
             get { return _userName; }
             set 
-            { 
+            {
+                
                 _userName = value;
                 OnPropertyChanged("UserName");
             }
@@ -30,7 +34,7 @@ namespace Nextfliz.ViewModels.MainApp
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
+      
         private string _hoTen;
         public string HoTen
         {
@@ -38,7 +42,6 @@ namespace Nextfliz.ViewModels.MainApp
             set
             {
                 _hoTen = value;
-                _hoTen = _hoTen.Replace("🖋️", "");
                 OnPropertyChanged(nameof(HoTen));
             }
         }
@@ -104,6 +107,8 @@ namespace Nextfliz.ViewModels.MainApp
         public RelayCommand LogoutCommand { get; set; }
         public UserProfilePageVM(string username) 
         {
+            
+
             UserName = username;
             SaveInformation = new RelayCommand(saveInfor,canSaveInfor);
             SavePassword = new RelayCommand(savePass,canSavePass);
@@ -188,17 +193,20 @@ namespace Nextfliz.ViewModels.MainApp
                 MessageBox.Show("Các ô thông tin không được bỏ trống, vui lòng thử lại!", "Lỗi", MessageBoxButton.OK,MessageBoxImage.Error);
                 return;
             }
-            using (var context = new NextflizContext())
+            else
             {
-                var saidUser = context.Users.Where(user => user.Username == UserName).FirstOrDefault();
-                saidUser.GioiTinh = Gender == 0 ? "Nam" : "Nữ";
-                saidUser.NgaySinh = DateOnly.FromDateTime(Birthday);
-                HoTen = HoTen.Replace("🖋️", "");
-                saidUser.HoTen = HoTen;
+                using (var context = new NextflizContext())
+                {
+                    var saidUser = context.Users.Where(user => user.Username == UserName).FirstOrDefault();
+                    saidUser.GioiTinh = Gender == 0 ? "Nam" : "Nữ";
+                    saidUser.NgaySinh = DateOnly.FromDateTime(Birthday);
+                    HoTen = HoTen.Replace("🖋️", "");
+                    saidUser.HoTen = HoTen;
 
-                context.SaveChanges();
+                    context.SaveChanges();
 
-                MessageBox.Show("Lưu thông tin thành công", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Lưu thông tin thành công", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
             }
         }
 

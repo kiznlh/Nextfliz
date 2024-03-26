@@ -9,6 +9,25 @@
       Width="400"
       Height="700"
       Title="SignInPage">
+    <Page.Resources>
+        <ControlTemplate x:Key="ValidationTemplate">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Foreground="Red" FontSize="20" Text="! "/>
+                <AdornedElementPlaceholder/>
+            </StackPanel>
+        </ControlTemplate>
+
+        <Style x:Key="nameInError" TargetType="{x:Type TextBox}">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="true">
+                    <Setter Property="ToolTip"
+                        Value="{Binding RelativeSource={x:Static RelativeSource.Self},
+                        Path=(Validation.Errors)[0].ErrorContent}"/>
+                  
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Resources>
     <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="10">
         <Grid Margin="20">
             <Grid.RowDefinitions>
@@ -26,11 +45,31 @@
             <!-- UI -->
             <StackPanel Grid.Row="1">
                 <Label Foreground="Red" FontSize="20">Họ tên</Label>
-                <TextBox  x:Name="fullName" Margin="0 0 0 0" FontSize="20" Text="{Binding HoTen}"/>
+                <TextBox  x:Name="fullName" Margin="0 0 0 0" FontSize="20" 
+                          Validation.ErrorTemplate="{StaticResource validationTemplate}"
+                          Style="{StaticResource textboxInError}">
+                    <TextBox.Text>
+                        <Binding Path="HoTen" >
+                            <Binding.ValidationRules>
+                                <local:NameRuleSignUp/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
             </StackPanel>
             <StackPanel Grid.Row="2">
                 <Label Foreground="Red" FontSize="20">Tên đăng nhập</Label>
-                <TextBox  x:Name="txtUsername" Margin="0 0 0 0" FontSize="20" Text="{Binding UserName}"/>
+                <TextBox  x:Name="txtUsername" Margin="0 0 0 0" FontSize="20"
+                           Validation.ErrorTemplate="{StaticResource validationTemplate}"
+                            Style="{StaticResource textboxInError}">
+                    <TextBox.Text>
+                        <Binding Path="UserName">
+                            <Binding.ValidationRules>
+                                <local:NameRule/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
             </StackPanel>
             <StackPanel Grid.Row="3">
                 <Label Foreground="Red" FontSize="20">Mật khẩu</Label>

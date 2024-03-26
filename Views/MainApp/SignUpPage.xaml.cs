@@ -1,6 +1,7 @@
 ﻿using Nextfliz.ViewModels.MainApp;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,7 +20,31 @@ namespace Nextfliz.Views.MainApp
     /// <summary>
     /// Interaction logic for SignInPage.xaml
     /// </summary>
-    public partial class SignUpPage : Page
+    public class NameRuleSignUp : ValidationRule
+    {
+        public override ValidationResult Validate(object value, CultureInfo cultureInfo)
+    {
+        try
+        {
+            string name = value as string;
+
+            if (string.IsNullOrEmpty(name))
+            {
+
+                return new ValidationResult(false, "Không được để trống!");
+            }
+
+
+            return ValidationResult.ValidResult;
+        }
+        catch (Exception ex)
+        {
+            return new ValidationResult(false, ex.Message);
+        }
+    }
+
+}
+public partial class SignUpPage : Page
     {
         SignUpPageVM viewModel;
         public SignUpPage()

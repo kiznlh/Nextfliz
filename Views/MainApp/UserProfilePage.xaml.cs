@@ -1,6 +1,7 @@
 ﻿using Nextfliz.ViewModels.MainApp;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,12 +14,40 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Nextfliz.Views.MainApp
 {
     /// <summary>
     /// Interaction logic for UserProfilePage.xaml
     /// </summary>
+    /// 
+
+    public class NameRule : ValidationRule
+    {
+        public override ValidationResult Validate(object value, CultureInfo cultureInfo)
+        {
+            try
+            {
+                string name = value as string;
+
+                if (string.IsNullOrEmpty(name))
+                {
+
+                    return new ValidationResult(false, "Không được để trống!");
+                }
+
+
+                return ValidationResult.ValidResult;
+            }
+            catch (Exception ex)
+            {
+                return new ValidationResult(false, ex.Message);
+            }
+        }
+
+    }
+
     public partial class UserProfilePage : Page
     {
         UserProfilePageVM viewModel; 
@@ -46,7 +75,7 @@ namespace Nextfliz.Views.MainApp
             { ((dynamic)this.DataContext).ConfirmPassword = ((PasswordBox)sender).SecurePassword; }
         }
 
-        
+ 
     }   
 
 
