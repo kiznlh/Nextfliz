@@ -95,7 +95,7 @@ namespace Nextfliz.ViewModels.MainApp
                         {
                             UserSession.IsLoggedIn = true;
                             UserSession.username = UserName;
-                            MessageBox.Show("Đăng nhập thành công");
+                            MessageBox.Show("Đăng nhập thành công", "Thành công", MessageBoxButton.OK, MessageBoxImage.Information);
 
                             if (saidUser.Role == "Admin")
                             {
@@ -111,12 +111,12 @@ namespace Nextfliz.ViewModels.MainApp
                     }
                     else
                     {
-                        MessageBox.Show("Sai tên đăng nhập hoặc mật khẩu!");
+                        MessageBox.Show("Sai tên đăng nhập hoặc mật khẩu!","Lỗi",MessageBoxButton.OK,MessageBoxImage.Error);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Sai tên đăng nhập hoặc mật khẩu!");
+                    MessageBox.Show("Sai tên đăng nhập hoặc mật khẩu!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             
