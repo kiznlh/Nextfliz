@@ -38,6 +38,7 @@ namespace Nextfliz.ViewModels.MainApp
             set
             {
                 _hoTen = value;
+                _hoTen = _hoTen.Replace("🖋️", "");
                 OnPropertyChanged(nameof(HoTen));
             }
         }
@@ -192,6 +193,7 @@ namespace Nextfliz.ViewModels.MainApp
                 var saidUser = context.Users.Where(user => user.Username == UserName).FirstOrDefault();
                 saidUser.GioiTinh = Gender == 0 ? "Nam" : "Nữ";
                 saidUser.NgaySinh = DateOnly.FromDateTime(Birthday);
+                HoTen = HoTen.Replace("🖋️", "");
                 saidUser.HoTen = HoTen;
 
                 context.SaveChanges();

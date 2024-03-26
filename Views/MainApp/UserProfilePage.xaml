@@ -19,7 +19,7 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Image Source="/Resources/Images/avatar.png" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-            <TextBox CaretBrush="White" x:Name="userName" Text="{Binding HoTen, StringFormat={}{0}🖋️}" Foreground="BlanchedAlmond" Background="Transparent" BorderThickness="0" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20,0,0,0"/>
+            <TextBox CaretBrush="White" x:Name="userName" Text="{Binding HoTen, StringFormat={}{0}🖋️}" Foreground="BlanchedAlmond" Background="Transparent" BorderThickness="0" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20,0,0,0" />
         </StackPanel>
 
         

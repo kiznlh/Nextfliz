@@ -34,14 +34,6 @@ namespace Nextfliz.Views.MainApp
                 if (lastClickedSeat != null)
                 {
                     lastClickedSeat.Background = Brushes.DarkGoldenrod;
-
-                   
-                    if (grid == lastClickedSeat)
-                    {
-                        lastClickedSeat = null;
-                        SeatClicked?.Invoke(this, "null");
-                        return;
-                    }
                 }
 
  

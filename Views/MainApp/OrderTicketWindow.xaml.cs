@@ -68,10 +68,7 @@ namespace Nextfliz.Views.MainApp
             {
                 viewModel.Seat = seatId;
             }
-            else
-            {
-                viewModel.Seat = "";
-            }
+            
         }
 
 
