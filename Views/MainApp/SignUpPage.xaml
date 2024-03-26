@@ -5,53 +5,55 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Nextfliz.Views.MainApp"
       mc:Ignorable="d" 
-      d:DesignHeight="600" d:DesignWidth="400"
+      d:DesignHeight="700" d:DesignWidth="400"
       Width="400"
-      Height="600"
-      Title="SignInPage"
-      >
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+      Height="700"
+      Title="SignInPage">
+    <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="10">
+        <Grid Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" FontSize="25" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="red">Đăng ký tài khoản</Label>
+            <!-- UI -->
+            <StackPanel Grid.Row="1">
+                <Label Foreground="Red" FontSize="20">Họ tên</Label>
+                <TextBox  x:Name="fullName" Margin="0 0 0 0" FontSize="20" Text="{Binding HoTen}"/>
+            </StackPanel>
+            <StackPanel Grid.Row="2">
+                <Label Foreground="Red" FontSize="20">Tên đăng nhập</Label>
+                <TextBox  x:Name="txtUsername" Margin="0 0 0 0" FontSize="20" Text="{Binding UserName}"/>
+            </StackPanel>
+            <StackPanel Grid.Row="3">
+                <Label Foreground="Red" FontSize="20">Mật khẩu</Label>
+                <PasswordBox x:Name="txtPassword" Margin="0 0 0 0" FontSize="20" PasswordChanged="PasswordBox_PasswordChanged"/>
+            </StackPanel>
+            <StackPanel Grid.Row="4">
+                <Label Foreground="Red" FontSize="20">Xác nhận mật khẩu</Label>
+                <PasswordBox x:Name="confirmPassword" Margin="0 0 0 0" FontSize="20" PasswordChanged="ConfirmPasswordBox_PasswordChanged"/>
+            </StackPanel>
+            <StackPanel Grid.Row="5">
+                <Label Foreground="Red" FontSize="20">Ngày sinh</Label>
+                <DatePicker x:Name="birthday" FontSize="20" SelectedDate="{Binding Birthday}" ></DatePicker>
+            </StackPanel>
+            <StackPanel Grid.Row="6">
+                <Label Foreground="Red" FontSize="20">Giới tính</Label>
+                <ComboBox SelectedItem="{Binding Gender}">
+                    <ComboBoxItem Foreground="Red">Nam</ComboBoxItem>
+                    <ComboBoxItem Foreground="Red">Nữ</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+            <Button Grid.Row="7" Content="Đăng Kí" Command="{Binding SignUpCommand}" Width="auto" Height="auto" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" BorderBrush="Red" Style="{StaticResource loginButton}"/>
+            <Button Grid.Row="8" Content="Đã có tài khoản? Đăng nhập!" BorderThickness="0" VerticalAlignment="Center" Command="{Binding LoginCommand}" HorizontalAlignment="Center" Foreground="Red" Background="Transparent"/>
 
-        <!-- Login UI -->
-        <StackPanel Grid.Row="0">
-            <Label Foreground="Red" FontSize="20">Họ tên</Label>
-            <TextBox  x:Name="fullName" Margin="0 0 0 0" FontSize="20" Text="{Binding HoTen}"/>
-        </StackPanel>
-        <StackPanel Grid.Row="1">
-            <Label Foreground="Red" FontSize="20">Tên đăng nhập</Label>
-            <TextBox  x:Name="txtUsername" Margin="0 0 0 0" FontSize="20" Text="{Binding UserName}"/>
-        </StackPanel>
-        <StackPanel Grid.Row="2">
-            <Label Foreground="Red" FontSize="20">Mật khẩu</Label>
-            <PasswordBox x:Name="txtPassword" Margin="0 0 0 0" FontSize="20" PasswordChanged="PasswordBox_PasswordChanged"/>
-        </StackPanel>
-        <StackPanel Grid.Row="3">
-            <Label Foreground="Red" FontSize="20">Xác nhận mật khẩu</Label>
-            <PasswordBox x:Name="confirmPassword" Margin="0 0 0 0" FontSize="20" PasswordChanged="ConfirmPasswordBox_PasswordChanged"/>
-        </StackPanel>
-        <StackPanel Grid.Row="4">
-            <Label Foreground="Red" FontSize="20">Ngày sinh</Label>
-            <DatePicker x:Name="birthday" FontSize="20" SelectedDate="{Binding Birthday}" ></DatePicker>
-        </StackPanel>
-        <StackPanel Grid.Row="5">
-            <Label Foreground="Red" FontSize="20">Giới tính</Label>
-            <ComboBox SelectedItem="{Binding Gender}">
-                <ComboBoxItem Foreground="Red">Nam</ComboBoxItem>
-                <ComboBoxItem Foreground="Red">Nữ</ComboBoxItem>
-            </ComboBox>
-        </StackPanel>
-        <Button Grid.Row="6" Content="Đăng Kí" FontSize="20" VerticalAlignment="Center" Command="{Binding SignUpCommand}" HorizontalAlignment="Center" Foreground="Red" Background="Transparent" FontWeight="Bold" BorderBrush="Red" BorderThickness="2"/>
-        <Button Grid.Row="7" Content="Đã có tài khoản? Đăng nhập!" BorderThickness="0" VerticalAlignment="Center" Command="{Binding LoginCommand}" HorizontalAlignment="Center" Foreground="Red" Background="Transparent"/>
-
-    </Grid>
+        </Grid>
+    </Border>
 </Page>

@@ -43,6 +43,7 @@ namespace Nextfliz.Views.MainApp
             if (this.DataContext != null)
             { ((dynamic)this.DataContext).ConfirmPassword = ((PasswordBox)sender).SecurePassword; }
         }
+
     }
 
 }
