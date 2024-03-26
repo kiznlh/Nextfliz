@@ -86,6 +86,7 @@ namespace Nextfliz.Views.MainApp
         {
             mainPage = new WindowMainPage();
             contentFrame.Navigate(mainPage);
+            //RemoveOneBackPage();
         }
         public void navigateToAPage(Page page)
         {
@@ -128,19 +129,20 @@ namespace Nextfliz.Views.MainApp
             goForward();
         }
 
-        public void RemoveOneBackPage()
-        {
-            if (contentFrame.NavigationService.CanGoBack)
-            {
-                contentFrame.NavigationService.RemoveBackEntry();
-            }
-        }
-        //public void LogJournalEntry()
+        //public void RemoveOneBackPage()
         //{
-        //    foreach (JournalEntry entry in contentFrame.NavigationService.Journal)
-        //    {
-        //        Console.WriteLine("Page URI: " + entry.Source);
-        //    }
+        //    if (!contentFrame.NavigationService.CanGoBack)
+        //        return;
+
+        //    contentFrame.NavigationService.LoadCompleted += NavigationService_LoadCompletedForRemove;
+
         //}
+
+        //private void NavigationService_LoadCompletedForRemove(object sender, NavigationEventArgs e)
+        //{
+        //    contentFrame.NavigationService.LoadCompleted -= NavigationService_LoadCompletedForRemove;
+        //    contentFrame.NavigationService.RemoveBackEntry();
+        //}
+       
     }
 }
