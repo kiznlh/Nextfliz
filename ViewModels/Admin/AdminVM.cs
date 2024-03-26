@@ -296,9 +296,8 @@ namespace Nextfliz
 
         private void logout(object value)
         {
-            WindowUserMainWindow guest = new WindowUserMainWindow();
-            guest.Show();
             mainWindow.Close();
+            System.Windows.Forms.Application.Restart();
         }
     }
 }
