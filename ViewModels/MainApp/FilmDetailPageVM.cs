@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -150,8 +151,15 @@ namespace Nextfliz.ViewModels.MainApp
                 MovieBG = selectedMovie.HinhAnh;
                 Name = selectedMovie.TenPhim;
                 
-                var genreName = context.Genres.Where(g => g.GenreId == selectedMovie.GenreId).FirstOrDefault();
-                Genre = genreName.TenTheLoai;
+                if (selectedMovie.GenreId != null)
+                {
+                    var genreName = context.Genres.Where(g => g.GenreId == selectedMovie.GenreId).FirstOrDefault();
+                    Genre = genreName.TenTheLoai;
+                }
+                else
+                {
+                    Genre = "không có thể loại";
+                }
 
                 Duration = selectedMovie.ThoiLuong.ToString() ?? "0";
 
@@ -184,14 +192,26 @@ namespace Nextfliz.ViewModels.MainApp
 
                 //Director
 
-                var director = context.Directors.Where(d => d.DirectorId == selectedMovie.DirectorId).FirstOrDefault();
-
-                Directors = new ActorAndDirectorDetailCard()
+                if (selectedMovie.DirectorId !=  null)
                 {
-                    ImageSource = director.HinhAnh,
-                    HoTen = director.HoTen,
-                    TieuSu = director.TieuSu,
-                };
+                    var director = context.Directors.Where(d => d.DirectorId == selectedMovie.DirectorId).FirstOrDefault();
+
+                    Directors = new ActorAndDirectorDetailCard()
+                    {
+                        ImageSource = director.HinhAnh,
+                        HoTen = director.HoTen,
+                        TieuSu = director.TieuSu,
+                    };
+                }
+                else
+                {
+                    Directors = new ActorAndDirectorDetailCard()
+                    {
+                        ImageSource = "https://www.ciapc.com/wp-content/uploads/2017/10/Missing-Headshot-Placeholder-300x300.jpg",
+                        HoTen = "Không có thông tin đạo diễn",
+                        TieuSu = "Không có thông tin",
+                    };
+                }
 
                 //SuatChieu
 
