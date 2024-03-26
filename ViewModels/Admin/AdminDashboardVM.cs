@@ -149,6 +149,7 @@ namespace Nextfliz
                                         TongGiaVeSuatChieu = group.Sum(x => x.SuatChieu.GiaVe),
                                         TongGiaVeTicket = group.Sum(x => x.Ticket.GiaVe)
                                     })
+                                    .OrderBy(x => x.NgayDatVe)
                                     .ToList();
                     foreach (var item in query)
                     {
@@ -175,6 +176,7 @@ namespace Nextfliz
                                     TongGiaVeSuatChieu = group.Sum(x => x.SuatChieu.GiaVe),
                                     TongGiaVeTicket = group.Sum(x => x.Ticket.GiaVe)
                                 })
+                                .OrderBy(x => x.NgayDauTuan)
                                 .ToList();
                     foreach (var item in query)
                     {
@@ -185,7 +187,7 @@ namespace Nextfliz
                 }
                 else if (chartType == 2)
                 {
-                    var query = from ticket in context.Tickets
+                    var query = (from ticket in context.Tickets
                                 join suatChieu in context.SuatChieus
                                 on ticket.SuatChieuId equals suatChieu.SuatChieuId
                                 where ticket.NgayDatVe.HasValue
@@ -201,7 +203,7 @@ namespace Nextfliz
                                     Month = grouped.Key.Month,
                                     TongGiaVeTicket = grouped.Sum(x => x.ticket.GiaVe),
                                     TongGiaVeSuatChieu = grouped.Sum(x => x.suatChieu.GiaVe)
-                                };
+                                }).OrderBy(x => x.Month).ToList();
                     foreach (var item in query)
                     {
                         DoanhThu.Values.Add((double)item.TongGiaVeSuatChieu);
@@ -211,7 +213,7 @@ namespace Nextfliz
                 }
                 else if (chartType == 3)
                 {
-                    var query = from ticket in context.Tickets
+                    var query = (from ticket in context.Tickets
                                 join suatChieu in context.SuatChieus
                                 on ticket.SuatChieuId equals suatChieu.SuatChieuId
                                 where ticket.NgayDatVe.HasValue 
@@ -225,7 +227,7 @@ namespace Nextfliz
                                     Year = grouped.Key.Year,
                                     TongGiaVeTicket = grouped.Sum(x => x.ticket.GiaVe),
                                     TongGiaVeSuatChieu = grouped.Sum(x => x.suatChieu.GiaVe)
-                                };
+                                }).OrderBy(x => x.Year).ToList();
                     foreach (var item in query)
                     {
                         DoanhThu.Values.Add((double)item.TongGiaVeSuatChieu);
