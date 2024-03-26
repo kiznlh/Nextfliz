@@ -9,6 +9,18 @@
              Background="Transparent"
              Margin="50,10,50,10"
              d:DesignHeight="400" d:DesignWidth="300">
+    <UserControl.Resources>
+        <Style TargetType="ToolTip">
+            <Setter Property="ContentTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <TextBlock TextWrapping="Wrap" Width="200" Text="{Binding}" />
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
     <Grid ToolTipService.ToolTip="{Binding TieuSu,ElementName=Card}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />

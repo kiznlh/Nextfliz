@@ -48,7 +48,7 @@
                     <Label FontSize="15" Foreground="White">Sắp xếp theo:</Label>
                     <ComboBox Style="{StaticResource CustomComboBoxStyle}" SelectedIndex="{Binding SortSelected}" SelectionChanged="ComboBox_SelectionChanged_1">
                         <ComboBoxItem>Không có</ComboBoxItem>
-                        <ComboBoxItem>Têm phim</ComboBoxItem>
+                        <ComboBoxItem>Tên phim</ComboBoxItem>
                         <ComboBoxItem>Đạo diễn</ComboBoxItem>
                         <ComboBoxItem>Năm phát hành</ComboBoxItem>
                         <ComboBoxItem>Thể loại</ComboBoxItem>
