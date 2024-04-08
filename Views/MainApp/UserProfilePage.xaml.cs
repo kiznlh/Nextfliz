@@ -56,6 +56,7 @@ namespace Nextfliz.Views.MainApp
             InitializeComponent();
             viewModel = new UserProfilePageVM(username);
             DataContext = viewModel;
+            
         }
         private void oldPasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
