@@ -1,3 +1,6 @@
+# Role
+- kiznlh: User
+- thuanphat611: Admin
 ![image](https://github.com/kiznlh/Nextfliz/assets/84329970/294f3ef5-3e22-4e57-afea-ca678d884706)# Nextfliz
 Cinema App
 # User
